@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "330db15418c490f8311c6b3481ec1173",
+    "content-hash": "dbae6f17111be59f296867402e6cd405",
     "packages": [
         {
             "name": "cakephp/chronos",
@@ -62,6 +62,89 @@
                 "time"
             ],
             "time": "2019-06-06T07:08:18+00:00"
+        },
+        {
+            "name": "davidpiesse/nova-toggle",
+            "version": "0.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/davidpiesse/nova-toggle.git",
+                "reference": "97ddf9fa3914028432ec0d3694811fcfe755f9ea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/davidpiesse/nova-toggle/zipball/97ddf9fa3914028432ec0d3694811fcfe755f9ea",
+                "reference": "97ddf9fa3914028432ec0d3694811fcfe755f9ea",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Davidpiesse\\NovaToggle\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Davidpiesse\\NovaToggle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Boolean Toggle Switch Field",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2018-10-12T11:29:37+00:00"
+        },
+        {
+            "name": "digitalcloud/multilingual-nova",
+            "version": "v2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DigitalCloud/multilingual-nova.git",
+                "reference": "77a1a0896e22837f08a19f42fd63569d3716ac0d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DigitalCloud/multilingual-nova/zipball/77a1a0896e22837f08a19f42fd63569d3716ac0d",
+                "reference": "77a1a0896e22837f08a19f42fd63569d3716ac0d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0",
+                "spatie/laravel-translatable": "^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Digitalcloud\\MultilingualNova\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Digitalcloud\\MultilingualNova\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "💪 Multilingual Nova (using default nova fields)",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-03-03T12:40:59+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -664,6 +747,56 @@
                 "trusted proxy"
             ],
             "time": "2019-01-10T14:06:47+00:00"
+        },
+        {
+            "name": "gregoriohc/laravel-nova-theme-responsive",
+            "version": "v0.6.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gregoriohc/laravel-nova-theme-responsive.git",
+                "reference": "e621562f0a05ee2d9b4cac404f005bec0b05e067"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gregoriohc/laravel-nova-theme-responsive/zipball/e621562f0a05ee2d9b4cac404f005bec0b05e067",
+                "reference": "e621562f0a05ee2d9b4cac404f005bec0b05e067",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Gregoriohc\\LaravelNovaThemeResponsive\\ThemeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Gregoriohc\\LaravelNovaThemeResponsive\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gregorio Hernández Caso",
+                    "email": "gregoriohc@gmail.com",
+                    "homepage": "https://github.com/gregoriohc",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel Nova responsive theme.",
+            "homepage": "https://github.com/gregoriohc/laravel-nova-theme-responsive",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-06-04T08:05:40+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -1723,6 +1856,47 @@
             "time": "2018-10-13T15:16:03+00:00"
         },
         {
+            "name": "r64/nova-image-cropper",
+            "version": "1.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/64robots/nova-image-cropper.git",
+                "reference": "67f3a25e454ed2a5454d5625744d011677dbf725"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/64robots/nova-image-cropper/zipball/67f3a25e454ed2a5454d5625744d011677dbf725",
+                "reference": "67f3a25e454ed2a5454d5625744d011677dbf725",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "R64\\NovaImageCropper\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "R64\\NovaImageCropper\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-03-29T15:50:24+00:00"
+        },
+        {
             "name": "ramsey/uuid",
             "version": "3.8.0",
             "source": {
@@ -1805,6 +1979,318 @@
             "time": "2018-07-19T23:38:55+00:00"
         },
         {
+            "name": "spatie/db-dumper",
+            "version": "2.14.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/db-dumper.git",
+                "reference": "c9b699c74b56adeff75da76cef8a82a8529765ad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/db-dumper/zipball/c9b699c74b56adeff75da76cef8a82a8529765ad",
+                "reference": "c9b699c74b56adeff75da76cef8a82a8529765ad",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3",
+                "symfony/process": "^4.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.0|^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\DbDumper\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Dump databases",
+            "homepage": "https://github.com/spatie/db-dumper",
+            "keywords": [
+                "database",
+                "db-dumper",
+                "dump",
+                "mysqldump",
+                "spatie"
+            ],
+            "time": "2019-05-10T09:22:23+00:00"
+        },
+        {
+            "name": "spatie/laravel-backup",
+            "version": "6.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-backup.git",
+                "reference": "d706e64c2500fda276d421551c140693156c0195"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-backup/zipball/d706e64c2500fda276d421551c140693156c0195",
+                "reference": "d706e64c2500fda276d421551c140693156c0195",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "~5.8.0",
+                "illuminate/contracts": "~5.8.0",
+                "illuminate/events": "~5.8.0",
+                "illuminate/filesystem": "~5.8.0",
+                "illuminate/notifications": "~5.8.0",
+                "illuminate/support": "~5.8.0",
+                "league/flysystem": "^1.0.49",
+                "php": "^7.2",
+                "spatie/db-dumper": "^2.12",
+                "spatie/temporary-directory": "^1.1",
+                "symfony/finder": "^4.2"
+            },
+            "require-dev": {
+                "laravel/slack-notification-channel": "^1.0",
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "~3.8.0",
+                "phpunit/phpunit": "^8.0"
+            },
+            "suggest": {
+                "laravel/slack-notification-channel": "Required for sending notifications via Slack"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\Backup\\BackupServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Backup\\": "src"
+                },
+                "files": [
+                    "src/Helpers/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel package to backup your application",
+            "homepage": "https://github.com/spatie/laravel-backup",
+            "keywords": [
+                "backup",
+                "database",
+                "laravel-backup",
+                "spatie"
+            ],
+            "time": "2019-04-25T11:01:00+00:00"
+        },
+        {
+            "name": "spatie/laravel-permission",
+            "version": "2.37.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-permission.git",
+                "reference": "81dbe9d372d70c255b66a2727a235076509f8d45"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/81dbe9d372d70c255b66a2727a235076509f8d45",
+                "reference": "81dbe9d372d70c255b66a2727a235076509f8d45",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/auth": "~5.3.0|~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "illuminate/container": "~5.3.0|~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "illuminate/contracts": "~5.3.0|~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "illuminate/database": "~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.4.2|~3.5.0|~3.6.0|~3.7.0",
+                "phpunit/phpunit": "^5.7|6.2|^7.0",
+                "predis/predis": "^1.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\Permission\\PermissionServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Permission\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Permission handling for Laravel 5.4 and up",
+            "homepage": "https://github.com/spatie/laravel-permission",
+            "keywords": [
+                "acl",
+                "laravel",
+                "permission",
+                "security",
+                "spatie"
+            ],
+            "time": "2019-04-09T12:45:17+00:00"
+        },
+        {
+            "name": "spatie/laravel-translatable",
+            "version": "4.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-translatable.git",
+                "reference": "c0c385367e353898ce635737707fa4abc6b15027"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-translatable/zipball/c0c385367e353898ce635737707fa4abc6b15027",
+                "reference": "c0c385367e353898ce635737707fa4abc6b15027",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "~5.8.0",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "~3.8.0",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Translatable\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian De Deyne",
+                    "email": "sebastian@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Mohamed Said",
+                    "email": "theMohamedSaid@gmail.com",
+                    "role": "Original idea"
+                }
+            ],
+            "description": "A trait to make an Eloquent model hold translations",
+            "homepage": "https://github.com/spatie/laravel-translatable",
+            "keywords": [
+                "eloquent",
+                "i8n",
+                "laravel-translatable",
+                "model",
+                "multilingual",
+                "spatie",
+                "translate"
+            ],
+            "time": "2019-06-05T07:47:10+00:00"
+        },
+        {
+            "name": "spatie/nova-backup-tool",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/nova-backup-tool.git",
+                "reference": "93af4228f1aa89c2c16346e9e805c09719f7c946"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/nova-backup-tool/zipball/93af4228f1aa89c2c16346e9e805c09719f7c946",
+                "reference": "93af4228f1aa89c2c16346e9e805c09719f7c946",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^5.8",
+                "laravel/nova": "^2.0",
+                "php": "^7.2",
+                "spatie/laravel-backup": "^6.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^3.8",
+                "phpunit/phpunit": "8.0",
+                "spatie/phpunit-snapshot-assertions": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\BackupTool\\BackupToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\BackupTool\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel Nova tool to backup your application.",
+            "homepage": "https://github.com/spatie/nova-backup-tool",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-05-17T07:50:56+00:00"
+        },
+        {
             "name": "spatie/once",
             "version": "1.1.0",
             "source": {
@@ -1856,6 +2342,94 @@
                 "spatie"
             ],
             "time": "2017-08-24T21:16:25+00:00"
+        },
+        {
+            "name": "spatie/temporary-directory",
+            "version": "1.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/temporary-directory.git",
+                "reference": "5e1799fa2297363ebfb4df296fea90afbd4ef9b7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/temporary-directory/zipball/5e1799fa2297363ebfb4df296fea90afbd4ef9b7",
+                "reference": "5e1799fa2297363ebfb4df296fea90afbd4ef9b7",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\TemporaryDirectory\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alex Vanderbist",
+                    "email": "alex@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Easily create, use and destroy temporary directories",
+            "homepage": "https://github.com/spatie/temporary-directory",
+            "keywords": [
+                "spatie",
+                "temporary-directory"
+            ],
+            "time": "2018-04-12T09:34:43+00:00"
+        },
+        {
+            "name": "stephenlake/nova-fixed-bars",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stephenlake/nova-fixed-bars.git",
+                "reference": "2e2d7a52f889012e80a3cd0135e23f87f3341e90"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stephenlake/nova-fixed-bars/zipball/2e2d7a52f889012e80a3cd0135e23f87f3341e90",
+                "reference": "2e2d7a52f889012e80a3cd0135e23f87f3341e90",
+                "shasum": ""
+            },
+            "require": {
+                "gregoriohc/laravel-nova-theme-responsive": "^0.6.1",
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "NovaFixedBars\\NovaFixedBarsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "NovaFixedBars\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova package to add a responsive and/or fixed sidebar and navigation bar to the Nova admin UI.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-05-02T23:50:57+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3327,6 +3901,49 @@
                 "environment"
             ],
             "time": "2019-06-15T22:40:20+00:00"
+        },
+        {
+            "name": "vyuldashev/nova-permission",
+            "version": "v1.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vyuldashev/nova-permission.git",
+                "reference": "85cdf1144e7d2178d65af4f8b7ebe4fe258b84b4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vyuldashev/nova-permission/zipball/85cdf1144e7d2178d65af4f8b7ebe4fe258b84b4",
+                "reference": "85cdf1144e7d2178d65af4f8b7ebe4fe258b84b4",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1",
+                "spatie/laravel-permission": "^2.16"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Vyuldashev\\NovaPermission\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Vyuldashev\\NovaPermission\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova tool for Spatie's Permission library.",
+            "keywords": [
+                "laravel",
+                "nova",
+                "spatie-permission"
+            ],
+            "time": "2019-06-16T20:08:56+00:00"
         }
     ],
     "packages-dev": [

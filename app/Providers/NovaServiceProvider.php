@@ -6,6 +6,9 @@ use Laravel\Nova\Nova;
 use Laravel\Nova\Cards\Help;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\NovaApplicationServiceProvider;
+use Vyuldashev\NovaPermission\NovaPermissionTool;
+use Spatie\BackupTool\BackupTool;
+use Digitalcloud\MultilingualNova\NovaLanguageTool;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -67,7 +70,11 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function tools()
     {
-        return [];
+        return [
+            NovaPermissionTool::make(),
+            BackupTool::make(),
+            NovaLanguageTool::make()
+        ];
     }
 
     /**

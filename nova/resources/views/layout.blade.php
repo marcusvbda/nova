@@ -25,7 +25,7 @@
             <div class="min-h-screen flex-none pt-header min-h-screen w-sidebar bg-grad-sidebar px-6">
                 <a href="{{ Nova::path() }}">
                     <div class="absolute pin-t pin-l pin-r bg-logo flex items-center w-sidebar h-header px-6 text-white">
-                       @include('nova::partials.logo')
+                        <img src="{{asset('imgs/logo.png')}}"/>
                     </div>
                 </a>
 
@@ -37,10 +37,7 @@
             <!-- Content -->
             <div class="content">
                 <div class="flex items-center relative shadow h-header bg-white z-20 px-6">
-                    <a v-if="'{{ Nova::name() }}'" href="{{ Config::get('nova.url') }}" class="no-underline dim font-bold text-90 mr-6">
-                        {{ Nova::name() }}
-                    </a>
-
+     
                     @if (count(Nova::globallySearchableResources(request())) > 0)
                         <global-search></global-search>
                     @endif

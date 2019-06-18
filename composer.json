@@ -9,10 +9,16 @@
     "license": "MIT",
     "require": {
         "php": "^7.1.3",
+        "davidpiesse/nova-toggle": "^0.0.6",
+        "digitalcloud/multilingual-nova": "^2.0",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
+        "laravel/nova": "*",
         "laravel/tinker": "^1.0",
-        "laravel/nova": "*"
+        "r64/nova-image-cropper": "^1.1",
+        "spatie/nova-backup-tool": "^3.0",
+        "stephenlake/nova-fixed-bars": "^1.1",
+        "vyuldashev/nova-permission": "^1.8"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

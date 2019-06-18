@@ -21,7 +21,7 @@
                             resourceName: '{{ $resource::uriKey() }}'
                         }
                     }" class="text-white text-justify no-underline dim">
-                        {{ $resource::label() }}
+                        {{ __($resource::label()) }}
                     </router-link>
                 </li>
             @endforeach
