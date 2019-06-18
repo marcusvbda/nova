@@ -84,7 +84,8 @@ class User extends Resource
             Password::make(__("Confirm Password"), 'password_confirmation')
                ->onlyOnForms()
                ->creationRules('required', 'required_with:password', 'string', 'min:8')
-               ->updateRules('nullable', 'required_with:password', 'string', 'min:8'),
+               ->updateRules('nullable', 'required_with:password', 'string', 'min:8')
+               ->fillUsing(function() {}),
 
             BelongsToMany::make('Roles', 'roles', Role::class),
         ];

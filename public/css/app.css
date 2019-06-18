@@ -10646,3 +10646,7 @@ a.text-dark:focus {
   }
 }
 
+.w-150px {
+  width: 150px !important;
+}
+

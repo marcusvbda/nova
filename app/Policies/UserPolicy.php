@@ -2,8 +2,6 @@
 
 namespace App\Policies;
 
-use App\User;
-
 class UserPolicy extends __Policy
 {
     public function viewAny()
