@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\NovaApplicationServiceProvider;
 use Vyuldashev\NovaPermission\NovaPermissionTool;
 use Spatie\BackupTool\BackupTool;
-use Digitalcloud\MultilingualNova\NovaLanguageTool;
+use Infinety\Filemanager\FilemanagerTool;
+use Auth;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -70,10 +71,17 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function tools()
     {
+        $user = Auth::user();
         return [
             NovaPermissionTool::make(),
-            BackupTool::make(),
-            NovaLanguageTool::make()
+            BackupTool::make()->canSee(function () use ($user) 
+            {
+                return $user->superadmin;
+            }),
+            FilemanagerTool::make()->canSee(function () use ($user) 
+            {
+                return $user->superadmin;
+            }),
         ];
     }
 

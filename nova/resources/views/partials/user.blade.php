@@ -1,12 +1,18 @@
 <dropdown-trigger class="h-9 flex items-center" slot-scope="{toggle}" :handle-click="toggle">
-    @isset($user->email)
-        @if($user->photo)
+    
+        @if(@getimagesize(asset('storage/'.$user->photo)))
             <img
                 src="{{asset('storage/'.$user->photo)}}"
                 class="rounded-full w-8 h-8 mr-3"
             />
+        @else 
+            @isset($user->email)
+            <img
+                src="https://secure.gravatar.com/avatar/{{ md5($user->email) }}?size=512"
+                class="rounded-full w-8 h-8 mr-3"
+            />
+            @endif
         @endif
-    @endisset
 
     <span class="text-90">
         {{ $user->name ?? $user->email ?? __('Nova User') }}

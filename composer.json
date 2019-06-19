@@ -12,6 +12,7 @@
         "davidpiesse/nova-toggle": "^0.0.6",
         "digitalcloud/multilingual-nova": "^2.0",
         "fideloper/proxy": "^4.0",
+        "infinety-es/nova-filemanager": "^2.2",
         "laravel/framework": "5.8.*",
         "laravel/nova": "*",
         "laravel/tinker": "^1.0",

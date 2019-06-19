@@ -4,28 +4,28 @@ namespace App\Policies;
 
 class UserPolicy extends __Policy
 {
-    public function viewAny()
+    public function viewAny($user)
     {
-        return $this->hasPermission("Ver Usuários");
+        return $this->hasPermission($user,"Ver Usuários");
     }
 
-    public function view()
+    public function view($user)
     {
-        return $this->hasPermission("Ver Usuários");
+        return $this->hasPermission($user,"Ver Usuários");
     }
 
-    public function create()
+    public function create($user)
     {
-        return $this->hasPermission("Cadastrar Usuários");
+        return $this->hasPermission($user,"Cadastrar Usuários");
     }
 
-    public function update()
+    public function update($user)
     {
-        return $this->hasPermission("Editar Usuários");
+        return $this->hasPermission($user,"Editar Usuários");
     }
     
-    public function delete()
+    public function delete($user)
     {
-        return $this->hasPermission("Excluir Usuários");
+        return $this->hasPermission($user,"Excluir Usuários");
     }
 }

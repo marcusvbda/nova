@@ -388,5 +388,15 @@
     "Language" : "Linguagem",
     "Nova Language Tool" : "Gerenciamento de Linguagens",
     "Click here or drop the file to upload" : "Clique aqui or arraste o arquivo para fazer o upload",
-    "Edit user" : "Editar Usuário"
+    "Edit user" : "Editar Usuário",
+    "Filemanager" : "Gerenciador de Arquivos",
+    "Create folder" : "Criar uma Pasta",
+    "Write a folder name" : "Digite o nome da pasta",
+    "copy" : "Copiar" ,
+    "Preview of" : "visualização de",
+    "Remove File" : "Remover aquivo",
+    "Are you sure?" : "Você tem certeza ?",
+    "No files or folders in current directory":"Nenhum arquivo ou pasta neste diretório",
+    "Remove directory" : "Remover Diretório",
+    "Home" : "Inicio"
 }

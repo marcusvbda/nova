@@ -5,13 +5,10 @@ namespace App\Nova;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
-// use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\BelongsToMany;
 use Vyuldashev\NovaPermission\Role;
-// use Vyuldashev\NovaPermission\Permission;
-use Laravel\Nova\Fields\Image;
-use Laravel\Nova\Fields\CheckBox;
+// use Infinety\Filemanager\FilemanagerField;
 use App\Nova\Filters\UserRole;
 use R64\NovaImageCropper\ImageCropper;
 use Davidpiesse\NovaToggle\Toggle;
@@ -26,13 +23,15 @@ class User extends Resource
      */
     
     public static $model = 'App\\User';
+    
+    public static $globallySearchable = false;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'Usuários';
+    public static $title = "Users";
 
     /**
      * The columns that should be searched.
@@ -40,7 +39,7 @@ class User extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name', 'email',
+        'id', 'name', 'email'
     ];
 
 
@@ -55,11 +54,12 @@ class User extends Resource
     {
         return [
             // ID::make()->sortable(),
-            ImageCropper::make('Imagem','photo')->avatar(),
+            ImageCropper::make(__("Image"),'photo')->avatar(),
+            // FilemanagerField::make(__("Image"),'photo'),
             // Image::make('Image','photo')
             //     ->disableDownload(),
 
-            Text::make('Nome','name')
+            Text::make(__("Name"),'name')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
@@ -70,10 +70,10 @@ class User extends Resource
                 ->updateRules('unique:users,email,{{resourceId}}'),
 
             
-            Toggle::make(__("Super Admin"),"superadmin")
-            ->canSee(function ($request) {
-                return Auth::user()->superadmin;
-             }),
+            Toggle::make("Super Admin","superadmin")
+                ->canSee(function ($request) {
+                    return Auth::user()->superadmin;
+                }),
 
             Password::make(__("Password"),'password')
                 ->onlyOnForms()
