@@ -1,11 +1,8 @@
-@extends('custom.layouts.auth')
-<div class="mx-auto py-8 max-w-sm text-center text-90">
-    {{-- @include('nova::auth.partials.logo') --}}
-    <img src="{{asset('imgs/logo.png')}}" style="width: 150px;"/>
-    
-</div>
-
+<?php view()->addNamespace('nova', base_path()."\\nova\\resources\\views");?>
+<link rel="stylesheet" href="{{ mix('custom/css/app.css')}}">
+@extends('nova::auth.layout')
 @section("content")
+@include('nova::auth.partials.header')
 <form
     id="app"
     class="bg-white shadow rounded-lg p-8 max-w-login mx-auto"
@@ -16,7 +13,13 @@
     <h2 class="text-2xl text-center font-normal mb-6 text-90">
         {{__("Select the tenant you want to access")}}
     </h2>
-
+    <svg class="block mx-auto mb-6" xmlns="http://www.w3.org/2000/svg" width="100" height="2" viewBox="0 0 100 2">
+        <g id="Page-1" fill="none" fill-rule="evenodd">
+            <g id="08-login" fill="#D8E3EC" transform="translate(-650 -371)">
+                <path id="Rectangle-15" d="M650 371h100v2H650z"></path>
+            </g>
+        </g>
+    </svg>
     @if ($errors->any())
     <p class="text-center font-semibold text-danger my-3">
         @if ($errors->has('tenant'))
@@ -41,8 +44,16 @@
             btntext={{ __('Continue') }}
         >
         </select-tenant>
+        <div class="flex mb-6">
+            <div class="ml-auto">
+                <a class="text-primary dim font-bold no-underline" href="{{route('logout')}}">
+                    {{__('Go back to login')}}
+                </a>
+            </div>
+        </div>
     </div>
 
     
 </form>
+<script src="{{URL::asset('custom/js/app.js')}}"></script>
 @endsection

@@ -10,7 +10,7 @@
             :value="item.id">
         </el-option>
     </el-select>
-    <button class="w-full btn btn-default btn-primary hover:bg-primary-dark" :disabled="!model" type="submit">
+    <button class="w-full btn btn-default btn-primary hover:bg-primary-dark mb-3" :disabled="!model" type="submit">
         {{btntext}}
     </button>
 </div>

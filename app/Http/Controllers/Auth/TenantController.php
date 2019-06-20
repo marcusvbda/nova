@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
+use App\Http\Requests\SetTenantRequest;
 
 class TenantController  extends Controller
 {
@@ -31,7 +33,7 @@ class TenantController  extends Controller
         return response()->json($tenants);
     }
     
-    public function set_submit(Request $request) 
+    public function set_submit(SetTenantRequest $request) 
     {
         $route = "/admin";
         $user = Auth::user();
