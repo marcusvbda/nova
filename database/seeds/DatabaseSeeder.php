@@ -11,6 +11,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(AuthSeeder::class);
+        $this->call([
+            // ClientSeeder::class,
+            TenantSeeder::class,
+            // AuthSeeder::class
+        ]);
     }
 }

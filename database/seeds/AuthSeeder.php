@@ -20,6 +20,7 @@ class AuthSeeder extends Seeder
             "email"      =>    "admin@admin.com",
             "superadmin" =>    true,
             "password"   =>    bcrypt("admin"),
+            "client_id"  =>    1
         ]);
         $this->createPermissions();
         $role = $this->createRoles();

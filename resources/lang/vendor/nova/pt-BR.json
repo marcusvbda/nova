@@ -38,7 +38,7 @@
     "Are you sure you want to force delete the selected resources?": "Tem certeza de que deseja forçar a exclusão dos recursos selecionados?",
     "Are you sure you want to restore this resource?": "Tem certeza de que deseja restaurar este recurso?",
     "Are you sure you want to restore the selected resources?": "Tem certeza de que deseja restaurar os recursos selecionados?",
-    "No :resource matched the given criteria.": "O :resource não correspondeu aos critérios indicados.",
+    "No :resource matched the given criteria.": "Nenhum encontrado.",
     "Another user has updated this resource since this page was loaded. Please refresh the page and try again.": "Outro usuário atualizou este recurso desde que esta página foi carregada. Atualize a página e tente novamente.",
     "Are you sure you want to delete this file?": "Tem certeza de que deseja excluir este arquivo?",
     "Are you sure you want to run this action?": "Tem certeza de que deseja executar esta ação?",
@@ -398,5 +398,11 @@
     "Are you sure?" : "Você tem certeza ?",
     "No files or folders in current directory":"Nenhum arquivo ou pasta neste diretório",
     "Remove directory" : "Remover Diretório",
-    "Home" : "Inicio"
+    "Home" : "Inicio",
+    "Subdomain" : "Subdomínio",
+    "Clients" : "Clientes",
+    "enabled" : "habilitado",
+    "name" : "nome",
+    "tenants" : "Filiais",
+    "tenant" : "Filial"
 }

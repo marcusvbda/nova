@@ -6,6 +6,9 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
+use App\Observers\ClientModelObserver;
+use App\Scopes\ClientModelScope;
+
 class User extends Authenticatable
 {
     use Notifiable,HasRoles;
@@ -35,6 +38,18 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        // 'superadmin' => "boolean"
+        'superadmin' => "boolean"
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::observe(new ClientModelObserver());
+        static::addGlobalScope(new ClientModelScope());
+    }
+
+    public function client() 
+    {
+        return $this->belongsTo(Client::class);
+    }
 }

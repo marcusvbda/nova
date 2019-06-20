@@ -18,7 +18,7 @@ return [
     |
     */
 
-    'name' => 'Nova Site',
+    'name' => 'NOVA',
 
     /*
     |--------------------------------------------------------------------------
@@ -76,6 +76,7 @@ return [
         DispatchServingNovaEvent::class,
         BootTools::class,
         Authorize::class,
+        CheckClient::class,
     ],
 
     /*
@@ -89,6 +90,6 @@ return [
     |
     */
 
-    'pagination' => 'simple',
+    'pagination' => 'links',
 
 ];

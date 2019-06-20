@@ -5,6 +5,8 @@ use Laravel\Nova\Http\Middleware\BootTools;
 use Laravel\Nova\Http\Middleware\Authenticate;
 use Laravel\Nova\Http\Middleware\DispatchServingNovaEvent;
 use Vyuldashev\NovaPermission\ForgetCachedPermissions;
+use App\Http\Middleware\CheckClient;
+
 return [
 
     /*
@@ -77,6 +79,7 @@ return [
         BootTools::class,
         Authorize::class,
         ForgetCachedPermissions::class,
+        CheckClient::class,
     ],
 
     /*

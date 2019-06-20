@@ -14,6 +14,7 @@ use PhpJunior\NovaLogViewer\Tool as LogViewer;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
+
     /**
      * Bootstrap any application services.
      *

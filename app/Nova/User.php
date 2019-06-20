@@ -24,23 +24,26 @@ class User extends Resource
     
     public static $model = 'App\\User';
     
-    public static $globallySearchable = false;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = "Users";
 
+    public static function label()
+    {
+        return __('Users');
+    }
     /**
      * The columns that should be searched.
      *
      * @var array
      */
-    public static $search = [
-        'id', 'name', 'email'
-    ];
+    public static $globallySearchable = false;
+    // public static $search = [
+    //     'id', 'name', 'email'
+    // ];
 
 
 
