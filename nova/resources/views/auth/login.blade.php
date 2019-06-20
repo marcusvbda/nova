@@ -24,8 +24,6 @@
         @endif
         </p>
     @endif
-    
-    <custom-login-form></custom-login-form>
 
     <div class="mb-6 {{ $errors->has('email') ? ' has-error' : '' }}">
         <label class="block font-bold mb-2" for="email">{{ __('Email Address') }}</label>

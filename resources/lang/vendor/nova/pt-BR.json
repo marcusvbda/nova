@@ -404,5 +404,6 @@
     "enabled" : "habilitado",
     "name" : "nome",
     "tenants" : "Filiais",
-    "tenant" : "Filial"
+    "tenant" : "Filial",
+    "Select the tenant you want to access" : "Selecione a filial que deseja acessar"
 }

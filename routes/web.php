@@ -1,5 +1,5 @@
 <?php
-
+use Laravel\Nova\Http\Middleware\Authenticate;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,5 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect("/admin");
+});
+
+Route::group(['middleware' => ['web', Authenticate::class]], function () 
+{
+    require("custom/tenants.php");
+    require("custom/auth.php");
 });

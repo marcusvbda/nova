@@ -17,7 +17,20 @@ class CheckClient
     public function handle($request, Closure $next)
     {
         $user = Auth::user();
-        // dd($user->client);
+        if(!$user->tenant_id)
+        {
+            $tenants = $user->tenants;
+            if($tenants->count()==1)
+               return $this->setUniqueTenatAndContinue($user,$tenants,$request);
+            return redirect(route('custom.tenants.set'));
+        }
+        return $next($request);
+    }
+
+    private function setUniqueTenatAndContinue($user,$tenants,$request)
+    {
+        $user->tenant_id = $tenants->first()->id;
+        $user->save();
         return $next($request);
     }
 }

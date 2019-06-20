@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\User;
+use App\Tenant;
 
 class AuthSeeder extends Seeder
 {
@@ -22,6 +23,7 @@ class AuthSeeder extends Seeder
             "password"   =>    bcrypt("admin"),
             "client_id"  =>    1
         ]);
+        $user->tenants()->saveMany(Tenant::get());
         $this->createPermissions();
         $role = $this->createRoles();
         $user->assignRole($role);
@@ -35,6 +37,11 @@ class AuthSeeder extends Seeder
             "Cadastrar Usuários",
             "Editar Usuários",
             "Excluir Usuários",
+
+            "Ver Filiais",
+            "Cadastrar Filiais",
+            "Editar Filiais",
+            "Excluir Filiais",
         ];
         foreach($permissions as $permission) 
         {

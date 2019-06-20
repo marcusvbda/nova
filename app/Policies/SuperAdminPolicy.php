@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-class RolePermissionPolicy extends __Policy
+class SuperAdminPolicy extends __Policy
 {
 
     public function viewAny($user)

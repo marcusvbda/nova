@@ -75,7 +75,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         $user = Auth::user();
         return [
-            NovaPermissionTool::make(),
+            NovaPermissionTool::make()->canSee(function () use ($user) 
+            {
+                return $user->superadmin;
+            }),
             BackupTool::make()->canSee(function () use ($user) 
             {
                 return $user->superadmin;
