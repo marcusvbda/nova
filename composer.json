@@ -16,6 +16,7 @@
         "laravel/framework": "5.8.*",
         "laravel/nova": "*",
         "laravel/tinker": "^1.0",
+        "php-junior/nova-logs": "^1.0",
         "r64/nova-image-cropper": "^1.1",
         "spatie/nova-backup-tool": "^3.0",
         "stephenlake/nova-fixed-bars": "^1.1",

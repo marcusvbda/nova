@@ -10,6 +10,7 @@ use Vyuldashev\NovaPermission\NovaPermissionTool;
 use Spatie\BackupTool\BackupTool;
 use Infinety\Filemanager\FilemanagerTool;
 use Auth;
+use PhpJunior\NovaLogViewer\Tool as LogViewer;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -79,6 +80,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 return $user->superadmin;
             }),
             FilemanagerTool::make()->canSee(function () use ($user) 
+            {
+                return $user->superadmin;
+            }),
+            LogViewer::make()->canSee(function () use ($user) 
             {
                 return $user->superadmin;
             }),
