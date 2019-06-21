@@ -23,13 +23,13 @@ class CheckClient
         {
             $tenants = $user->tenants;
             if($tenants->count()==1)
-               return $this->setUniqueTenatAndContinue($user,$tenants,$request);
+               return $this->setUniqueTenatAndContinue($user,$tenants,$request,$next);
             return redirect(route('custom.tenants.set'));
         }
         return $next($request);
     }
 
-    private function setUniqueTenatAndContinue($user,$tenants,$request)
+    private function setUniqueTenatAndContinue($user,$tenants,$request,$next)
     {
         $user->tenant_id = $tenants->first()->id;
         $user->save();

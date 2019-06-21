@@ -4,5 +4,8 @@
     "tenant" : "filial",
     "tenants" : "filiais",
     "Select one option" : "Selecione uma opção",
-    "Go back to login" : "Voltar ao login"
+    "Go back to login" : "Voltar ao login",
+    "Tenant selected is not allowed for this user" : "Filial selecionada não é permitida para seu usuário",
+    "Unknown username" : "Usuário inválido",
+    "Wrong username/password combination" : "Combinação errada de usuário e senha"
 }

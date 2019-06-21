@@ -8,6 +8,10 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use App\Http\Requests\AuthLoginRequest;
+use Illuminate\Foundation\Auth\RedirectsUsers;
+use Redirect;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -60,6 +64,23 @@ class LoginController extends Controller
         $request->session()->invalidate();
 
         return redirect($this->redirectPath());
+    }
+
+    public function login(AuthLoginRequest $request)
+    {
+        $credentials = $request->only("email","password");
+        $remember = $request->only("remember");
+        $user = User::where('email', $credentials["email"])->first();
+        if(!$user) 
+            return Redirect::back()->withInput()->withErrors(["email"=>__("Unknown username")]);
+        if(Auth::attempt($credentials,@$remember["remember"]))
+        {
+            $user = Auth::user();
+            $user->tenant_id = null;
+            $user->save();
+            return redirect($this->redirectPath());
+        }
+        return Redirect::back()->withInput()->withErrors(["email"=>__("Wrong username/password combination")]);
     }
 
     /**
