@@ -52,6 +52,9 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
+        $user = Auth::user();
+        $user->tenant_id = null;
+        $user->save();
         $this->guard()->logout();
 
         $request->session()->invalidate();

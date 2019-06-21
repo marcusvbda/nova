@@ -44,12 +44,10 @@
             btntext={{ __('Continue') }}
         >
         </select-tenant>
-        <div class="flex mb-6">
-            <div class="ml-auto">
-                <a class="text-primary dim font-bold no-underline" href="{{route('logout')}}">
-                    {{__('Go back to login')}}
-                </a>
-            </div>
+        <div class="mb-6">
+            <a class="text-primary dim font-bold no-underline" href="{{route('nova.logout')}}">
+                 {{__('Go back to login')}}
+            </a>
         </div>
     </div>
 

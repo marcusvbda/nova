@@ -1,3 +1,8 @@
+<style scoped>
+.btn-default{
+    height: 50px;
+}
+</style>
 <template>
 <div v-loading="loading" >
     <label class="block font-bold mb-2" :for="name">{{label}}</label>
@@ -10,9 +15,11 @@
             :value="item.id">
         </el-option>
     </el-select>
-    <button class="w-full btn btn-default btn-primary hover:bg-primary-dark mb-3" :disabled="!model" type="submit">
-        {{btntext}}
-    </button>
+    <div class="mb-3 ">
+        <button class="w-full btn btn-default btn-primary hover:bg-primary-dark" type="submit">
+            {{btntext}}
+        </button>
+    </div>
 </div>
 </template>
 

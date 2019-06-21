@@ -16,6 +16,8 @@ class CheckClient
      */
     public function handle($request, Closure $next)
     {
+        if($request->route()->uri=="admin/logout")
+            return $next($request);
         $user = Auth::user();
         if(!$user->tenant_id)
         {
