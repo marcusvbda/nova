@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "22651b2950a2895968f4e759ef6a88fc",
+    "content-hash": "525a8772b5dbeeb11f328824557a5647",
     "packages": [
         {
             "name": "arcanedev/log-viewer",
@@ -184,6 +184,47 @@
                 "time"
             ],
             "time": "2019-06-17T15:19:18+00:00"
+        },
+        {
+            "name": "davidpiesse/nova-toggle",
+            "version": "0.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/davidpiesse/nova-toggle.git",
+                "reference": "97ddf9fa3914028432ec0d3694811fcfe755f9ea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/davidpiesse/nova-toggle/zipball/97ddf9fa3914028432ec0d3694811fcfe755f9ea",
+                "reference": "97ddf9fa3914028432ec0d3694811fcfe755f9ea",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Davidpiesse\\NovaToggle\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Davidpiesse\\NovaToggle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Boolean Toggle Switch Field",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2018-10-12T11:29:37+00:00"
         },
         {
             "name": "digitalcloud/multilingual-nova",
