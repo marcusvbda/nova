@@ -35,6 +35,7 @@ class CreateUsersTable extends Migration
                 ->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
+            // $table->softDeletes();
         });
     }
 

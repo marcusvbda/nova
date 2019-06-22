@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\BelongsTo;
+use App\Nova\Client;
 
 class Tenant extends Resource
 {
@@ -28,6 +30,7 @@ class Tenant extends Resource
     {
         return ucfirst(__('tenant'));
     }
+
     public static function label()
     {
         return ucfirst(__('tenants'));
@@ -50,11 +53,13 @@ class Tenant extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
-            Text::make(__("Name"),'name')
+            Text::make(ucfirst(__("name")),'name')
                 ->sortable()
                 ->rules('required', 'max:255'),
             Boolean::make(ucfirst(__("enabled")),'enabled'),
+            Boolean::make(ucfirst(__("principal")),'principal'),
+            // BelongsTo::make(__('client'), 'client', Client::class)
+            // ->display('name'),
         ];
     }
 

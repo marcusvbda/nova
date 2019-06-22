@@ -1,11 +1,12 @@
 {
-    "Select the tenant you want to access" : "Selecione a filial que deseja acessar",
+    "Select the tenant you want to access" : "Selecione o polo que deseja acessar",
     "Continue" : "Continuar",
-    "tenant" : "filial",
-    "tenants" : "filiais",
+    "tenant" : "Polo",
+    "tenants" : "Polos",
     "Select one option" : "Selecione uma opção",
     "Go back to login" : "Voltar ao login",
-    "Tenant selected is not allowed for this user" : "Filial selecionada não é permitida para seu usuário",
+    "Tenant selected is not allowed for this user" : "Polo selecionada não é permitida para seu usuário",
     "Unknown username" : "Usuário inválido",
-    "Wrong username/password combination" : "Combinação errada de usuário e senha"
+    "Wrong username/password combination" : "Combinação errada de usuário e senha",
+    "client" : "cliente"
 }

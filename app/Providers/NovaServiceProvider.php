@@ -11,6 +11,7 @@ use Spatie\BackupTool\BackupTool;
 use Infinety\Filemanager\FilemanagerTool;
 use Auth;
 use PhpJunior\NovaLogViewer\Tool as LogViewer;
+// use Vinicius\CustomCard\CustomCard;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {

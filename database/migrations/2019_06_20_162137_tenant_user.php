@@ -13,7 +13,7 @@ class TenantUser extends Migration
      */
     public function up()
     {
-        Schema::connection("client")->create('tenant_user', function (Blueprint $table) {
+        Schema::create('tenant_user', function (Blueprint $table) {
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';
             $table->unsignedInteger('user_id');
@@ -38,6 +38,6 @@ class TenantUser extends Migration
      */
     public function down()
     {
-        Schema::connection("client")->dropIfExists('tenant_user');
+        Schema::dropIfExists('tenant_user');
     }
 }

@@ -13,12 +13,18 @@ class CreateTenantsTable extends Migration
      */
     public function up()
     {
-        Schema::connection("client")->create('tenants', function (Blueprint $table) {
+        Schema::create('tenants', function (Blueprint $table) {
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->boolean('enabled')->default(true);
+            $table->boolean('principal')->default(false);
+            $table->unsignedInteger('client_id');
+            $table->foreign('client_id')
+                ->references('id')
+                ->on('clients')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +36,6 @@ class CreateTenantsTable extends Migration
      */
     public function down()
     {
-        Schema::connection("client")->dropIfExists('tenants');
+        Schema::dropIfExists('tenants');
     }
 }

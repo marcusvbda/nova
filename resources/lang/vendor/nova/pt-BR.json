@@ -403,7 +403,17 @@
     "Clients" : "Clientes",
     "enabled" : "habilitado",
     "name" : "nome",
-    "tenants" : "Filiais",
-    "tenant" : "Filial",
-    "Select the tenant you want to access" : "Selecione a filial que deseja acessar"
+    "tenants" : "Polos",
+    "tenant" : "Polo",
+    "Select the tenant you want to access" : "Selecione a filial que deseja acessar",
+    "of" : "de",
+    "Create :resource" : "Criar :resource",
+    "Update :resource" : "Editar :resource",
+    "The :resource was updated!": ":resource atualizado!",
+    "The :resource was deleted!": ":resource excluido!",
+    "The :resource was restored!": ":resource restaurado!",
+    "Attach :resource": "Adicionar :resource",
+    "User dont have a tenant attached": "Usuário não possui polo vinculada",
+    "roles" : "Grupos de Acesso",
+    "Choose :resource" : "Selecione uma opção"
 }

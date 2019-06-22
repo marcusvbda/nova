@@ -33,7 +33,7 @@
 
             <!-- Content -->
             <div class="content">
-                <div class="flex items-center relative shadow h-header bg-white z-20 px-6">
+                <div class="flex items-center relative shadow h-header bg-white z-20 px-6" style="padding-left: 50px;">
      
                     @if (count(Nova::globallySearchableResources(request())) > 0)
                         <global-search></global-search>

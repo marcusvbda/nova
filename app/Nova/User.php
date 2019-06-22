@@ -13,6 +13,7 @@ use App\Nova\Filters\UserRole;
 use R64\NovaImageCropper\ImageCropper;
 use Davidpiesse\NovaToggle\Toggle;
 use Auth;
+use App\Nova\Tenant;
 
 class User extends Resource
 {
@@ -45,6 +46,10 @@ class User extends Resource
     //     'id', 'name', 'email'
     // ];
 
+    // public static function softDeletes()
+    // {
+    //     return true;
+    // }
 
 
     /**
@@ -62,7 +67,7 @@ class User extends Resource
             // Image::make('Image','photo')
             //     ->disableDownload(),
 
-            Text::make(__("Name"),'name')
+            Text::make(ucfirst(__("name")),'name')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
@@ -90,7 +95,10 @@ class User extends Resource
                ->updateRules('nullable', 'required_with:password', 'string', 'min:8')
                ->fillUsing(function() {}),
 
-            BelongsToMany::make('Roles', 'roles', Role::class),
+            BelongsToMany::make(ucfirst(__('roles')), 'roles', Role::class),
+            BelongsToMany::make(ucfirst(__('tenants')), 'tenants', Tenant::class)
+                ->singularLabel(ucfirst(__("tenant")))
+                ->display('name'),
         ];
     }
 
