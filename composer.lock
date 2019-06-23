@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "525a8772b5dbeeb11f328824557a5647",
+    "content-hash": "b5109e0ed5d2d3492206cf965d485632",
     "packages": [
         {
             "name": "arcanedev/log-viewer",
@@ -127,6 +127,49 @@
                 "support"
             ],
             "time": "2019-02-27T18:33:30+00:00"
+        },
+        {
+            "name": "benjacho/belongs-to-many-field",
+            "version": "0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Benjacho/belongs-to-many-field-nova.git",
+                "reference": "9b26afe9bc502f44727ca8508a4cc3548fbfff1e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Benjacho/belongs-to-many-field-nova/zipball/9b26afe9bc502f44727ca8508a4cc3548fbfff1e",
+                "reference": "9b26afe9bc502f44727ca8508a4cc3548fbfff1e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Benjacho\\BelongsToManyField\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Benjacho\\BelongsToManyField\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "belongsToMany nova representation in field.",
+            "keywords": [
+                "Many to Many Field",
+                "belongsToMany",
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-06-02T18:40:59+00:00"
         },
         {
             "name": "cakephp/chronos",

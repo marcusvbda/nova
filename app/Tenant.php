@@ -26,4 +26,10 @@ class Tenant extends Model
     {
         return $this->belongsTo(Client::class);
     }
+
+    public function scopeEnabled($query)
+    {
+        return $query->where('enabled', true);
+    }
+ 
 }

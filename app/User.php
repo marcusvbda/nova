@@ -9,9 +9,11 @@ use Spatie\Permission\Traits\HasRoles;
 use App\Observers\ClientModelObserver;
 use App\Scopes\ClientModelScope;
 // use Illuminate\Database\Eloquent\SoftDeletes;
+use Benjacho\BelongsToManyField\HasBelongsToMany;
+
 class User extends Authenticatable
 {
-    use Notifiable,HasRoles;
+    use Notifiable,HasRoles,HasBelongsToMany;
     // SoftDeletes;
 
     /**

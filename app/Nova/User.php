@@ -14,6 +14,8 @@ use R64\NovaImageCropper\ImageCropper;
 use Davidpiesse\NovaToggle\Toggle;
 use Auth;
 use App\Nova\Tenant;
+use App\Tenant as TenantModel;
+use Benjacho\BelongsToManyField\BelongsToManyField;
 
 class User extends Resource
 {
@@ -60,6 +62,7 @@ class User extends Resource
      */
     public function fields(Request $request)
     {
+        $tenants = TenantModel::enabled()->get()->pluck("name","id")->toArray();
         return [
             // ID::make()->sortable(),
             ImageCropper::make(__("Image"),'photo')->avatar(),
@@ -99,6 +102,11 @@ class User extends Resource
             BelongsToMany::make(ucfirst(__('tenants')), 'tenants', Tenant::class)
                 ->singularLabel(ucfirst(__("tenant")))
                 ->display('name'),
+            
+            BelongsToManyField::make(ucfirst(__('tenants')), 'tenants', TenantModel::class)
+                ->options(TenantModel::enabled()->get())
+                ->relationModel(User::class)
+            
         ];
     }
 

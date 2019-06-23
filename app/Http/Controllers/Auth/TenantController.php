@@ -33,7 +33,7 @@ class TenantController  extends Controller
 
     public function get_options() 
     {
-        $tenants = Auth::user()->tenants()->where("enabled",true)->get();
+        $tenants = Auth::user()->tenants()->enabled()->get();
         return response()->json($tenants);
     }
     
