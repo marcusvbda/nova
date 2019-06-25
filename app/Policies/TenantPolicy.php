@@ -8,8 +8,6 @@ class TenantPolicy extends __Policy
     public function viewAny($user)
     {
         return true;
-        dd($user->can("Ver Polos"));
-        return $this->hasPermission($user,"Ver Polos");
     }
 
     public function view($user)
