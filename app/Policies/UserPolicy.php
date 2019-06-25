@@ -6,7 +6,7 @@ class UserPolicy extends __Policy
 {
     public function viewAny($user)
     {
-        return $this->hasPermission($user,"Ver Usuários");
+        return true;
     }
 
     public function view($user)

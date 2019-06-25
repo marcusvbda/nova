@@ -7,17 +7,21 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\BelongsTo;
-use App\Nova\Client;
+use App\Location;
+use App\Nova\Filters\LeadByLocation;
+use App\Nova\Actions\MakeLeadAWinner;
+use App\Nova\Lenses\RecentWinners;
 
-class Tenant extends Resource
+class Lead extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\Tenant';
+    public static $model = 'App\Lead';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -25,23 +29,15 @@ class Tenant extends Resource
      * @var string
      */
     public static $title = 'name';
-    
-    public static function singularLabel()
-    {
-        return ucfirst(__('tenant'));
-    }
 
-    public static function label()
-    {
-        return ucfirst(__('tenants'));
-    }
     /**
      * The columns that should be searched.
      *
      * @var array
      */
     public static $search = [
-        'id','name'
+        'id',
+        'name'
     ];
 
     /**
@@ -53,13 +49,14 @@ class Tenant extends Resource
     public function fields(Request $request)
     {
         return [
-            Text::make(ucfirst(__("name")),'name')
-                ->sortable()
-                ->rules('required', 'max:255'),
-            Boolean::make(ucfirst(__("enabled")),'enabled'),
-            Boolean::make(ucfirst(__("principal")),'principal'),
-            // BelongsTo::make(__('client'), 'client', Client::class)
-            // ->display('name'),
+            ID::make()->sortable(),
+            Text::make('Name'),
+            Text::make('Email'),
+            BelongsTo::make('Location','location'),
+            DateTime::make('Is Winner')->hideFromIndex(),
+            Boolean::make('Is Winner', function () {
+                return $this->is_winner != null;
+            })->onlyOnIndex(),
         ];
     }
 
@@ -71,7 +68,9 @@ class Tenant extends Resource
      */
     public function cards(Request $request)
     {
-        return [];
+        return [
+            // new NewLeads,
+        ];
     }
 
     /**
@@ -82,7 +81,9 @@ class Tenant extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new LeadByLocation,
+        ];
     }
 
     /**
@@ -93,7 +94,9 @@ class Tenant extends Resource
      */
     public function lenses(Request $request)
     {
-        return [];
+        return [
+            new RecentWinners
+        ];
     }
 
     /**
@@ -104,6 +107,8 @@ class Tenant extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            new MakeLeadAWinner,
+        ];
     }
 }

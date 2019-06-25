@@ -5,7 +5,6 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\User;
 use App\Tenant;
-
 class AuthSeeder extends Seeder
 {
     /**
@@ -15,6 +14,7 @@ class AuthSeeder extends Seeder
      */
     public function run()
     {
+        DB::table("tenant_user")->truncate();
         User::truncate();
         $user = User::create([
             "name"       =>    "administrador",
@@ -33,15 +33,15 @@ class AuthSeeder extends Seeder
     {
         Permission::truncate();
         $permissions = [
-            "Ver Usuários",
-            "Cadastrar Usuários",
-            "Editar Usuários",
-            "Excluir Usuários",
+                "Ver Usuários",
+                "Cadastrar Usuários",
+                "Editar Usuários",
+                "Excluir Usuários",
 
-            "Ver Filiais",
-            "Cadastrar Filiais",
-            "Editar Filiais",
-            "Excluir Filiais",
+                "Ver Polos",
+                "Cadastrar Polos",
+                "Editar Polos",
+                "Excluir Polos"
         ];
         foreach($permissions as $permission) 
         {

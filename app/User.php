@@ -5,17 +5,17 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Spatie\Permission\Traits\HasRoles;
 use App\Observers\ClientModelObserver;
 use App\Scopes\ClientModelScope;
 // use Illuminate\Database\Eloquent\SoftDeletes;
 use Benjacho\BelongsToManyField\HasBelongsToMany;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
     use Notifiable,HasRoles,HasBelongsToMany;
     // SoftDeletes;
-
+    protected $connection = "mysql";
     /**
      * The attributes that are mass assignable.
      *
@@ -60,4 +60,6 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Tenant::class);
     }
+
+    
 }

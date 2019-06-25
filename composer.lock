@@ -4,130 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b5109e0ed5d2d3492206cf965d485632",
+    "content-hash": "3707522e8cd11c8580d55371369e95d5",
     "packages": [
-        {
-            "name": "arcanedev/log-viewer",
-            "version": "4.7.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ARCANEDEV/LogViewer.git",
-                "reference": "9ae1d23f67d5d1c7490c69636b34303457fb0af3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ARCANEDEV/LogViewer/zipball/9ae1d23f67d5d1c7490c69636b34303457fb0af3",
-                "reference": "9ae1d23f67d5d1c7490c69636b34303457fb0af3",
-                "shasum": ""
-            },
-            "require": {
-                "arcanedev/support": "~4.5.0",
-                "php": ">=7.1.3",
-                "psr/log": "~1.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "~1.0",
-                "orchestra/testbench": "~3.8.0",
-                "phpunit/phpcov": "~5.0|~6.0",
-                "phpunit/phpunit": "~7.0|~8.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Arcanedev\\LogViewer\\LogViewerServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Arcanedev\\LogViewer\\": "src/"
-                },
-                "files": [
-                    "constants.php",
-                    "helpers.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "ARCANEDEV",
-                    "email": "arcanedev.maroc@gmail.com",
-                    "homepage": "https://github.com/arcanedev-maroc",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Provides a Log Viewer for Laravel 5",
-            "homepage": "https://github.com/ARCANEDEV/LogViewer",
-            "keywords": [
-                "arcanedev",
-                "arcanesoft",
-                "laravel",
-                "log",
-                "log viewer",
-                "log-viewer",
-                "logviewer"
-            ],
-            "time": "2019-04-13T10:01:41+00:00"
-        },
-        {
-            "name": "arcanedev/support",
-            "version": "4.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ARCANEDEV/Support.git",
-                "reference": "2bb6e901404a12caa440520676b6507569d20715"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ARCANEDEV/Support/zipball/2bb6e901404a12caa440520676b6507569d20715",
-                "reference": "2bb6e901404a12caa440520676b6507569d20715",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/filesystem": "~5.8.0",
-                "illuminate/support": "~5.8.0",
-                "php": ">=7.1.3"
-            },
-            "require-dev": {
-                "orchestra/testbench": "~3.8.0",
-                "phpunit/phpcov": "~5.0|~6.0",
-                "phpunit/phpunit": "~7.0|~8.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Arcanedev\\Support\\": "src/"
-                },
-                "files": [
-                    "constants.php",
-                    "helpers.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "ARCANEDEV",
-                    "email": "arcanedev.maroc@gmail.com",
-                    "homepage": "https://github.com/arcanedev-maroc"
-                }
-            ],
-            "description": "ARCANEDEV Support Helpers",
-            "homepage": "https://github.com/ARCANEDEV/Support",
-            "keywords": [
-                "arcanedev",
-                "arcanesoft",
-                "laravel",
-                "support"
-            ],
-            "time": "2019-02-27T18:33:30+00:00"
-        },
         {
             "name": "benjacho/belongs-to-many-field",
             "version": "0.4",
@@ -268,48 +146,6 @@
                 "nova"
             ],
             "time": "2018-10-12T11:29:37+00:00"
-        },
-        {
-            "name": "digitalcloud/multilingual-nova",
-            "version": "v2.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/DigitalCloud/multilingual-nova.git",
-                "reference": "77a1a0896e22837f08a19f42fd63569d3716ac0d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/DigitalCloud/multilingual-nova/zipball/77a1a0896e22837f08a19f42fd63569d3716ac0d",
-                "reference": "77a1a0896e22837f08a19f42fd63569d3716ac0d",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1.0",
-                "spatie/laravel-translatable": "^4.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Digitalcloud\\MultilingualNova\\FieldServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Digitalcloud\\MultilingualNova\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "💪 Multilingual Nova (using default nova fields)",
-            "keywords": [
-                "laravel",
-                "nova"
-            ],
-            "time": "2019-03-03T12:40:59+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1813,58 +1649,6 @@
             "time": "2018-07-02T15:55:56+00:00"
         },
         {
-            "name": "php-junior/nova-logs",
-            "version": "v1.0.10",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/PHPJunior/nova-logs.git",
-                "reference": "e5bc157bbbe680ff6537c9a166a0d0629e4f4c73"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/PHPJunior/nova-logs/zipball/e5bc157bbbe680ff6537c9a166a0d0629e4f4c73",
-                "reference": "e5bc157bbbe680ff6537c9a166a0d0629e4f4c73",
-                "shasum": ""
-            },
-            "require": {
-                "arcanedev/log-viewer": "*",
-                "php": "^7.1.3"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^3.6",
-                "phpunit/phpunit": "7.1"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "PhpJunior\\NovaLogViewer\\ToolServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "PhpJunior\\NovaLogViewer\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nyi Nyi Lwin",
-                    "email": "nyinyilwin1992@hotmail.com"
-                }
-            ],
-            "description": "Provides a Log Viewer for Laravel Nova",
-            "keywords": [
-                "laravel",
-                "nova"
-            ],
-            "time": "2018-11-02T07:46:39+00:00"
-        },
-        {
             "name": "phpoption/phpoption",
             "version": "1.5.0",
             "source": {
@@ -1913,6 +1697,56 @@
                 "type"
             ],
             "time": "2015-07-25T16:39:46+00:00"
+        },
+        {
+            "name": "predis/predis",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nrk/predis.git",
+                "reference": "f0210e38881631afeafb56ab43405a92cafd9fd1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/f0210e38881631afeafb56ab43405a92cafd9fd1",
+                "reference": "f0210e38881631afeafb56ab43405a92cafd9fd1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8"
+            },
+            "suggest": {
+                "ext-curl": "Allows access to Webdis when paired with phpiredis",
+                "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Predis\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniele Alessandri",
+                    "email": "suppakilla@gmail.com",
+                    "homepage": "http://clorophilla.net"
+                }
+            ],
+            "description": "Flexible and feature-complete Redis client for PHP and HHVM",
+            "homepage": "http://github.com/nrk/predis",
+            "keywords": [
+                "nosql",
+                "predis",
+                "redis"
+            ],
+            "time": "2016-06-16T16:22:20+00:00"
         },
         {
             "name": "psr/container",
@@ -2443,71 +2277,6 @@
                 "spatie"
             ],
             "time": "2019-04-09T12:45:17+00:00"
-        },
-        {
-            "name": "spatie/laravel-translatable",
-            "version": "4.1.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/laravel-translatable.git",
-                "reference": "c0c385367e353898ce635737707fa4abc6b15027"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-translatable/zipball/c0c385367e353898ce635737707fa4abc6b15027",
-                "reference": "c0c385367e353898ce635737707fa4abc6b15027",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": "~5.8.0",
-                "php": "^7.2"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.0",
-                "orchestra/testbench": "~3.8.0",
-                "phpunit/phpunit": "^8.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\Translatable\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Sebastian De Deyne",
-                    "email": "sebastian@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Mohamed Said",
-                    "email": "theMohamedSaid@gmail.com",
-                    "role": "Original idea"
-                }
-            ],
-            "description": "A trait to make an Eloquent model hold translations",
-            "homepage": "https://github.com/spatie/laravel-translatable",
-            "keywords": [
-                "eloquent",
-                "i8n",
-                "laravel-translatable",
-                "model",
-                "multilingual",
-                "spatie",
-                "translate"
-            ],
-            "time": "2019-06-05T07:47:10+00:00"
         },
         {
             "name": "spatie/nova-backup-tool",

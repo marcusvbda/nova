@@ -14,7 +14,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ClientSeeder::class,
             TenantSeeder::class,
-            AuthSeeder::class
+            AuthSeeder::class,
+            LocationsTableSeeder::class,
+            LeadsTableSeeder::class,
         ]);
     }
 }

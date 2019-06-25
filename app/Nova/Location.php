@@ -6,18 +6,16 @@ use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\BelongsTo;
-use App\Nova\Client;
+use Laravel\Nova\Fields\Place;
 
-class Tenant extends Resource
+class Location extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\Tenant';
+    public static $model = 'App\Location';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -25,23 +23,18 @@ class Tenant extends Resource
      * @var string
      */
     public static $title = 'name';
-    
-    public static function singularLabel()
-    {
-        return ucfirst(__('tenant'));
-    }
 
-    public static function label()
-    {
-        return ucfirst(__('tenants'));
-    }
     /**
      * The columns that should be searched.
      *
      * @var array
      */
     public static $search = [
-        'id','name'
+        'name',
+        'address_1',
+        'city',
+        'state',
+        'postal_code',
     ];
 
     /**
@@ -53,13 +46,13 @@ class Tenant extends Resource
     public function fields(Request $request)
     {
         return [
-            Text::make(ucfirst(__("name")),'name')
-                ->sortable()
-                ->rules('required', 'max:255'),
-            Boolean::make(ucfirst(__("enabled")),'enabled'),
-            Boolean::make(ucfirst(__("principal")),'principal'),
-            // BelongsTo::make(__('client'), 'client', Client::class)
-            // ->display('name'),
+            ID::make()->sortable(),
+            Text::make('Name'),
+            Place::make('Address', 'address_1')->countries(['US', 'CA'])->hideFromIndex(),
+            Text::make('Address Line 2', 'address_2')->hideFromIndex(),
+            Text::make('City'),
+            Text::make('State'),
+            Text::make('Postal Code')->hideFromIndex(),
         ];
     }
 

@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Policies;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
-class SuperAdminPolicy extends __Policy
+class ClientPolicy 
 {
-
+    use HandlesAuthorization;
     public function viewAny($user)
     {
         return $user->superadmin;

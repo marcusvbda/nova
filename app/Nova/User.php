@@ -8,6 +8,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\BelongsToMany;
 use Vyuldashev\NovaPermission\Role;
+use Vyuldashev\NovaPermission\Permission;
 // use Infinety\Filemanager\FilemanagerField;
 use App\Nova\Filters\UserRole;
 use R64\NovaImageCropper\ImageCropper;
@@ -16,6 +17,7 @@ use Auth;
 use App\Nova\Tenant;
 use App\Tenant as TenantModel;
 use Benjacho\BelongsToManyField\BelongsToManyField;
+use Laravel\Nova\Fields\MorphToMany;
 
 class User extends Resource
 {
@@ -43,10 +45,10 @@ class User extends Resource
      *
      * @var array
      */
-    public static $globallySearchable = false;
-    // public static $search = [
-    //     'id', 'name', 'email'
-    // ];
+    public static $title = 'name';
+    public static $search = [
+        'id', 'name', 'email'
+    ];
 
     // public static function softDeletes()
     // {
@@ -97,8 +99,10 @@ class User extends Resource
                ->creationRules('required', 'required_with:password', 'string', 'min:8')
                ->updateRules('nullable', 'required_with:password', 'string', 'min:8')
                ->fillUsing(function() {}),
+            
+            MorphToMany::make(ucfirst(__('roles')), 'roles', Role::class),
+            MorphToMany::make(ucfirst(__('permissions')), 'permissions', Role::class),
 
-            BelongsToMany::make(ucfirst(__('roles')), 'roles', Role::class),
             BelongsToMany::make(ucfirst(__('tenants')), 'tenants', Tenant::class)
                 ->singularLabel(ucfirst(__("tenant")))
                 ->display('name'),

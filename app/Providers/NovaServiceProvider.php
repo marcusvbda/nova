@@ -3,15 +3,18 @@
 namespace App\Providers;
 
 use Laravel\Nova\Nova;
-use Laravel\Nova\Cards\Help;
+// use Laravel\Nova\Cards\Help;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\NovaApplicationServiceProvider;
-use Vyuldashev\NovaPermission\NovaPermissionTool;
+// use Vyuldashev\NovaPermission\NovaPermissionTool;
 use Spatie\BackupTool\BackupTool;
 use Infinety\Filemanager\FilemanagerTool;
 use Auth;
-use PhpJunior\NovaLogViewer\Tool as LogViewer;
 // use Vinicius\CustomCard\CustomCard;
+use App\Nova\Metrics\NewLeads;
+use App\Nova\Metrics\LeadsPerDay;
+use App\Nova\Metrics\WinnersByLocation;
+use Vyuldashev\NovaPermission\NovaPermissionTool;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -63,7 +66,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function cards()
     {
         return [
-            new Help,
+            new LeadsPerDay,
+            new NewLeads,
+            new WinnersByLocation
         ];
     }
 
@@ -85,10 +90,6 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 return $user->superadmin;
             }),
             FilemanagerTool::make()->canSee(function () use ($user) 
-            {
-                return $user->superadmin;
-            }),
-            LogViewer::make()->canSee(function () use ($user) 
             {
                 return $user->superadmin;
             }),

@@ -7,26 +7,28 @@ class TenantPolicy extends __Policy
 {
     public function viewAny($user)
     {
-        return $this->hasPermission($user,"Ver Filias");
+        return true;
+        dd($user->can("Ver Polos"));
+        return $this->hasPermission($user,"Ver Polos");
     }
 
     public function view($user)
     {
-        return $this->hasPermission($user,"Ver Filias");
+        return $this->hasPermission($user,"Ver Polos");
     }
 
     public function create($user)
     {
-        return $this->hasPermission($user,"Cadastrar Filias");
+        return $this->hasPermission($user,"Cadastrar Polos");
     }
 
     public function update($user)
     {
-        return $this->hasPermission($user,"Editar Filias");
+        return $this->hasPermission($user,"Editar Polos");
     }
     
     public function delete($user)
     {
-        return $this->hasPermission($user,"Excluir Filias");
+        return $this->hasPermission($user,"Excluir Polos");
     }
 }

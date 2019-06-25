@@ -7,6 +7,8 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use App\Policies\SuperAdminPolicy;
 use App\Policies\UserPolicy;
 use App\Policies\TenantPolicy;
+use App\Policies\ClientPolicy;
+use App\Client;
 use App\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -22,7 +24,7 @@ class AuthServiceProvider extends ServiceProvider
         User::class => UserPolicy::class,
         Role::class => SuperAdminPolicy::class,
         Permission::class => SuperAdminPolicy::class,
-        Client::class => SuperAdminPolicy::class,
+        Client::class => ClientPolicy::class,
         Tenant::class => TenantPolicy::class,
     ];
 
