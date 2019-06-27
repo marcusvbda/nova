@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fe198243056870f4558c7e2ca1f8aaa4",
+    "content-hash": "c8f30d12269bef9c1de5b475bd8636e5",
     "packages": [
         {
             "name": "benjacho/belongs-to-many-field",
@@ -179,6 +179,47 @@
                 "nova"
             ],
             "time": "2018-10-12T11:29:37+00:00"
+        },
+        {
+            "name": "dillingham/nova-items-field",
+            "version": "0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dillingham/nova-items-field.git",
+                "reference": "98a4aaef1bdaf1dd9311362035d8c9b6c4ec06db"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dillingham/nova-items-field/zipball/98a4aaef1bdaf1dd9311362035d8c9b6c4ec06db",
+                "reference": "98a4aaef1bdaf1dd9311362035d8c9b6c4ec06db",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "NovaItemsField\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "NovaItemsField\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Nova field to handle array columns",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-02-04T20:03:42+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -681,6 +722,47 @@
                 "validator"
             ],
             "time": "2019-06-23T10:14:27+00:00"
+        },
+        {
+            "name": "epartment/nova-dependency-container",
+            "version": "1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/epartment/nova-dependency-container.git",
+                "reference": "65d3205509321b6fd04dd242e3e929b1183c82a0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/epartment/nova-dependency-container/zipball/65d3205509321b6fd04dd242e3e929b1183c82a0",
+                "reference": "65d3205509321b6fd04dd242e3e929b1183c82a0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Epartment\\NovaDependencyContainer\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Epartment\\NovaDependencyContainer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field container allowing to depend on other fields values",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-04-04T14:11:55+00:00"
         },
         {
             "name": "erusev/parsedown",

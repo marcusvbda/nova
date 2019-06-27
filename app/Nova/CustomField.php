@@ -3,26 +3,40 @@
 namespace App\Nova;
 
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\SELECT;
 use Laravel\Nova\Fields\TEXT;
-use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\BelongsTo;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use NovaItemsField\Items;
 use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
+use Epartment\NovaDependencyContainer\HasDependencies;
+use Epartment\NovaDependencyContainer\NovaDependencyContainer;
 
-class InterestType extends Resource
+class CustomField extends Resource
 {
+    use HasDependencies;
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\InterestType';
+    public static $model = 'App\CustomField';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
+    public static function singularLabel()
+    {
+        return ucfirst(__('custom lead field'));
+    }
+    public static function label()
+    {
+        return ucfirst(__('custom lead fields'));
+    }
+
     public static $title = 'name';
 
     /**
@@ -30,15 +44,6 @@ class InterestType extends Resource
      *
      * @var array
      */
-    public static function singularLabel()
-    {
-        return ucfirst(__('interest type'));
-    }
-    public static function label()
-    {
-        return ucfirst(__('interests types'));
-    }
-
     public static $search = [
         'id','name'
     ];
@@ -56,8 +61,21 @@ class InterestType extends Resource
             Text::make(ucfirst(__("name")),'name')
                 ->sortable()
                 ->rules('required', 'max:255'),
-            HasMany::make(ucfirst(__('interests')), 'interests', Interest::class)
-                ->singularLabel(ucfirst(__("interest")))
+            Select::make(ucfirst(__("types")),"type")->options([
+                'text'      =>   ucfirst(__('text')),
+                'number'    =>   ucfirst(__('number')),
+                'select'    =>   ucfirst(__('select')),
+                'phone'     =>   ucfirst(__('phone')),
+                'checkbox'  =>   ucfirst(__('checkbox')),
+                'email'     =>   ucfirst(__('email'))
+            ]),
+            NovaDependencyContainer::make([
+                Items::make(ucfirst(__("options")),"options")
+                    ->placeholder(__("Add a new item"))
+                    ->createButtonValue(__("Add"))
+            ])->dependsOn('type', "select"),
+            
+            
         ];
     }
 

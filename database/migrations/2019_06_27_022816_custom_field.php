@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Interest extends Migration
+class CustomField extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,13 @@ class Interest extends Migration
      */
     public function up()
     {
-        Schema::connection("client")->create('interests', function (Blueprint $table) {
+        Schema::connection("client")->create('custom_fields', function (Blueprint $table) {
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';
             $table->bigIncrements('id');
             $table->string('name');
-            $table->unsignedInteger('interest_type_id');
-            $table->foreign('interest_type_id')
-                ->references('id')
-                ->on('interest_types')
-                ->onDelete('cascade');
+            $table->string('type');
+            $table->longText('options');
             $table->timestamps();
         });
     }
@@ -34,6 +31,6 @@ class Interest extends Migration
      */
     public function down()
     {
-        Schema::connection("client")->dropIfExists('interests');
+        Schema::connection("client")->dropIfExists('custom_fields');
     }
 }
