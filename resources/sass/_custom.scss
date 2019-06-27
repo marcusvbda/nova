@@ -1,3 +1,25 @@
 .w-150px {
     width: 150px!important;
 }
+
+.tenant-name {
+    margin-left:20px;
+    font-weight: 600;
+    color: #80808063;
+    text-transform: uppercase;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.d-none {
+    display: none!important;
+}
+
+@media (min-width: 992px)
+{
+    .d-lg-block {
+        display: block!important;
+    }
+}

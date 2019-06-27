@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Nova;
-
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -13,6 +11,7 @@ use App\Location;
 use App\Nova\Filters\LeadByLocation;
 use App\Nova\Actions\MakeLeadAWinner;
 use App\Nova\Lenses\RecentWinners;
+use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
 
 class Lead extends Resource
 {
@@ -22,14 +21,12 @@ class Lead extends Resource
      * @var string
      */
     public static $model = 'App\Lead';
-
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
     public static $title = 'name';
-
     /**
      * The columns that should be searched.
      *
@@ -39,7 +36,6 @@ class Lead extends Resource
         'id',
         'name'
     ];
-
     /**
      * Get the fields displayed by the resource.
      *
@@ -59,7 +55,6 @@ class Lead extends Resource
             })->onlyOnIndex(),
         ];
     }
-
     /**
      * Get the cards available for the request.
      *
@@ -72,7 +67,6 @@ class Lead extends Resource
             // new NewLeads,
         ];
     }
-
     /**
      * Get the filters available for the resource.
      *
@@ -85,7 +79,6 @@ class Lead extends Resource
             new LeadByLocation,
         ];
     }
-
     /**
      * Get the lenses available for the resource.
      *
@@ -98,7 +91,6 @@ class Lead extends Resource
             new RecentWinners
         ];
     }
-
     /**
      * Get the actions available for the resource.
      *
@@ -108,6 +100,7 @@ class Lead extends Resource
     public function actions(Request $request)
     {
         return [
+            new DownloadExcel,
             new MakeLeadAWinner,
         ];
     }

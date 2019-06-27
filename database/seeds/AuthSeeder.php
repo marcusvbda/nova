@@ -5,6 +5,8 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\User;
 use App\Tenant;
+use Spatie\Permission\PermissionRegistrar;
+
 class AuthSeeder extends Seeder
 {
     /**
@@ -14,6 +16,7 @@ class AuthSeeder extends Seeder
      */
     public function run()
     {
+        app(PermissionRegistrar::class)->forgetCachedPermissions();
         DB::table("tenant_user")->truncate();
         User::truncate();
         $user = User::create([
@@ -41,7 +44,17 @@ class AuthSeeder extends Seeder
                 "Ver Polos",
                 "Cadastrar Polos",
                 "Editar Polos",
-                "Excluir Polos"
+                "Excluir Polos",
+
+                "Ver Tipos de Interesses",
+                "Cadastrar Tipos de Interesses",
+                "Editar Tipos de Interesses",
+                "Excluir Tipos de Interesses",
+                
+                "Ver Interesses",
+                "Cadastrar Interesses",
+                "Editar Interesses",
+                "Excluir Interesses"
         ];
         foreach($permissions as $permission) 
         {

@@ -1,11 +1,8 @@
 <?php
-
 namespace App;
-
 use Illuminate\Database\Eloquent\Model;
 use App\Location;
 use Laravel\Nova\Actions\Actionable;
-
 class Lead extends Model
 {
     use Actionable;

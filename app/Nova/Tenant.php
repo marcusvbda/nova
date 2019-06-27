@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Nova;
-
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -9,6 +7,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\BelongsTo;
 use App\Nova\Client;
+use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
 
 class Tenant extends Resource
 {
@@ -18,7 +17,6 @@ class Tenant extends Resource
      * @var string
      */
     public static $model = 'App\Tenant';
-
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
@@ -30,7 +28,6 @@ class Tenant extends Resource
     {
         return ucfirst(__('tenant'));
     }
-
     public static function label()
     {
         return ucfirst(__('tenants'));
@@ -43,7 +40,6 @@ class Tenant extends Resource
     public static $search = [
         'id','name'
     ];
-
     /**
      * Get the fields displayed by the resource.
      *
@@ -62,7 +58,6 @@ class Tenant extends Resource
             // ->display('name'),
         ];
     }
-
     /**
      * Get the cards available for the request.
      *
@@ -73,7 +68,6 @@ class Tenant extends Resource
     {
         return [];
     }
-
     /**
      * Get the filters available for the resource.
      *
@@ -84,7 +78,6 @@ class Tenant extends Resource
     {
         return [];
     }
-
     /**
      * Get the lenses available for the resource.
      *
@@ -95,7 +88,6 @@ class Tenant extends Resource
     {
         return [];
     }
-
     /**
      * Get the actions available for the resource.
      *
@@ -104,6 +96,8 @@ class Tenant extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            new DownloadExcel,
+        ];
     }
 }

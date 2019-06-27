@@ -22,6 +22,11 @@
 <dropdown-menu slot="menu" width="200" direction="rtl">
     <ul class="list-reset">
         <li>
+            @if(Auth::user()->tenants()->count()>1)
+                <a href="{{ route('custom.tenants.set') }}" class="block no-underline text-90 hover:bg-30 p-3">
+                    {{ __('Change Tenant') }}
+                </a>
+            @endif
             <a href="{{ route('nova.logout') }}" class="block no-underline text-90 hover:bg-30 p-3">
                 {{ __('Logout') }}
             </a>

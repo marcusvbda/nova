@@ -1,10 +1,7 @@
 <?php
-
 namespace App;
-
 use Illuminate\Database\Eloquent\Model;
 use App\Lead;
-
 class Location extends Model
 {
     public $guarded = ['created_at'];

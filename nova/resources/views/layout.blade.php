@@ -11,6 +11,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('app.css', 'vendor/nova') }}">
+    <link rel="stylesheet" href="{{ mix('custom/css/app.css') }}">
 
     <!-- Tool Styles -->
     @foreach(Nova::availableStyles(request()) as $name => $path)
@@ -38,6 +39,10 @@
                     @if (count(Nova::globallySearchableResources(request())) > 0)
                         <global-search></global-search>
                     @endif
+                    
+                    <span class="tenant-name d-none d-lg-block">
+                        {{Auth::user()->tenant->name}}
+                    </span>
 
                     <dropdown class="ml-auto h-9 flex items-center dropdown-right">
                         @include('nova::partials.user')
@@ -61,6 +66,7 @@
     <script src="{{ mix('manifest.js', 'vendor/nova') }}"></script>
     <script src="{{ mix('vendor.js', 'vendor/nova') }}"></script>
     <script src="{{ mix('app.js', 'vendor/nova') }}"></script>
+    <script src="{{ mix('custom/js/app.js') }}"></script>
 
     <!-- Build Nova Instance -->
     <script>

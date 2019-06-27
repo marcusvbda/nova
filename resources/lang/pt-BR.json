@@ -8,5 +8,16 @@
     "Tenant selected is not allowed for this user" : "Polo selecionada não é permitida para seu usuário",
     "Unknown username" : "Usuário inválido",
     "Wrong username/password combination" : "Combinação errada de usuário e senha",
-    "client" : "cliente"
+    "client" : "cliente",
+    "Change Tenant" : "Trocar de Polo",
+    "Interest Types" : "Tipos de Interesses",
+    "Interest Type" : "Tipo de Interesse",
+    "interest type" : "tipo de interesse",
+    "interests types" : "Tipos de Interesses",
+    "Interests" : "Interesses",
+    "Interest" : "Interesse",
+    "interest" : "interesse",
+    "interests" : "interesses",
+    "types" : "tipos",
+    "type" : "tipo"
 }

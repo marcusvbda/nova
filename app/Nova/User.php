@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Nova;
-
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
@@ -18,6 +16,7 @@ use App\Nova\Tenant;
 use App\Tenant as TenantModel;
 use Benjacho\BelongsToManyField\BelongsToManyField;
 use Laravel\Nova\Fields\MorphToMany;
+use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
 
 class User extends Resource
 {
@@ -29,13 +28,11 @@ class User extends Resource
     
     public static $model = 'App\\User';
     
-
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-
     public static function label()
     {
         return __('Users');
@@ -49,13 +46,10 @@ class User extends Resource
     public static $search = [
         'id', 'name', 'email'
     ];
-
     // public static function softDeletes()
     // {
     //     return true;
     // }
-
-
     /**
      * Get the fields displayed by the resource.
      *
@@ -71,28 +65,23 @@ class User extends Resource
             // FilemanagerField::make(__("Image"),'photo'),
             // Image::make('Image','photo')
             //     ->disableDownload(),
-
             Text::make(ucfirst(__("name")),'name')
                 ->sortable()
                 ->rules('required', 'max:255'),
-
             Text::make('Email','email')
                 ->sortable()
                 ->rules('required', 'email', 'max:254')
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),
-
             
             Toggle::make("Super Admin","superadmin")
                 ->canSee(function ($request) {
                     return Auth::user()->superadmin;
                 }),
-
             Password::make(__("Password"),'password')
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
-
                
             Password::make(__("Confirm Password"), 'password_confirmation')
                ->onlyOnForms()
@@ -102,7 +91,6 @@ class User extends Resource
             
             MorphToMany::make(ucfirst(__('roles')), 'roles', Role::class),
             MorphToMany::make(ucfirst(__('permissions')), 'permissions', Role::class),
-
             BelongsToMany::make(ucfirst(__('tenants')), 'tenants', Tenant::class)
                 ->singularLabel(ucfirst(__("tenant")))
                 ->display('name'),
@@ -113,7 +101,6 @@ class User extends Resource
             
         ];
     }
-
     
     /**
      * Get the cards available for the request.
@@ -125,7 +112,6 @@ class User extends Resource
     {
         return [];
     }
-
     /**
      * Get the filters available for the resource.
      *
@@ -136,7 +122,6 @@ class User extends Resource
     {
         return [new UserRole()];
     }
-
     /**
      * Get the lenses available for the resource.
      *
@@ -147,7 +132,6 @@ class User extends Resource
     {
         return [];
     }
-
     /**
      * Get the actions available for the resource.
      *
@@ -156,6 +140,8 @@ class User extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            new DownloadExcel,
+        ];
     }
 }

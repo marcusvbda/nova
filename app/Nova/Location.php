@@ -1,13 +1,10 @@
 <?php
-
 namespace App\Nova;
-
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Place;
-
 class Location extends Resource
 {
     /**
@@ -16,14 +13,12 @@ class Location extends Resource
      * @var string
      */
     public static $model = 'App\Location';
-
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
     public static $title = 'name';
-
     /**
      * The columns that should be searched.
      *
@@ -36,7 +31,6 @@ class Location extends Resource
         'state',
         'postal_code',
     ];
-
     /**
      * Get the fields displayed by the resource.
      *
@@ -55,7 +49,6 @@ class Location extends Resource
             Text::make('Postal Code')->hideFromIndex(),
         ];
     }
-
     /**
      * Get the cards available for the request.
      *
@@ -66,7 +59,6 @@ class Location extends Resource
     {
         return [];
     }
-
     /**
      * Get the filters available for the resource.
      *
@@ -77,7 +69,6 @@ class Location extends Resource
     {
         return [];
     }
-
     /**
      * Get the lenses available for the resource.
      *
@@ -88,7 +79,6 @@ class Location extends Resource
     {
         return [];
     }
-
     /**
      * Get the actions available for the resource.
      *

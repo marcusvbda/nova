@@ -8,6 +8,8 @@ use Illuminate\Support\Collection;
 use Laravel\Nova\Fields\ActionFields;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
+use Laravel\Nova\Fields\Text;
+
 // use Illuminate\Contracts\Queue\ShouldQueue;
 use Carbon\Carbon;
 
@@ -28,6 +30,7 @@ class MakeLeadAWinner extends Action
     
     public function handle(ActionFields $fields, Collection $models)
     {
+        // $fields->subject
         foreach ($models as $model) {
             try {
                 // Mark lead as a winner
@@ -46,6 +49,8 @@ class MakeLeadAWinner extends Action
      */
     public function fields()
     {
-        return [];
+        return [
+            Text::make('Subject')
+        ];
     }
 }
