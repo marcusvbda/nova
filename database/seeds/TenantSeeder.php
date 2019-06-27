@@ -13,9 +13,9 @@ class TenantSeeder extends Seeder
     public function run()
     {
         Tenant::truncate();
-        Tenant::create(["name"=>"polo 1","principal"=>true]);
-        Tenant::create(["name"=>"polo 2"]);
-        Tenant::create(["name"=>"polo 3"]);
-        Tenant::create(["name"=>"polo 4"]);
+        Tenant::create(["name"=>"lorem ipsum polo 1","principal"=>true]);
+        Tenant::create(["name"=>"lorem ipsum polo 2"]);
+        Tenant::create(["name"=>"lorem ipsum polo 3"]);
+        Tenant::create(["name"=>"lorem ipsum polo 4"]);
     }
 }

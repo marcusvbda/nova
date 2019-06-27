@@ -46,15 +46,10 @@ class AuthSeeder extends Seeder
                 "Editar Polos",
                 "Excluir Polos",
 
-                "Ver Tipos de Interesses",
-                "Cadastrar Tipos de Interesses",
-                "Editar Tipos de Interesses",
-                "Excluir Tipos de Interesses",
-                
-                "Ver Interesses",
-                "Cadastrar Interesses",
-                "Editar Interesses",
-                "Excluir Interesses"
+                "Ver Campos Customizados",
+                "Cadastrar Campos Customizados",
+                "Editar Campos Customizados",
+                "Excluir Campos Customizados"
         ];
         foreach($permissions as $permission) 
         {
