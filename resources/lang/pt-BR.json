@@ -21,5 +21,8 @@
     "checkbox" : "caixa de seleção",
     "number" : "número",
     "email" : "número",
-    "phone" : "telefone"
+    "phone" : "telefone",
+    "city" : "cidade",
+    "state" : "estado",
+    "cell" : "Celular"
 }

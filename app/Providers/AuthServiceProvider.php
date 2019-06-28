@@ -12,8 +12,10 @@ use App\Policies\ClientPolicy;
 use App\Client;
 use App\CustomField;
 use App\User;
+use App\Status;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use App\Policies\StatusPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -29,6 +31,7 @@ class AuthServiceProvider extends ServiceProvider
         Client::class => ClientPolicy::class,
         Tenant::class => TenantPolicy::class,
         CustomField::class => CustomFieldPolicy::class,
+        Status::class => StatusPolicy::class,
     ];
 
     /**

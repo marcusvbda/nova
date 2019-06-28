@@ -49,7 +49,12 @@ class AuthSeeder extends Seeder
                 "Ver Campos Customizados",
                 "Cadastrar Campos Customizados",
                 "Editar Campos Customizados",
-                "Excluir Campos Customizados"
+                "Excluir Campos Customizados",
+                
+                "Ver Status",
+                "Cadastrar Status",
+                "Editar Status",
+                "Excluir Status"
         ];
         foreach($permissions as $permission) 
         {

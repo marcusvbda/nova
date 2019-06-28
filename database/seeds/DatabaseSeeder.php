@@ -15,9 +15,9 @@ class DatabaseSeeder extends Seeder
             ClientSeeder::class,
             TenantSeeder::class,
             AuthSeeder::class,
-            LocationsTableSeeder::class,
             LeadsTableSeeder::class,
             CustomFieldSeeder::class,
+            statusSeeder::class,
         ]);
     }
 }

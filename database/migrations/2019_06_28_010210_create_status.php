@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLocationsTable extends Migration
+class CreateStatus extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,11 @@ class CreateLocationsTable extends Migration
      */
     public function up()
     {
-        Schema::connection("client")->create('locations', function (Blueprint $table) {
+        Schema::connection("client")->create('status', function (Blueprint $table) {
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';
-            $table->increments('id');
-            $table->char('name');
-            $table->char('address_1');
-            $table->char('address_2')->nullable();
-            $table->char('city');
-            $table->char('state');
-            $table->char('postal_code');
+            $table->bigIncrements('id');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -34,6 +29,6 @@ class CreateLocationsTable extends Migration
      */
     public function down()
     {
-        Schema::connection("client")->dropIfExists('locations');
+        Schema::connection("client")->dropIfExists('status');
     }
 }

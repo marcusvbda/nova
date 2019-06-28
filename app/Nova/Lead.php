@@ -4,11 +4,7 @@ use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\DateTime;
-use Laravel\Nova\Fields\BelongsTo;
-use App\Location;
-use App\Nova\Filters\LeadByLocation;
+use Dniccum\PhoneNumber\PhoneNumber;
 use App\Nova\Actions\MakeLeadAWinner;
 use App\Nova\Lenses\RecentWinners;
 use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
@@ -48,11 +44,15 @@ class Lead extends Resource
             ID::make()->sortable(),
             Text::make('Name'),
             Text::make('Email'),
-            BelongsTo::make('Location','location'),
-            DateTime::make('Is Winner')->hideFromIndex(),
-            Boolean::make('Is Winner', function () {
-                return $this->is_winner != null;
-            })->onlyOnIndex(),
+            Text::make(ucfirst(__("phone")),"phone"),
+            Text::make(ucfirst(__("cell")),"cell"),
+            Text::make(ucfirst(__("city")),"city"),
+            Text::make(ucfirst(__("state")),"state"),
+            // BelongsTo::make('Location','location'),
+            // DateTime::make('Is Winner')->hideFromIndex(),
+            // Boolean::make('Is Winner', function () {
+            //     return $this->is_winner != null;
+            // })->onlyOnIndex(),
         ];
     }
     /**
@@ -76,7 +76,7 @@ class Lead extends Resource
     public function filters(Request $request)
     {
         return [
-            new LeadByLocation,
+            // new LeadByLocation,
         ];
     }
     /**

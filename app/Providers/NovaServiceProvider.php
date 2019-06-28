@@ -70,7 +70,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             new Datecard,
             (new NewLeads)->width("2/3"),
             (new LeadsPerDay)->width("2/3"),
-            (new WinnersByLocation)->width("1/3"),
+            // (new WinnersByLocation)->width("1/3"),
         ];
     }
 

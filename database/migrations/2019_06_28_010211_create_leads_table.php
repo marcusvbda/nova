@@ -18,9 +18,16 @@ class CreateLeadsTable extends Migration
             $table->collation = 'utf8_unicode_ci';
             $table->increments('id');
             $table->string('name');
-            $table->string('email');
-            $table->unsignedInteger('location_id');
-            $table->dateTime('is_winner')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('cell')->nullable();
+            $table->string('email')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->unsignedInteger('tenant_id');
+            $table->foreign('tenant_id')
+                ->references('id')
+                ->on('tenants')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
