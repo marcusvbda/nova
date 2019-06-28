@@ -24,5 +24,6 @@
     "phone" : "telefone",
     "city" : "cidade",
     "state" : "estado",
-    "cell" : "Celular"
+    "cell" : "Celular",
+    "registrations" : "Cadastros"
 }

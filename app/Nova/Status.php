@@ -14,7 +14,7 @@ class Status extends Resource
      *
      * @var string
      */
-
+    public static $group = 'Leads'; 
     public static function singularLabel()
     {
         return ucfirst(__('status'));

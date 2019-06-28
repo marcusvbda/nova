@@ -20,6 +20,7 @@ class Lead extends Resource
      *
      * @var string
      */
+    public static $group = 'Leads'; 
     public static $model = 'App\Lead';
     /**
      * The single value that should be used to represent the resource when being displayed.

@@ -118,6 +118,10 @@ class User extends Resource
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
+    public static function group()
+    {
+        return ucfirst(__('registrations'));
+    }
     public function filters(Request $request)
     {
         return [new UserRole()];

@@ -21,6 +21,10 @@ class Client extends Resource
      *
      * @var string
      */
+    public static function group()
+    {
+        return ucfirst(__('registrations'));
+    }
     public static $title = 'id';
     public static function label()
     {

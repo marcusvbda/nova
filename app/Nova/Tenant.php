@@ -16,6 +16,11 @@ class Tenant extends Resource
      *
      * @var string
      */
+    public static function group()
+    {
+        return ucfirst(__('registrations'));
+    }
+
     public static $model = 'App\Tenant';
     /**
      * The single value that should be used to represent the resource when being displayed.
