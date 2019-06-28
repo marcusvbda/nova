@@ -19,7 +19,7 @@ class CustomField extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('type');
-            $table->longText('options');
+            $table->longText('options')->nullable();
             $table->timestamps();
         });
     }

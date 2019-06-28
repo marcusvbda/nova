@@ -11,7 +11,11 @@
         "build-custom-card": "cd nova-components/CustomCard && npm run dev",
         "build-custom-card-prod": "cd nova-components/CustomCard && npm run prod",
         "build-datecard": "cd nova-components/Datecard && npm run dev",
-        "build-datecard-prod": "cd nova-components/Datecard && npm run prod"
+        "build-datecard-prod": "cd nova-components/Datecard && npm run prod",
+        "build-InputMask": "cd nova-components/InputMask && npm run dev",
+        "build-InputMask-prod": "cd nova-components/InputMask && npm run prod",
+        "build-CustomFields": "cd nova-components/CustomFields && npm run dev",
+        "build-CustomFields-prod": "cd nova-components/CustomFields && npm run prod"
     },
     "devDependencies": {
         "axios": "^0.19",

@@ -4,9 +4,9 @@ namespace App\Nova\Filters;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Filters\Filter;
-use App\Location;
+use App\Status;
 
-class LeadByLocation extends Filter
+class LeadByStatus extends Filter
 {
     /**
      * The filter's component.
@@ -25,7 +25,7 @@ class LeadByLocation extends Filter
      */
     public function apply(Request $request, $query, $value)
     {
-        return $query->where('location_id', $value);
+        return $query->where('status_id', $value);
     }
 
     /**
@@ -37,9 +37,9 @@ class LeadByLocation extends Filter
     public function options(Request $request)
     {
         $options = [];
-        $locations = Location::all();
-        foreach ( $locations as $location ) {
-            $options[ $location->name ] = $location->id;
+        $status = Status::all();
+        foreach ( $status as $s ) {
+            $options[ $s->name ] = $s->id;
         }
         return $options;
     }

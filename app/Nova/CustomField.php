@@ -65,8 +65,6 @@ class CustomField extends Resource
                 'text'      =>   ucfirst(__('text')),
                 'number'    =>   ucfirst(__('number')),
                 'select'    =>   ucfirst(__('select')),
-                'phone'     =>   ucfirst(__('phone')),
-                'checkbox'  =>   ucfirst(__('checkbox')),
                 'email'     =>   ucfirst(__('email'))
             ]),
             NovaDependencyContainer::make([

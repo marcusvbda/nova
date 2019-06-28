@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c8f30d12269bef9c1de5b475bd8636e5",
+    "content-hash": "5205f1692d71daec5891befc0360aa5e",
     "packages": [
         {
             "name": "benjacho/belongs-to-many-field",
@@ -1539,6 +1539,72 @@
                 "phpspreadsheet"
             ],
             "time": "2019-06-19T20:58:59+00:00"
+        },
+        {
+            "name": "marcusvbda/CustomFields",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "./nova-components/CustomFields",
+                "reference": "ea6ff8c93a92d87701d4280cfd8ef230aeae9811"
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Marcusvbda\\CustomFields\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Marcusvbda\\CustomFields\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ]
+        },
+        {
+            "name": "marcusvbda/InputMask",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "./nova-components/InputMask",
+                "reference": "fd6274ea5705c03561bc58bb20975e1a16b485a8"
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Marcusvbda\\InputMask\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Marcusvbda\\InputMask\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ]
         },
         {
             "name": "markbaker/complex",
@@ -4485,6 +4551,49 @@
                 "spatie-permission"
             ],
             "time": "2019-06-16T20:08:56+00:00"
+        },
+        {
+            "name": "wemersonrv/input-mask",
+            "version": "v0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wemersonrv/input-mask.git",
+                "reference": "1db6ea224bcd4a56e8bccf9a38b975d126a651a9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wemersonrv/input-mask/zipball/1db6ea224bcd4a56e8bccf9a38b975d126a651a9",
+                "reference": "1db6ea224bcd4a56e8bccf9a38b975d126a651a9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Wemersonrv\\InputMask\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Wemersonrv\\InputMask\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "description": "A Laravel Nova custom field text with masks on input",
+            "keywords": [
+                "field",
+                "laravel",
+                "mask",
+                "nova"
+            ],
+            "time": "2019-05-16T17:15:26+00:00"
         }
     ],
     "packages-dev": [

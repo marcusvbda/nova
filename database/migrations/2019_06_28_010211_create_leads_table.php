@@ -24,10 +24,16 @@ class CreateLeadsTable extends Migration
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->unsignedInteger('tenant_id');
+            $table->longText("custom_values")->nullable();
             $table->foreign('tenant_id')
                 ->references('id')
                 ->on('tenants')
                 ->onDelete('cascade');
+            $table->unsignedInteger('status_id');
+            $table->foreign('status_id')
+                ->references('id')
+                ->on('status')
+                ->onDelete('restrict');
             $table->timestamps();
         });
     }

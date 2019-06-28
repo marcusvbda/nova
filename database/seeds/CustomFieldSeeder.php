@@ -15,7 +15,7 @@ class CustomFieldSeeder extends Seeder
         CustomField::truncate();
         CustomField::create(["name"=>"Curso","type" => "select","options"=>[
             "Analise e desenvolvimento de sistemas",
-            "Médicina",
+            "Medicina",
         ]]);
     }
 }

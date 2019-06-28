@@ -24,7 +24,10 @@
         "r64/nova-image-cropper": "^1.1",
         "spatie/nova-backup-tool": "^3.0",
         "stephenlake/nova-fixed-bars": "^1.1",
-        "vyuldashev/nova-permission": "^1.8"
+        "vyuldashev/nova-permission": "^1.8",
+        "wemersonrv/input-mask": "^0.1.2",
+        "marcusvbda/InputMask": "*",
+        "marcusvbda/CustomFields": "*"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
@@ -80,6 +83,14 @@
         {
             "type": "path",
             "url": "./nova-components/Datecard"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/InputMask"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/CustomFields"
         }
     ]
 }
