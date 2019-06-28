@@ -25,5 +25,15 @@
     "city" : "cidade",
     "state" : "estado",
     "cell" : "Celular",
-    "registrations" : "Cadastros"
+    "registrations" : "Cadastros",
+    "New Leads" : "Leads por Dia",
+    "Leads Per Day" : "Leads por Dia",
+    "day" : "dia",
+    "days" : "dias",
+    "week" : "semana",
+    "weeks" : "semanas",
+    "Leads Per Status" : "Leads por Status",
+    "reservation" : "reserva",
+    "converted" : "convertido",
+    "definition" : "definição"
 }

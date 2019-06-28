@@ -14,6 +14,12 @@ class LeadsPerDay extends Trend
      * @param  \Illuminate\Http\Request  $request
      * @return mixed
      */
+
+    public function name()
+    {
+        return __("Leads Per Day");
+    }
+
     public function calculate(Request $request)
     {
         return $this->countByDays($request, Lead::class)->showLatestValue();
@@ -30,8 +36,8 @@ class LeadsPerDay extends Trend
             // 30 => '30 Days',
             // 60 => '60 Days',
             // 90 => '90 Days',
-            7 => '1 Week',
-            14 => '2 Weeks',
+            7 => '1 '.ucfirst(__('week')),
+            14 => '2 '.ucfirst(__('weeks')),
         ];
     }
 

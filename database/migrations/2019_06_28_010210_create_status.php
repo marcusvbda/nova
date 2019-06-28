@@ -18,6 +18,7 @@ class CreateStatus extends Migration
             $table->collation = 'utf8_unicode_ci';
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('definition');
             $table->timestamps();
         });
     }

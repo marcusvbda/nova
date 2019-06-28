@@ -3,7 +3,8 @@
 namespace App\Nova;
 
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\TEXT;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Select;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -24,7 +25,7 @@ class Status extends Resource
         return ucfirst(__('status'));
     }
 
-    public static $model = 'App\status';
+    public static $model = 'App\Status';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -52,10 +53,14 @@ class Status extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make(ucfirst(__("name")),"name")
-                ->rules('required', 'text', 'max:254')
-                ->creationRules('unique:status,name')
-                ->updateRules('unique:status,name,{{resourceId}}'),
+            Text::make(ucfirst(__("name")),"name"),
+            Select::make(ucfirst(__("definition")),"definition")->options([
+                    'reservation' => 'reservation',
+                    'contacts' => 'contacts',
+                    'leads' => 'leads',
+                    'prospects' => 'prospects',
+                    'converted' => 'converted',
+            ])
         ];
     }
 

@@ -14,6 +14,12 @@ class NewLeads extends Value
      * @param  \Illuminate\Http\Request  $request
      * @return mixed
      */
+
+    public function name()
+    {
+        return __("New Leads");
+    }
+
     public function calculate(Request $request)
     {
         return $this->count($request, Lead::class);
@@ -33,8 +39,8 @@ class NewLeads extends Value
             // 'MTD' => 'Month To Date',
             // 'QTD' => 'Quarter To Date',
             // 'YTD' => 'Year To Date',
-            7 => '1 Week',
-            14 => '2 Weeks',
+            7 => '1 '.ucfirst(__('week')),
+            14 => '2 '.ucfirst(__('weeks')),
         ];
     }
 

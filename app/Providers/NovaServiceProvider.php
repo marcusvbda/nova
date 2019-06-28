@@ -13,7 +13,7 @@ use Auth;
 // use Vinicius\CustomCard\CustomCard;
 use App\Nova\Metrics\NewLeads;
 use App\Nova\Metrics\LeadsPerDay;
-use App\Nova\Metrics\WinnersByLocation;
+use App\Nova\Metrics\LeadsPerStatus;
 use Vyuldashev\NovaPermission\NovaPermissionTool;
 use Custom\Datecard\Datecard;
 
@@ -67,10 +67,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function cards()
     {
         return [
-            new Datecard,
+            (new Datecard)->width("1/3"),
             (new NewLeads)->width("2/3"),
             (new LeadsPerDay)->width("2/3"),
-            // (new WinnersByLocation)->width("1/3"),
+            (new LeadsPerStatus)->width("1/3"),
         ];
     }
 

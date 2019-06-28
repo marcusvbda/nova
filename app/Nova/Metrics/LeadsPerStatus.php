@@ -4,9 +4,9 @@ namespace App\Nova\Metrics;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Metrics\Partition;
-use App\Location;
+use App\Status;
 
-class WinnersByLocation extends Partition
+class LeadsPerStatus extends Partition
 {
     /**
      * Calculate the value of the metric.
@@ -16,12 +16,11 @@ class WinnersByLocation extends Partition
      */
     public function calculate(Request $request)
     {
-        $locations = Location::with('leads')->take(4)->get();
+        $status = Status::with('leads')->take(4)->get();
         $data = [];
-        foreach ($locations as $location) {
-            $data[$location->name] = $location
+        foreach ($status as $s) {
+            $data[$s->name] = $s
                 ->leads()
-                ->whereNotNull('is_winner')
                 ->count();
         }
         return $this->result($data);
@@ -42,8 +41,14 @@ class WinnersByLocation extends Partition
      *
      * @return string
      */
+
+    public function name()
+    {
+        return __("Leads Per Status");
+    }
+
     public function uriKey()
     {
-        return 'winners-by-location';
+        return 'leads-per-status';
     }
 }
