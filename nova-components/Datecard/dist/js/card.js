@@ -249,10 +249,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['card'],
     computed: {
+        weekDay: function weekDay() {
+            var week = ["Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado"];
+            var d = new Date();
+            return week[d.getDay()];
+        },
         date: function date() {
             var data = new Date();
             var dia = data.getDate().toString();
@@ -260,7 +266,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var mes = (data.getMonth() + 1).toString();
             var mesF = mes.length == 1 ? '0' + mes : mes;
             var anoF = data.getFullYear();
-            return diaF + '/' + mesF + '/' + anoF;
+            return diaF + "/" + mesF + "/" + anoF;
         }
     }
 });
@@ -278,6 +284,10 @@ var render = function() {
     { staticClass: "flex flex-col items-center justify-center" },
     [
       _c("div", { staticClass: "px-3 py-3" }, [
+        _c("h5", { staticClass: "text-center text-3xl text-80 font-light" }, [
+          _c("b", [_vm._v(_vm._s(_vm.weekDay))])
+        ]),
+        _vm._v(" "),
         _c("h1", { staticClass: "text-center text-3xl text-80 font-light" }, [
           _vm._v(_vm._s(_vm.date))
         ])

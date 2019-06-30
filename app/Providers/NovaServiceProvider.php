@@ -13,9 +13,12 @@ use Auth;
 // use Vinicius\CustomCard\CustomCard;
 use App\Nova\Metrics\NewLeads;
 use App\Nova\Metrics\LeadsPerDay;
+use App\Nova\Metrics\LeadsPerDefinition;
+
 use App\Nova\Metrics\LeadsPerStatus;
 use Vyuldashev\NovaPermission\NovaPermissionTool;
 use Custom\Datecard\Datecard;
+use KABBOUCHI\LogsTool\LogsTool;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -68,8 +71,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         return [
             (new Datecard)->width("1/3"),
-            (new NewLeads)->width("2/3"),
+            (new LeadsPerDefinition)->width("1/3"),
+            (new NewLeads)->width("1/3"),
             (new LeadsPerDay)->width("2/3"),
+            
             (new LeadsPerStatus)->width("1/3"),
         ];
     }
@@ -83,18 +88,51 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         $user = Auth::user();
         return [
-            NovaPermissionTool::make()->canSee(function () use ($user) 
-            {
-                return $user->superadmin;
-            }),
-            BackupTool::make()->canSee(function () use ($user) 
-            {
-                return $user->superadmin;
-            }),
-            FilemanagerTool::make()->canSee(function () use ($user) 
-            {
-                return $user->superadmin;
-            }),
+            NovaPermissionTool::make()
+                ->canSee(function () use ($user) {
+                    return $user->superadmin;
+                })
+                ->canSee(function () use ($user) {
+                    return $user->superadmin;
+                })
+                ->canSee(function () use ($user) {
+                    return $user->superadmin;
+                }),
+
+
+            BackupTool::make()
+                ->canSee(function () use ($user) {
+                    return $user->superadmin;
+                })
+                ->canSee(function () use ($user) {
+                    return $user->superadmin;
+                })
+                ->canSee(function () use ($user) {
+                    return $user->superadmin;
+                }),
+
+            FilemanagerTool::make()
+                ->canSee(function () use ($user) {
+                    return $user->superadmin;
+                })
+                ->canSee(function () use ($user) {
+                    return $user->superadmin;
+                })
+                ->canSee(function () use ($user) {
+                    return $user->superadmin;
+                }),
+
+            LogsTool::make()
+                ->canSee(function () use ($user) {
+                    return $user->superadmin;
+                })
+                ->canSee(function () use ($user) {
+                    return $user->superadmin;
+                })
+                ->canSee(function () use ($user) {
+                    return $user->superadmin;
+                }),
+
         ];
     }
 

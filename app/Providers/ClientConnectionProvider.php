@@ -16,7 +16,7 @@ class ClientConnectionProvider extends ServiceProvider
      */
     public function boot()
     {
-        if(Schema::hasTable('clients'))
+        if(@Schema::hasTable('clients'))
         {
             $subdomain = self::getSubDomain();
             $client = Client::where("subdomain",$subdomain)->first();

@@ -7,7 +7,7 @@
 <div v-loading="loading" >
     <label class="block font-bold mb-2" :for="name">{{label}}</label>
     <input style="display:none;" :name="name" :id="id" v-model="model" :required="required!=undefined ? true : false" >
-    <el-select class="w-100 mb-6" filterable v-model="model" :placeholder="placeholder" :required="required!=undefined ? true : false" >
+    <el-select class="w-full mb-6" filterable v-model="model" :placeholder="placeholder" :required="required!=undefined ? true : false" >
         <el-option
             v-for="item in options"
             :key="item.id"

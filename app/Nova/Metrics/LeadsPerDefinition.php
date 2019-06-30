@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Metrics\Partition;
 use App\Status;
 
-class LeadsPerStatus extends Partition
+class LeadsPerDefinition extends Partition
 {
     /**
      * Calculate the value of the metric.
@@ -16,12 +16,14 @@ class LeadsPerStatus extends Partition
      */
     public function calculate(Request $request)
     {
-        $status = Status::with('leads')->get();
+        $status = Status::with(['leads','definition'])->get();
         $data = [];
         foreach ($status as $s) {
-            $data[$s->name] = $s
-                ->leads()
-                ->count();
+            $defination_name = $s->definition->name;
+            if(!isset($data[$defination_name]))
+                $data[$defination_name] = $s->leads()->count();
+            else 
+                $data[$defination_name] += $s->leads()->count();
         }
         return $this->result($data);
     }
@@ -44,11 +46,11 @@ class LeadsPerStatus extends Partition
 
     public function name()
     {
-        return __("Leads Per Status");
+        return __("Leads Per Status Definition");
     }
 
     public function uriKey()
     {
-        return 'leads-per-status';
+        return 'leads-per-status-definition';
     }
 }

@@ -15,7 +15,9 @@
         "build-InputMask": "cd nova-components/InputMask && npm run dev",
         "build-InputMask-prod": "cd nova-components/InputMask && npm run prod",
         "build-CustomFields": "cd nova-components/CustomFields && npm run dev",
-        "build-CustomFields-prod": "cd nova-components/CustomFields && npm run prod"
+        "build-CustomFields-prod": "cd nova-components/CustomFields && npm run prod",
+        "build-LeadsFunnel": "cd nova-components/LeadsFunnel && npm run dev",
+        "build-LeadsFunnel-prod": "cd nova-components/LeadsFunnel && npm run prod"
     },
     "devDependencies": {
         "axios": "^0.19",

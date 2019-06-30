@@ -97387,7 +97387,7 @@ var render = function() {
       _c(
         "el-select",
         {
-          staticClass: "w-100 mb-6",
+          staticClass: "w-full mb-6",
           attrs: {
             filterable: "",
             placeholder: _vm.placeholder,

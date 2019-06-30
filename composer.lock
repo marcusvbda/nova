@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5205f1692d71daec5891befc0360aa5e",
+    "content-hash": "44b7be39d0ba374ebc347a0289a70119",
     "packages": [
         {
             "name": "benjacho/belongs-to-many-field",
@@ -1061,6 +1061,118 @@
             ],
             "description": "Highlight PHP code in terminal",
             "time": "2018-09-29T18:48:56+00:00"
+        },
+        {
+            "name": "kabbouchi/laravel-ward",
+            "version": "v0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/KABBOUCHI/laravel-ward.git",
+                "reference": "81aa291fb2c9b5905e9f5c03b3361fb35d0c5a41"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/KABBOUCHI/laravel-ward/zipball/81aa291fb2c9b5905e9f5c03b3361fb35d0c5a41",
+                "reference": "81aa291fb2c9b5905e9f5c03b3361fb35d0c5a41",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "~5.5",
+                "illuminate/queue": "~5.5",
+                "illuminate/support": "~5.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "KABBOUCHI\\Ward\\WardServiceProvider"
+                    ],
+                    "aliases": {
+                        "Ward": "KABBOUCHI\\Ward\\Ward"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "KABBOUCHI\\Ward\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Georges KABBOUCHI",
+                    "email": "georges.kabbouchi@gmail.com"
+                }
+            ],
+            "keywords": [
+                "Viewer",
+                "laravel",
+                "log",
+                "logs",
+                "ward"
+            ],
+            "time": "2018-09-02T08:39:18+00:00"
+        },
+        {
+            "name": "kabbouchi/nova-logs-tool",
+            "version": "v0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/KABBOUCHI/nova-logs-tool.git",
+                "reference": "5657b0ed29f4edda8a1ed86ef0e1f2c3f32ce40b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/KABBOUCHI/nova-logs-tool/zipball/5657b0ed29f4edda8a1ed86ef0e1f2c3f32ce40b",
+                "reference": "5657b0ed29f4edda8a1ed86ef0e1f2c3f32ce40b",
+                "shasum": ""
+            },
+            "require": {
+                "kabbouchi/laravel-ward": "^0.1.0",
+                "laravel/nova": "*",
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^3.6",
+                "phpunit/phpunit": "7.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "KABBOUCHI\\LogsTool\\LogsToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "KABBOUCHI\\LogsTool\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Georges KABBOUCHI",
+                    "email": "georges.kabbouchi@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel Nova tool to manage and keep track of each one of your logs files.",
+            "homepage": "https://github.com/KABBOUCHI/nova-logs-tool",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-03-23T12:31:21+00:00"
         },
         {
             "name": "laravel/framework",
@@ -2652,16 +2764,16 @@
         },
         {
             "name": "spatie/db-dumper",
-            "version": "2.14.1",
+            "version": "2.14.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/db-dumper.git",
-                "reference": "c9b699c74b56adeff75da76cef8a82a8529765ad"
+                "reference": "093750d69c383fb14d9e7cd6caa052ea7b35e5b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/db-dumper/zipball/c9b699c74b56adeff75da76cef8a82a8529765ad",
-                "reference": "c9b699c74b56adeff75da76cef8a82a8529765ad",
+                "url": "https://api.github.com/repos/spatie/db-dumper/zipball/093750d69c383fb14d9e7cd6caa052ea7b35e5b5",
+                "reference": "093750d69c383fb14d9e7cd6caa052ea7b35e5b5",
                 "shasum": ""
             },
             "require": {
@@ -2698,7 +2810,7 @@
                 "mysqldump",
                 "spatie"
             ],
-            "time": "2019-05-10T09:22:23+00:00"
+            "time": "2019-06-28T08:23:04+00:00"
         },
         {
             "name": "spatie/laravel-backup",

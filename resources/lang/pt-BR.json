@@ -15,6 +15,7 @@
     "options" : "opções",
     "Add" : "Adicionar",
     "Add a new item" : "Adicionar um novo item",
+    "type" : "tipo",
     "types" : "tipos",
     "text" : "texto",
     "select" : "seleção",
@@ -35,5 +36,8 @@
     "Leads Per Status" : "Leads por Status",
     "reservation" : "reserva",
     "converted" : "convertido",
-    "definition" : "definição"
+    "definition" : "definição",
+    "Leads Per Dfinition" : "Lead Por Definição",
+    "status definition" : "definição de status",
+    "Leads Per Status Definition" : "Leads por Definição de Status"
 }

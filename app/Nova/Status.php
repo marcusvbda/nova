@@ -5,8 +5,10 @@ namespace App\Nova;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\BelongsTo;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use App\Nova\StatusDefinition;
 
 class Status extends Resource
 {
@@ -54,13 +56,9 @@ class Status extends Resource
         return [
             ID::make()->sortable(),
             Text::make(ucfirst(__("name")),"name"),
-            Select::make(ucfirst(__("definition")),"definition")->options([
-                    'reservation' => 'reservation',
-                    'contacts' => 'contacts',
-                    'leads' => 'leads',
-                    'prospects' => 'prospects',
-                    'converted' => 'converted',
-            ])
+            BelongsTo::make(ucfirst(__("definition")),"definition",StatusDefinition::class) 
+                ->sortable()
+                ->rules('required'),
         ];
     }
 

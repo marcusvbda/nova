@@ -90,7 +90,7 @@ class User extends Resource
                ->fillUsing(function() {}),
             
             MorphToMany::make(ucfirst(__('roles')), 'roles', Role::class),
-            MorphToMany::make(ucfirst(__('permissions')), 'permissions', Role::class),
+            MorphToMany::make(ucfirst(__('permissions')), 'permissions', Permission::class),
             BelongsToMany::make(ucfirst(__('tenants')), 'tenants', Tenant::class)
                 ->singularLabel(ucfirst(__("tenant")))
                 ->display('name'),

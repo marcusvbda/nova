@@ -51,7 +51,7 @@ class Lead extends Resource
     {
         $fields=  [
             ID::make()->sortable(),
-            Text::make('Name')->sortable()->rules('required'),
+            Text::make(ucfirst(__("name")),"name")->sortable()->rules('required'),
             Text::make('Email')->sortable()->rules('required', 'email', 'max:255'),
             InputMask::make(ucfirst(__("phone")),"phone")
                 ->mask("(##) ####-####")  

@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
             AuthSeeder::class,
             LeadsTableSeeder::class,
             CustomFieldSeeder::class,
-            statusSeeder::class,
+            StatusSeeder::class,
         ]);
     }
 }

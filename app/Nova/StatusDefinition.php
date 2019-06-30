@@ -3,41 +3,34 @@
 namespace App\Nova;
 
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\SELECT;
-use Laravel\Nova\Fields\TEXT;
-use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Text;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use NovaItemsField\Items;
-use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
-use Epartment\NovaDependencyContainer\HasDependencies;
-use Epartment\NovaDependencyContainer\NovaDependencyContainer;
 
-class CustomField extends Resource
+class StatusDefinition extends Resource
 {
-    use HasDependencies;
     /**
      * The model the resource corresponds to.
-     *
-     * @var string
-     */
-    public static $model = 'App\CustomField';
-
-    /**
-     * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
     public static $group = 'Leads'; 
     public static function singularLabel()
     {
-        return ucfirst(__('custom lead field'));
+        return ucfirst(__('status definition'));
     }
     public static function label()
     {
-        return ucfirst(__('custom lead fields'));
+        return ucfirst(__('status definition'));
     }
 
+    public static $model = 'App\StatusDefinition';
+
+    /**
+     * The single value that should be used to represent the resource when being displayed.
+     *
+     * @var string
+     */
     public static $title = 'name';
 
     /**
@@ -46,7 +39,7 @@ class CustomField extends Resource
      * @var array
      */
     public static $search = [
-        'id','name'
+        'name',
     ];
 
     /**
@@ -59,22 +52,7 @@ class CustomField extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make(ucfirst(__("name")),'name')
-                ->sortable()
-                ->rules('required', 'max:255'),
-            Select::make(ucfirst(__("type")),"type")->options([
-                'text'      =>   ucfirst(__('text')),
-                'number'    =>   ucfirst(__('number')),
-                'select'    =>   ucfirst(__('select')),
-                'email'     =>   ucfirst(__('email'))
-            ]),
-            NovaDependencyContainer::make([
-                Items::make(ucfirst(__("options")),"options")
-                    ->placeholder(__("Add a new item"))
-                    ->createButtonValue(__("Add"))
-            ])->dependsOn('type', "select"),
-            
-            
+            Text::make(ucfirst(__("name")),"name"),
         ];
     }
 
@@ -119,8 +97,6 @@ class CustomField extends Resource
      */
     public function actions(Request $request)
     {
-        return [
-            new DownloadExcel
-        ];
+        return [];
     }
 }
