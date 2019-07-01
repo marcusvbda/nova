@@ -7,11 +7,16 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 use Marcusvbda\InputMask\InputMask;
 use Marcusvbda\CustomFields\CustomFields;
-// use App\Nova\Actions\MakeLeadAWinner;
+use App\Nova\Actions\LeadTransfer;
 // use App\Nova\Lenses\RecentWinners;
 use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
 use App\Nova\Filters\LeadByStatus;
+use App\Nova\Filters\LeadLastUpdateFrom;
+use App\Nova\Filters\LeadLastUpdateTo;
+use Carbon\Carbon;
 use App\CustomField;
+use Spatie\TagsField\Tags;
+use Auth;
 
 class Lead extends Resource
 {
@@ -65,6 +70,10 @@ class Lead extends Resource
             BelongsTo::make('Status','status') 
                 ->sortable()
                 ->rules('required'),
+            Tags::make('Tags'),
+            Text::make(__("Last Update"), function () {
+                return Carbon::parse($this->updated_at)->diffForHumans();
+            })
         ];
         foreach(CustomField::get() as $customField)
         {
@@ -98,6 +107,8 @@ class Lead extends Resource
     public function filters(Request $request)
     {
         return [
+            new LeadLastUpdateFrom,
+            new LeadLastUpdateTo,
             new LeadByStatus,
         ];
     }
@@ -121,9 +132,14 @@ class Lead extends Resource
      */
     public function actions(Request $request)
     {
-        return [
+        $actions = [
             new DownloadExcel,
-            // new MakeLeadAWinner,
         ];
+        $user = Auth::user();
+        if($user->can("Transferir Leads")||$user->tenants->count()>1)
+        {
+            $actions[] = new LeadTransfer;
+        }
+        return $actions;
     }
 }

@@ -13,7 +13,7 @@ class AddFieldsToActionEventsTable extends Migration
      */
     public function up()
     {
-        Schema::table('action_events', function (Blueprint $table) {
+        Schema::connection("client")->table('action_events', function (Blueprint $table) {
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';
             $table->json('original')->nullable();
@@ -28,7 +28,7 @@ class AddFieldsToActionEventsTable extends Migration
      */
     public function down()
     {
-        Schema::table('action_events', function (Blueprint $table) {
+        Schema::connection("client")->table('action_events', function (Blueprint $table) {
             $table->dropColumn('original', 'changes');
         });
     }

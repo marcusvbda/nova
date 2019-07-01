@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.1.3",
+        "64robots/nova-date-filter": "^0.3.2",
         "benjacho/belongs-to-many-field": "^0.4.0",
         "custom/datecard": "*",
         "davidpiesse/nova-toggle": "^0.0.6",
@@ -21,11 +22,12 @@
         "laravel/nova": "*",
         "laravel/tinker": "^1.0",
         "maatwebsite/laravel-nova-excel": "^1.1",
-        "marcusvbda/CustomFields": "*",
-        "marcusvbda/InputMask": "*",
+        "marcusvbda/customfields": "*",
+        "marcusvbda/inputmask": "*",
         "predis/predis": "~1.0",
         "r64/nova-image-cropper": "^1.1",
         "spatie/nova-backup-tool": "^3.0",
+        "spatie/nova-tags-field": "^2.2",
         "stephenlake/nova-fixed-bars": "^1.1",
         "vyuldashev/nova-permission": "^1.8",
         "wemersonrv/input-mask": "^0.1.2"
@@ -83,15 +85,15 @@
         },
         {
             "type": "path",
-            "url": "./nova-components/Datecard"
+            "url": "./nova-components/datecard"
         },
         {
             "type": "path",
-            "url": "./nova-components/InputMask"
+            "url": "./nova-components/inputmask"
         },
         {
             "type": "path",
-            "url": "./nova-components/CustomFields"
+            "url": "./nova-components/customfields"
         }
     ]
 }

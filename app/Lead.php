@@ -4,14 +4,13 @@ use Illuminate\Database\Eloquent\Model;
 use Laravel\Nova\Actions\Actionable;
 use App\Observers\TenantModelObserver;
 use App\Observers\CustomFieldObserver;
-
 use App\Scopes\TenantModelScope;
 use App\Status;
-use App\CustomFieldValue;
+use App\Traits\HasTags;
 
 class Lead extends Model
 {
-    use Actionable;
+    use Actionable,HasTags;
     
     public $guarded = ['created_at'];
     protected $table = "leads";

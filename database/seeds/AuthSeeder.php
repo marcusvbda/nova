@@ -54,7 +54,9 @@ class AuthSeeder extends Seeder
                 "Ver Status",
                 "Cadastrar Status",
                 "Editar Status",
-                "Excluir Status"
+                "Excluir Status",
+
+                "Transferir Leads",
         ];
         foreach($permissions as $permission) 
         {

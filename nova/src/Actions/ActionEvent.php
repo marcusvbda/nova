@@ -25,7 +25,7 @@ class ActionEvent extends Model
      *
      * @var array
      */
-    protected $connection = "mysql";
+    protected $connection = "client";
     protected $casts = [
         'original' => 'array',
         'changes' => 'array',

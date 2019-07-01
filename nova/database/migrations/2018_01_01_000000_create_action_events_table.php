@@ -13,7 +13,7 @@ class CreateActionEventsTable extends Migration
      */
     public function up()
     {
-        Schema::create('action_events', function (Blueprint $table) {
+        Schema::connection("client")->create('action_events', function (Blueprint $table) {
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';
             $table->bigIncrements('id');
@@ -43,6 +43,6 @@ class CreateActionEventsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('action_events');
+        Schema::connection("client")->dropIfExists('action_events');
     }
 }

@@ -4,17 +4,17 @@ namespace App\Nova\Filters;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Filters\Filter;
-use App\Status;
+use Carbon\Carbon;
 
-class LeadByStatus extends Filter
+class LeadLastUpdateTo extends Filter
 {
     /**
      * The filter's component.
      *
      * @var string
      */
-    public $name = 'Status';
-    public $component = 'select-filter';
+    public $component = 'date-filter';
+    
 
     /**
      * Apply the filter to the given query.
@@ -24,9 +24,12 @@ class LeadByStatus extends Filter
      * @param  mixed  $value
      * @return \Illuminate\Database\Eloquent\Builder
      */
+    public $name = 'Ultima Apartir de ...';
+
     public function apply(Request $request, $query, $value)
     {
-        return $query->where('status_id', $value);
+        $to = Carbon::parse($value);
+        return $query->whereDate("updated_at","<=",$to);
     }
 
     /**
@@ -38,10 +41,6 @@ class LeadByStatus extends Filter
     public function options(Request $request)
     {
         $options = [];
-        $status = Status::all();
-        foreach ( $status as $s ) {
-            $options[ $s->name ] = $s->id;
-        }
         return $options;
     }
 }
