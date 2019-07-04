@@ -3,24 +3,21 @@
 namespace App\Providers;
 
 use Laravel\Nova\Nova;
-// use Laravel\Nova\Cards\Help;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\NovaApplicationServiceProvider;
-// use Vyuldashev\NovaPermission\NovaPermissionTool;
 use Spatie\BackupTool\BackupTool;
 use Infinety\Filemanager\FilemanagerTool;
 use Auth;
-// use Vinicius\CustomCard\CustomCard;
 use App\Nova\Metrics\NewLeads;
 use App\Nova\Metrics\LeadsPerDay;
 use App\Nova\Metrics\LeadsPerDefinition;
 use App\Nova\Metrics\EnabledTenants;
 use App\Nova\Metrics\UsersPerRole;
 use Custom\Datecard\Datecard;
-
 use App\Nova\Metrics\LeadsPerStatus;
 use Vyuldashev\NovaPermission\NovaPermissionTool;
 use KABBOUCHI\LogsTool\LogsTool;
+use Marcusvbda\LeadOperator\LeadOperator;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -134,6 +131,11 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 })
                 ->canSee(function () use ($user) {
                     return $user->superadmin;
+                }),
+
+            LeadOperator::make()
+                ->canSee(function () use ($user) {
+                    return $user->superadmin || $user->can("Operar Leads");
                 }),
 
         ];

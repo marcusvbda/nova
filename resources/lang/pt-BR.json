@@ -47,5 +47,6 @@
     "Aditional Info" : "Informações Adicionais",
     "disabled" : "Desabilitado",
     "Enabled Tenants" : "Polos Habilitados",
-    "Users Per Role" : "Usuários por Grupo de Acesso"
+    "Users Per Role" : "Usuários por Grupo de Acesso",
+    "Lead Operator"  : "Operador de Leads"
 }

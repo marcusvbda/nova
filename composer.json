@@ -30,7 +30,8 @@
         "spatie/nova-tags-field": "^2.2",
         "stephenlake/nova-fixed-bars": "^1.1",
         "vyuldashev/nova-permission": "^1.8",
-        "wemersonrv/input-mask": "^0.1.2"
+        "wemersonrv/input-mask": "^0.1.2",
+        "marcusvbda/lead-operator": "*"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
@@ -94,6 +95,14 @@
         {
             "type": "path",
             "url": "./nova-components/customfields"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/LeadOperator"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/LeadOperator"
         }
     ]
 }
