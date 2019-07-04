@@ -33,14 +33,10 @@ class NewLeads extends Value
     public function ranges()
     {
         return [
-            // 30 => '30 Days',
-            // 60 => '60 Days',
-            // 365 => '365 Days',
-            // 'MTD' => 'Month To Date',
-            // 'QTD' => 'Quarter To Date',
-            // 'YTD' => 'Year To Date',
             7 => '1 '.ucfirst(__('week')),
             14 => '2 '.ucfirst(__('weeks')),
+            21 => '3 '.ucfirst(__('weeks')),
+            28 => '4 '.ucfirst(__('weeks')),
         ];
     }
 

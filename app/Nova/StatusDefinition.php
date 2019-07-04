@@ -6,6 +6,9 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use App\Nova\Metrics\LeadsPerStatus;
+use App\Nova\Metrics\LeadsPerDefinition;
+use Custom\Datecard\Datecard;
 
 class StatusDefinition extends Resource
 {
@@ -62,11 +65,15 @@ class StatusDefinition extends Resource
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
+    
     public function cards(Request $request)
     {
-        return [];
+        return [
+            (new Datecard)->width("1/3"),
+            (new LeadsPerDefinition)->width("1/3"),
+            (new LeadsPerStatus)->width("1/3"),
+        ];
     }
-
     /**
      * Get the filters available for the resource.
      *

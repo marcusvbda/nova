@@ -41,5 +41,11 @@
     "status definition" : "definição de status",
     "Leads Per Status Definition" : "Leads por Definição de Status",
     "Last Update" : "Ultima Atualização",
-    "Lead Transfer" : "Transferencia de Leads"
+    "Lead Transfer" : "Transferencia de Leads",
+    "Personal Info" : "Informações Pessoais",
+    "Location Info" : "Localização",
+    "Aditional Info" : "Informações Adicionais",
+    "disabled" : "Desabilitado",
+    "Enabled Tenants" : "Polos Habilitados",
+    "Users Per Role" : "Usuários por Grupo de Acesso"
 }

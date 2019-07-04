@@ -17,6 +17,8 @@ use App\Tenant as TenantModel;
 use Benjacho\BelongsToManyField\BelongsToManyField;
 use Laravel\Nova\Fields\MorphToMany;
 use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
+use App\Nova\Metrics\UsersPerRole;
+use Custom\Datecard\Datecard;
 
 class User extends Resource
 {
@@ -108,9 +110,13 @@ class User extends Resource
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
+    
     public function cards(Request $request)
     {
-        return [];
+        return [
+            (new Datecard)->width("1/3"),
+            (new UsersPerRole)->width("1/3"),
+        ];
     }
     /**
      * Get the filters available for the resource.

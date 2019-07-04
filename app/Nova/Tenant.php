@@ -1,13 +1,15 @@
 <?php
 namespace App\Nova;
-use Laravel\Nova\Fields\ID;
+// use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Http\Requests\NovaRequest;
+// use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\BelongsTo;
-use App\Nova\Client;
+// use Laravel\Nova\Fields\BelongsTo;
+// use App\Nova\Client;
 use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
+use App\Nova\Metrics\EnabledTenants;
+use Custom\Datecard\Datecard;
 
 class Tenant extends Resource
 {
@@ -71,7 +73,10 @@ class Tenant extends Resource
      */
     public function cards(Request $request)
     {
-        return [];
+        return [
+            (new Datecard)->width("1/3"),
+            (new EnabledTenants)->width("1/3")
+        ];
     }
     /**
      * Get the filters available for the resource.

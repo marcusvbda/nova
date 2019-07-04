@@ -3,10 +3,10 @@
 namespace App\Nova\Metrics;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Metrics\Trend;
-use App\Lead;
+use Laravel\Nova\Metrics\Partition;
+use Spatie\Permission\Models\Role;
 
-class LeadsPerDay extends Trend
+class UsersPerRole extends Partition
 {
     /**
      * Calculate the value of the metric.
@@ -14,30 +14,16 @@ class LeadsPerDay extends Trend
      * @param  \Illuminate\Http\Request  $request
      * @return mixed
      */
-
-    public function name()
-    {
-        return __("Leads Per Day");
-    }
-
     public function calculate(Request $request)
     {
-        return $this->countByDays($request, Lead::class)->showLatestValue();
-    }
-
-    /**
-     * Get the ranges available for the metric.
-     *
-     * @return array
-     */
-    public function ranges()
-    {
-        return [
-            7 => '1 '.ucfirst(__('week')),
-            14 => '2 '.ucfirst(__('weeks')),
-            21 => '3 '.ucfirst(__('weeks')),
-            28 => '4 '.ucfirst(__('weeks')),
-        ];
+        $roles = Role::with('users')->get();
+        $data = [];
+        foreach ($roles as $r) {
+            $data[$r->name] = $r
+                ->users()
+                ->count();
+        }
+        return $this->result($data);
     }
 
     /**
@@ -55,8 +41,14 @@ class LeadsPerDay extends Trend
      *
      * @return string
      */
+
+    public function name()
+    {
+        return __("Users Per Role");
+    }
+
     public function uriKey()
     {
-        return 'leads-per-day';
+        return 'users-per-role';
     }
 }

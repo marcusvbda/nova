@@ -14,10 +14,12 @@ use Auth;
 use App\Nova\Metrics\NewLeads;
 use App\Nova\Metrics\LeadsPerDay;
 use App\Nova\Metrics\LeadsPerDefinition;
+use App\Nova\Metrics\EnabledTenants;
+use App\Nova\Metrics\UsersPerRole;
+use Custom\Datecard\Datecard;
 
 use App\Nova\Metrics\LeadsPerStatus;
 use Vyuldashev\NovaPermission\NovaPermissionTool;
-use Custom\Datecard\Datecard;
 use KABBOUCHI\LogsTool\LogsTool;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
@@ -74,8 +76,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             (new LeadsPerDefinition)->width("1/3"),
             (new NewLeads)->width("1/3"),
             (new LeadsPerDay)->width("2/3"),
-            
             (new LeadsPerStatus)->width("1/3"),
+            (new EnabledTenants)->width("1/3"),
+            (new UsersPerRole)->width("1/3"),
         ];
     }
 

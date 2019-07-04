@@ -3,10 +3,10 @@
 namespace App\Nova\Metrics;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Metrics\Trend;
-use App\Lead;
+use Laravel\Nova\Metrics\Partition;
+use App\Tenant;
 
-class LeadsPerDay extends Trend
+class EnabledTenants extends Partition
 {
     /**
      * Calculate the value of the metric.
@@ -14,30 +14,11 @@ class LeadsPerDay extends Trend
      * @param  \Illuminate\Http\Request  $request
      * @return mixed
      */
-
-    public function name()
-    {
-        return __("Leads Per Day");
-    }
-
     public function calculate(Request $request)
     {
-        return $this->countByDays($request, Lead::class)->showLatestValue();
-    }
-
-    /**
-     * Get the ranges available for the metric.
-     *
-     * @return array
-     */
-    public function ranges()
-    {
-        return [
-            7 => '1 '.ucfirst(__('week')),
-            14 => '2 '.ucfirst(__('weeks')),
-            21 => '3 '.ucfirst(__('weeks')),
-            28 => '4 '.ucfirst(__('weeks')),
-        ];
+        $data[ucfirst(__("enabled"))] = Tenant::where("enabled",true)->count();
+        $data[ucfirst(__("disabled"))] = Tenant::where("enabled",false)->count();
+        return $this->result($data);
     }
 
     /**
@@ -55,8 +36,14 @@ class LeadsPerDay extends Trend
      *
      * @return string
      */
+
+    public function name()
+    {
+        return __("Enabled Tenants");
+    }
+
     public function uriKey()
     {
-        return 'leads-per-day';
+        return 'enabled-tenants';
     }
 }

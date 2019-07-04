@@ -1,9 +1,9 @@
 <?php
 namespace App\Nova;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Select;
 use Illuminate\Http\Request;
-use Laravel\Nova\Http\Requests\NovaRequest;
+// use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 use Marcusvbda\InputMask\InputMask;
 use Marcusvbda\CustomFields\CustomFields;
@@ -17,6 +17,13 @@ use Carbon\Carbon;
 use App\CustomField;
 use Spatie\TagsField\Tags;
 use Auth;
+use Laravel\Nova\Panel;
+use App\Nova\Metrics\NewLeads;
+use App\Nova\Metrics\LeadsPerDay;
+use App\Nova\Metrics\LeadsPerDefinition;
+use Custom\Datecard\Datecard;
+use App\Status;
+use App\Nova\Metrics\LeadsPerStatus;
 
 class Lead extends Resource
 {
@@ -55,26 +62,33 @@ class Lead extends Resource
     public function fields(Request $request)
     {
         $fields=  [
-            ID::make()->sortable(),
-            Text::make(ucfirst(__("name")),"name")->sortable()->rules('required'),
-            Text::make('Email')->sortable()->rules('required', 'email', 'max:255'),
-            InputMask::make(ucfirst(__("phone")),"phone")
-                ->mask("(##) ####-####")  
-                ->hideFromIndex(),
-            InputMask::make(ucfirst(__("cell")),"cell")
-                ->mask("(##) ####-####,(##) #####-####")  
-                ->hideFromIndex(),    
-            Text::make(ucfirst(__("city")),"city")->sortable(),
-            Text::make(ucfirst(__("state")),"state")->sortable()
-                ->hideFromIndex(),
-            BelongsTo::make('Status','status') 
+            // ID::make()->sortable(),
+            new Panel(__("Personal Info"), $this->personalInfoFields()),
+            new Panel(__("Location Info"), $this->locationInfoFields()),
+            new Panel(__("Aditional Info"), $this->additionalFields()),
+            Select::make("Status","status_id")
+                ->options(Status::orderBy("id","asc")->pluck("name","id")->toArray())
                 ->sortable()
+                ->displayUsingLabels()
                 ->rules('required'),
             Tags::make('Tags'),
             Text::make(__("Last Update"), function () {
                 return Carbon::parse($this->updated_at)->diffForHumans();
             })
         ];
+        
+        return $fields;
+    }
+    /**
+     * Get the cards available for the request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+
+    private function additionalFields()
+    {
+        $fields = [];
         foreach(CustomField::get() as $customField)
         {
             $fields[]=CustomFields::make($customField->name)  
@@ -86,16 +100,38 @@ class Lead extends Resource
         }
         return $fields;
     }
-    /**
-     * Get the cards available for the request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
+
+    private function locationInfoFields()
+    {
+        return [
+            Text::make(ucfirst(__("city")),"city")->sortable(),
+            Text::make(ucfirst(__("state")),"state")->sortable()
+                ->hideFromIndex(),
+        ];
+    }
+
+    private function personalInfoFields()
+    {
+        return [
+            Text::make(ucfirst(__("name")),"name")->sortable()->rules('required'),
+            Text::make('Email')->sortable()->rules('required', 'email', 'max:255'),
+            InputMask::make(ucfirst(__("phone")),"phone")
+                ->mask("(##) ####-####")  
+                ->hideFromIndex(),
+            InputMask::make(ucfirst(__("cell")),"cell")
+                ->mask("(##) ####-####,(##) #####-####")  
+                ->hideFromIndex(),    
+        ];
+    }
+
     public function cards(Request $request)
     {
         return [
-            // new NewLeads,
+            (new Datecard)->width("1/3"),
+            (new LeadsPerDefinition)->width("1/3"),
+            (new NewLeads)->width("1/3"),
+            (new LeadsPerDay)->width("2/3"),
+            (new LeadsPerStatus)->width("1/3"),
         ];
     }
     /**
