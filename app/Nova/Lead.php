@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 // use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 use Marcusvbda\InputMask\InputMask;
+use Laravel\Nova\Fields\hasMany;
 use Marcusvbda\CustomFields\CustomFields;
 use App\Nova\Actions\LeadTransfer;
 // use App\Nova\Lenses\RecentWinners;
@@ -65,16 +66,18 @@ class Lead extends Resource
             ID::make()->sortable(),
             new Panel(__("Personal Info"), $this->personalInfoFields()),
             new Panel(__("Location Info"), $this->locationInfoFields()),
-            new Panel(__("Aditional Info"), $this->additionalFields()),
             Select::make("Status","status_id")
                 ->options(Status::orderBy("id","asc")->pluck("name","id")->toArray())
                 ->sortable()
                 ->displayUsingLabels()
                 ->rules('required'),
+            hasMany::make(ucfirst(__("conversions")),"conversions",Conversion::class),
+            hasMany::make(ucfirst(__("schedules")),"schedules",Scheduling::class),
             Tags::make('Tags'),
             Text::make(__("Last Update"), function () {
                 return Carbon::parse($this->updated_at)->diffForHumans();
-            })
+            }),
+            new Panel(__("Aditional Info"), $this->additionalFields()),
         ];
         
         return $fields;

@@ -48,5 +48,9 @@
     "disabled" : "Desabilitado",
     "Enabled Tenants" : "Polos Habilitados",
     "Users Per Role" : "Usuários por Grupo de Acesso",
-    "Lead Operator"  : "Operador de Leads"
+    "Lead Operator"  : "Operador de Leads",
+    "conversions"  : "conversões",
+    "conversion"  : "conversão",
+    "scheduling" : "agendamento",
+    "schedules" : "agendamentos"
 }

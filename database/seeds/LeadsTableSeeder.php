@@ -13,6 +13,6 @@ class LeadsTableSeeder extends Seeder
     public function run()
     {
         Lead::truncate();
-        // factory(Lead::class, 1000)->create();
+        factory(Lead::class, 200)->create();
     }
 }

@@ -7,6 +7,7 @@ use App\Observers\CustomFieldObserver;
 use App\Scopes\TenantModelScope;
 use App\Status;
 use App\Traits\HasTags;
+use App\Conversion;
 
 class Lead extends Model
 {
@@ -28,6 +29,18 @@ class Lead extends Model
     {
         return $this->belongsTo(Status::class);
     }
+
+    public function conversions() 
+    {
+        return $this->hasMany(Conversion::class);
+    }
+
+    public function schedules() 
+    {
+        return $this->hasMany(Scheduling::class);
+    }
+
+
 
     
 }

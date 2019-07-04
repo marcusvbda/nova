@@ -6,7 +6,10 @@ class TenantModelObserver
 {
     public function creating($model)
     {
-        $tenant = Auth::user()->tenant;
-        $model->tenant_id = $tenant->id;
+        if(!$model->tenant_id)
+        {
+            $tenant = Auth::user()->tenant;
+            $model->tenant_id = $tenant->id;
+        }
     }
 }

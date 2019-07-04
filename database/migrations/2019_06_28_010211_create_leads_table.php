@@ -23,8 +23,8 @@ class CreateLeadsTable extends Migration
             $table->string('email')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
-            $table->unsignedInteger('tenant_id');
             $table->longText("custom_values")->nullable();
+            $table->unsignedInteger('tenant_id');
             $table->foreign('tenant_id')
                 ->references('id')
                 ->on('tenants')
