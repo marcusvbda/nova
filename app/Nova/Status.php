@@ -12,6 +12,7 @@ use App\Nova\StatusDefinition;
 use App\Nova\Metrics\LeadsPerStatus;
 use App\Nova\Metrics\LeadsPerDefinition;
 use Custom\Datecard\Datecard;
+use Laravel\Nova\Fields\ID;
 
 class Status extends Resource
 {
@@ -57,6 +58,7 @@ class Status extends Resource
     public function fields(Request $request)
     {
         return [
+            ID::make()->sortable(),
             Text::make(ucfirst(__("name")),"name"),
             BelongsTo::make(ucfirst(__("definition")),"definition",StatusDefinition::class) 
                 ->sortable()

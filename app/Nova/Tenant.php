@@ -3,6 +3,7 @@ namespace App\Nova;
 // use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 // use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Boolean;
 // use Laravel\Nova\Fields\BelongsTo;
@@ -56,6 +57,7 @@ class Tenant extends Resource
     public function fields(Request $request)
     {
         return [
+            ID::make()->sortable(),
             Text::make(ucfirst(__("name")),'name')
                 ->sortable()
                 ->rules('required', 'max:255'),

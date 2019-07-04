@@ -62,7 +62,7 @@ class Lead extends Resource
     public function fields(Request $request)
     {
         $fields=  [
-            // ID::make()->sortable(),
+            ID::make()->sortable(),
             new Panel(__("Personal Info"), $this->personalInfoFields()),
             new Panel(__("Location Info"), $this->locationInfoFields()),
             new Panel(__("Aditional Info"), $this->additionalFields()),

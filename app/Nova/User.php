@@ -62,7 +62,7 @@ class User extends Resource
     {
         $tenants = TenantModel::enabled()->get()->pluck("name","id")->toArray();
         return [
-            // ID::make()->sortable(),
+            ID::make()->sortable(),
             ImageCropper::make(__("Image"),'photo')->avatar(),
             // FilemanagerField::make(__("Image"),'photo'),
             // Image::make('Image','photo')
