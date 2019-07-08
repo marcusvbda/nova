@@ -13,6 +13,8 @@ use App\Nova\Metrics\LeadsPerStatus;
 use App\Nova\Metrics\LeadsPerDefinition;
 use Custom\Datecard\Datecard;
 use Laravel\Nova\Fields\ID;
+use Timothyasp\Color\Color;
+
 
 class Status extends Resource
 {
@@ -63,6 +65,7 @@ class Status extends Resource
             BelongsTo::make(ucfirst(__("definition")),"definition",StatusDefinition::class) 
                 ->sortable()
                 ->rules('required'),
+            Color::make(ucfirst(__("color")),'color')->slider()
         ];
     }
 

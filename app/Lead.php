@@ -8,6 +8,8 @@ use App\Scopes\TenantModelScope;
 use App\Status;
 use App\Traits\HasTags;
 use App\Conversion;
+use Carbon\Carbon;
+use App\CustomField;
 
 class Lead extends Model
 {
@@ -17,12 +19,24 @@ class Lead extends Model
     protected $table = "leads";
     protected $connection = "client";
     protected $casts = ["custom_values"=>"array"];
+    protected $appends = ["updated_at_for_human","custom_fields"];
+    
     protected static function boot()
     {
         parent::boot();
         static::observe(new CustomFieldObserver());
         static::observe(new TenantModelObserver());
         static::addGlobalScope(new TenantModelScope());
+    }
+
+    public function getUpdatedAtForHumanAttribute()
+    {
+        return Carbon::parse($this->updated_at)->diffForHumans();
+    }
+
+    public function getCustomFieldsAttribute()
+    {
+        return CustomField::get();
     }
     
     public function status() 

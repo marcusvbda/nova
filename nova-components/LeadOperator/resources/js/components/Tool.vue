@@ -40,20 +40,19 @@ export default {
         "lead-table": require("./-LeadTable.vue"),
     },
     mounted() {
-        this.performSearch()
+        this.init()
     },
     methods : {
-        performSearch() {
-            this.$nextTick(() => {
-                this.getLeads()
-            })
-        },
-        getLeads() {
-            setTimeout( () => {
-                console.log("got leads")
-                this.data = [1,2,3,4,5]
+        init() {
+            Nova.request({
+                url: "lead-operator/search",
+                method: 'post',
+                params : {teste:1234}
+            }).then((res) => {
+                res = res.data
+                this.data = res.data
                 this.loading = false
-            },500)
+            })
         }
     }
 }

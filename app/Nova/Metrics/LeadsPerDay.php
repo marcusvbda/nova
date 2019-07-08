@@ -15,11 +15,13 @@ class LeadsPerDay extends Trend
      * @return mixed
      */
 
+
     public function name()
     {
         return __("Leads Per Day");
     }
 
+   
     public function calculate(Request $request)
     {
         return $this->countByDays($request, Lead::class)->showLatestValue();

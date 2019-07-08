@@ -1,82 +1,60 @@
 <template>
-<card>
-    <div class="py-3 flex items-center border-b border-50"> </div>
-    <div class="overflow-hidden overflow-x-auto relative">
-        <table v-if="data.length > 0" class="table w-full" cellpadding="0" cellspacing="0" data-testid="resource-table">
-            <thead>
-                <tr>
-                    <th class="text-left" style="width: 100px">
-                        <sortable-td>ID</sortable-td>
-                    </th>
-                    <th class="text-left" style="width: 100px">
-                        <sortable-td>Name</sortable-td>
-                    </th>
-                    <th class="text-left" style="width: 140px">
-                        <sortable-td>Email</sortable-td>
-                    </th>
-                    <th class="text-left">
-                        <sortable-td>Conversões</sortable-td>
-                    </th>
-                    <th class="text-left">
-                        <sortable-td>Última Conversão</sortable-td>
-                    </th>
-                    <th class="text-left">
-                        <sortable-td>Status</sortable-td>
-                    </th>
-                    <th class="text-left">
-                        <sortable-td>Definição</sortable-td>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="hover:bg-blue-lightest" v-for="(row,index) in data">
-                    <td>1234</td>
-                    <td>1234</td>
-                    <td>1234</td>
-                    <td>1234</td>
-                    <td>1234</td>
-                    <td>1234</td>
-                    <td>1234</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="bg-20 rounded-b">
-        <nav class="flex items-center">
-            <div class="flex text-sm"><button disabled="disabled" rel="first" dusk="first" class="font-mono btn btn-link h-9 min-w-9 px-2 border-r border-50 text-80 opacity-50">
-                «
-                </button> <button disabled="disabled" rel="prev" dusk="previous" class="font-mono btn btn-link h-9 min-w-9 px-2 border-r border-50 text-80 opacity-50">
-                ‹
-                </button> <button dusk="page:1" class="btn btn-link h-9 min-w-9 px-2 border-r border-50 text-80 opacity-50">
-                1
-                </button> <button disabled="disabled" rel="next" dusk="next" class="font-mono btn btn-link h-9 min-w-9 px-2 border-r border-50 text-80 opacity-50">
-                ›
-                </button> <button disabled="disabled" rel="last" dusk="last" class="font-mono btn btn-link h-9 min-w-9 px-2 border-r border-50 text-80 opacity-50">
-                »
-                </button>
+<div>
+    <div class="flex flex-wrap -mx-3 mb-3" v-if="rows">
+        <div class="px-3 mb-6 w-1/3" v-for="(row,index) in rows">
+            <div class="card relative px-6 py-4 card-panel lead" v-bind:style="{borderTop: `3px solid ${row.status.color}`}">
+                <p><b>Nome : </b>{{row.name}}</p>
+                <hr>
+                <p><b>Última Atualização : </b>{{row.updated_at_for_human}}</p>
+                <p><b>Email : </b><a :href="`mailto:${row.email}`">{{row.email}}</a></p>
+                <p><b>Telefone : </b>{{row.phone}}</p>
+                <p><b>Celular : </b>{{row.cell}}</p>
+                <hr>
+                <template v-for="field in row.custom_fields">
+                    <p><b>{{field.name}} : </b><span v-if="row.custom_values[field.id]">{{row.custom_values[field.id]}}</span></p>
+                </template>
+                <hr>
+                <p><b>Cidade : </b>{{row.city}} - {{row.state}}</p>
+                <hr>
+                <p><b>Status : </b><span class="status badge">{{row.status.name}}</span></p>
             </div>
-            <span class="text-sm text-80 px-4 ml-auto">
-                1-4 de 4
-            </span>
-        </nav>
+        </div>
     </div>
-</card>
+    <pagination-row></pagination-row>
+</div>
 </template>
 
 <script>
 export default {
-    props : {
-        data : {
-            type : Array,
-            default : []
-        }
-    },
+    props: ["data"],
     data() {
         return {
+            rows : this.data
         }
     },
+    mounted() {
+        console.log(this.rows)
+        console.log("Mostrar paginas e totalizadores")
+    },
     components : {
-        "sortable-td": require("./-SortableTd.vue")
+        "sortable-td": require("./-SortableTd.vue"),
+        "pagination-row": require("./-PaginationRow.vue"),
     }
 }
 </script>
+<style scoped lang="scss">
+.lead {
+    &.card {
+        opacity:.5;
+        display: inline-table;
+        width: 100%;
+        height:100%;
+        cursor:pointer;
+        &:hover {
+            opacity:1;
+            transition:.7s;
+            transform: scale(1.05); 
+        }
+    }
+}
+</style>

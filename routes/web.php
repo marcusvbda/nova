@@ -18,4 +18,5 @@ Route::get('/', function () {
 Route::group(['middleware' => ['web', Authenticate::class]], function () 
 {
     require("custom/tenants.php");
+    require("custom/leads.php");
 });
