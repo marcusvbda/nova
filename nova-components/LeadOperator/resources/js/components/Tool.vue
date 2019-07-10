@@ -19,7 +19,7 @@
                 <loader class="text-60"/>
             </div>
             <template v-else>
-                <lead-table :data="data"></lead-table>
+                <lead-table :response="response"></lead-table>
             </template>
         </div>
         
@@ -32,11 +32,10 @@ export default {
         return {
             search: null,
             loading: true,
-            data : []
+            response : null
         }
     },
     components : {
-        "sortable-td": require("./-SortableTd.vue"),
         "lead-table": require("./-LeadTable.vue"),
     },
     mounted() {
@@ -50,7 +49,7 @@ export default {
                 params : {teste:1234}
             }).then((res) => {
                 res = res.data
-                this.data = res.data
+                this.response = res
                 this.loading = false
             })
         }

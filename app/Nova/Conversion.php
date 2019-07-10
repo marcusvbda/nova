@@ -12,6 +12,7 @@ class Conversion extends Resource
      * @var string
      */
     public static $displayInNavigation = false;
+    public static $globallySearchable = false;
     public static function singularLabel()
     {
         return ucfirst(__('conversion'));

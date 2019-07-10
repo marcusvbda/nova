@@ -1,40 +1,57 @@
 <template>
-<div>
-    <div class="flex flex-wrap -mx-3 mb-3" v-if="rows">
-        <div class="px-3 mb-6 w-1/3" v-for="(row,index) in rows">
-            <div class="card relative px-6 py-4 card-panel lead" v-bind:style="{borderTop: `3px solid ${row.status.color}`}">
-                <p><b>Nome : </b>{{row.name}}</p>
-                <hr>
-                <p><b>Última Atualização : </b>{{row.updated_at_for_human}}</p>
-                <p><b>Email : </b><a :href="`mailto:${row.email}`">{{row.email}}</a></p>
-                <p><b>Telefone : </b>{{row.phone}}</p>
-                <p><b>Celular : </b>{{row.cell}}</p>
-                <hr>
-                <template v-for="field in row.custom_fields">
-                    <p><b>{{field.name}} : </b><span v-if="row.custom_values[field.id]">{{row.custom_values[field.id]}}</span></p>
-                </template>
-                <hr>
-                <p><b>Cidade : </b>{{row.city}} - {{row.state}}</p>
-                <hr>
-                <p><b>Status : </b><span class="status badge">{{row.status.name}}</span></p>
-            </div>
-        </div>
+<card>
+    <div class="py-3 flex items-center border-b border-50"> </div>
+    <div class="overflow-hidden overflow-x-auto relative">
+        <table v-if="rows.length > 0" class="table w-full" cellpadding="0" cellspacing="0" data-testid="resource-table">
+            <thead>
+                <tr>
+                    <th class="text-left" style="margin-left:20px;"></th>
+                    <th class="text-left">
+                        <sortable-td>ID</sortable-td>
+                    </th>
+                    <th class="text-left">
+                        <sortable-td>Name</sortable-td>
+                    </th>
+                    <th class="text-left">
+                        <sortable-td>Email</sortable-td>
+                    </th>
+                    <th class="text-left">
+                        <sortable-td>Última Conversão</sortable-td>
+                    </th>
+                    <th class="text-left">
+                        <sortable-td>Status</sortable-td>
+                    </th>
+                    <th class="text-left" style="margin-right:20px;">
+                        <sortable-td>Definição</sortable-td>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="hover:bg-blue-lightest" v-for="(row,index) in rows">
+                    <td>
+                        <div class="status-ball" v-bind:style="{backgroundColor: `${row.status.color}`}"></div>
+                    </td>
+                    <td>{{row.id}}</td>
+                    <td>{{row.name}}</td>
+                    <td>{{row.email}}</td>
+                    <td>{{row.updated_at_for_human}}</td>
+                    <td>{{row.status.name}}</td>
+                    <td style="margin-right:20px;">{{row.status.definition.name}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <pagination-row></pagination-row>
-</div>
+    <pagination-row :response="response"></pagination-row>
+</card>
 </template>
 
 <script>
 export default {
-    props: ["data"],
+    props :["response"],
     data() {
         return {
-            rows : this.data
+            rows : this.response.data
         }
-    },
-    mounted() {
-        console.log(this.rows)
-        console.log("Mostrar paginas e totalizadores")
     },
     components : {
         "sortable-td": require("./-SortableTd.vue"),
@@ -42,19 +59,12 @@ export default {
     }
 }
 </script>
-<style scoped lang="scss">
-.lead {
-    &.card {
-        opacity:.5;
-        display: inline-table;
-        width: 100%;
-        height:100%;
-        cursor:pointer;
-        &:hover {
-            opacity:1;
-            transition:.7s;
-            transform: scale(1.05); 
-        }
-    }
+<style lang="scss" scope>
+.status-ball {
+    margin-left:20px;
+    min-height : 20px;
+    height : 20px;
+    width : 20px;
+    border-radius : 100%;
 }
 </style>
