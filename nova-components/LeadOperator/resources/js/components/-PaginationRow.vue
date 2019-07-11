@@ -119,9 +119,9 @@ export default {
          * Select the page.
          */
         selectPage(page) {
-            let url = this.$parent.$parent.$parent.addparam("page",page)
+            let url = this.$parent.$parent.$parent.addparam([{"page":page}])
             let p = new Promise((resolve, reject) => resolve("Success!"))
-            p.then(() => this.$root.$router.replace({path: url })).then( () => {
+            p.then(() => this.$router.replace({path: url })).then( () => {
                 setTimeout( () => this.$parent.$parent.$parent.load(),100)
             })
         },

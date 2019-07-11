@@ -33,7 +33,9 @@ export default {
             search: null,
             loading: true,
             response : null,
-            timeout : null
+            timeout : null,
+            sortColumn : null,
+            sortDirection : null
         }
     },
     components : {
@@ -41,14 +43,17 @@ export default {
     },
     mounted() {
         this.load()
+        this.search = this.$route.query["filter"]
+        this.sortColumn = this.$route.query["_order"]
+        this.sortDirection = this.$route.query["_direction"] ? this.$route.query["_direction"] : "desc"
     },
     methods : {
         filter() {
             if(this.timeout) clearTimeout(this.timeout)
             this.timeout = setTimeout( () => {
-                let url = this.addparam("filter",this.search)
+                let url = this.addparam([{"filter":this.search}])
                 let p = new Promise((resolve, reject) => resolve("Success!"))
-                p.then(() => this.$root.$router.replace({path: url })).then( () => {
+                p.then(() => this.$router.replace({path: url })).then( () => {
                     setTimeout( () => this.load(),100)
                 })
             },500)
@@ -70,35 +75,26 @@ export default {
                 this.loading = false
             })
         },
-        addparam(key,value) {
-            let uri = window.location.href
-            var a = document.createElement( 'a' ), 
-                reg_ex = new RegExp( key + '((?:\\[[^\\]]*\\])?)(=|$)(.*)' ),
-                qs,
-                qs_len,
-                key_found = false
-            a.href = uri
-            if ( ! a.search ) {
-                a.search = '?' + key + '=' + value
-                let url = a.href.split("/")
-                url = "/"+url[url.length-1]
-                return url
-            }
-            qs = a.search.replace( /^\?/, '' ).split( /&(?:amp;)?/ )
-            qs_len = qs.length
-            while ( qs_len > 0 ) {
-                qs_len--;
-                if ( ! qs[qs_len] ) { qs.splice(qs_len, 1); continue }
-                if ( reg_ex.test( qs[qs_len] ) ) {
-                    qs[qs_len] = qs[qs_len].replace( reg_ex, key + '$1' ) + '=' + value
-                    key_found = true
+        addparam(rows) {
+            let params = this.getparams()
+            for(let row in rows)
+            {
+                for(let key in rows[row])
+                {
+                    params[key] = rows[row][key]
                 }
-            }   
-            if ( ! key_found ) { qs.push( key + '=' + value ) }
-            a.search = '?' + qs.join( '&' )
+            }
+            let query = ""
+            for(let param in params)
+                query += ( query.indexOf("?") < 0 ) ? `?${param}=${params[param]}` : `&${param}=${params[param]}`
+            let uri = window.location.href
+            var a = document.createElement( 'a' )
+            a.href = uri
             let url = a.href.split("/")
             url = "/"+url[url.length-1]
-            return url
+            if(url.indexOf("?")>0)
+                url = url.substring(0,url.indexOf("?"))
+            return url+query
         }
     }
 }

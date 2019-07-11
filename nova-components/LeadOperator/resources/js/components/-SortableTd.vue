@@ -1,8 +1,7 @@
 <template>
-    <span class="cursor-pointer inline-flex items-center">
+    <span class="cursor-pointer inline-flex items-center" @click="sort" ref="icon">
         <slot />
-
-        <svg
+        <svg v-if="col"
             class="ml-2"
             xmlns="http://www.w3.org/2000/svg"
             width="8"
@@ -28,24 +27,38 @@
 
 <script>
 export default {
+    props :["col"],
     data() {
-        return {
-        }
+        return {}
     },
     computed: {
         ascClass() {
-            // if (this.isSorted && this.direction == 'desc') {
-                // return 'fill-80'
-            // }
+            if (this.isSorted && this.$parent.$parent.$parent.sortDirection == 'desc') {
+                return 'fill-80'
+            }
             return 'fill-60'
         },
         descClass() {
-            // if (this.isSorted && this.direction == 'asc') {
-            //     return 'fill-80'
-            // }
+            if (this.isSorted && this.$parent.$parent.$parent.sortDirection == 'asc') {
+                return 'fill-80'
+            }
             return 'fill-60'
         },
+        isSorted() {
+            return this.$parent.$parent.$parent.sortColumn == this.col
+        },
     },
+    methods : {
+        sort() {
+            this.$parent.$parent.$parent.sortDirection = this.$parent.$parent.$parent.sortDirection=="asc" ? "desc" : "asc"
+            let url = this.$parent.$parent.$parent.addparam([{"_order":this.col,"_direction":this.$parent.$parent.$parent.sortDirection}])
+            let p = new Promise((resolve, reject) => resolve("Success!"))
+            p.then(() => this.$router.replace({path: url })).then( () => {
+                setTimeout( () => this.$parent.$parent.$parent.load(),100)
+            })
+            this.$parent.$parent.$parent.sortColumn = this.col
+        }
+    }
 }
 </script>
 

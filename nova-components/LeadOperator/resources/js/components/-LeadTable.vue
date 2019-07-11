@@ -7,16 +7,16 @@
                 <tr>
                     <th class="text-left" style="margin-left:20px;"></th>
                     <th class="text-left">
-                        <sortable-td>ID</sortable-td>
+                        <sortable-td col="id">ID</sortable-td>
                     </th>
                     <th class="text-left">
-                        <sortable-td>Name</sortable-td>
+                        <sortable-td col="name">Name</sortable-td>
                     </th>
                     <th class="text-left">
-                        <sortable-td>Email</sortable-td>
+                        <sortable-td col="email">Email</sortable-td>
                     </th>
                     <th class="text-left">
-                        <sortable-td>Última Conversão</sortable-td>
+                        <sortable-td col="updated_at">Última Conversão</sortable-td>
                     </th>
                     <th class="text-left">
                         <sortable-td>Status</sortable-td>

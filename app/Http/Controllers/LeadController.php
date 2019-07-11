@@ -22,7 +22,9 @@ class LeadController extends Controller
             $filter = $data["filter"];
             $query = $query->where("name","like","%$filter%");
         }
-        $query = $query->with(["conversions","status","status.definition"])->paginate(15);
+        $query = $query->with(["conversions","status","status.definition"])
+            ->orderBy(@$data["_order"] ? $data["_order"] : "id", @$data["_direction"] ? $data["_direction"] : "desc")
+            ->paginate(15);
         return $query;
     }
 }

@@ -13031,7 +13031,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
 
 // exports
 
@@ -13110,7 +13110,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             search: null,
             loading: true,
             response: null,
-            timeout: null
+            timeout: null,
+            sortColumn: null,
+            sortDirection: null
         };
     },
 
@@ -13119,6 +13121,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mounted: function mounted() {
         this.load();
+        this.search = this.$route.query["filter"];
+        this.sortColumn = this.$route.query["_order"];
+        this.sortDirection = this.$route.query["_direction"] ? this.$route.query["_direction"] : "desc";
     },
 
     methods: {
@@ -13127,12 +13132,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             if (this.timeout) clearTimeout(this.timeout);
             this.timeout = setTimeout(function () {
-                var url = _this.addparam("filter", _this.search);
+                var url = _this.addparam([{ "filter": _this.search }]);
                 var p = new Promise(function (resolve, reject) {
                     return resolve("Success!");
                 });
                 p.then(function () {
-                    return _this.$root.$router.replace({ path: url });
+                    return _this.$router.replace({ path: url });
                 }).then(function () {
                     setTimeout(function () {
                         return _this.load();
@@ -13157,39 +13162,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this2.loading = false;
             });
         },
-        addparam: function addparam(key, value) {
-            var uri = window.location.href;
-            var a = document.createElement('a'),
-                reg_ex = new RegExp(key + '((?:\\[[^\\]]*\\])?)(=|$)(.*)'),
-                qs,
-                qs_len,
-                key_found = false;
+        addparam: function addparam(rows) {
+            var params = this.getparams();
+            for (var row in rows) {
+                for (var key in rows[row]) {
+                    params[key] = rows[row][key];
+                }
+            }
+            var query = "";
+            for (var param in params) {
+                query += query.indexOf("?") < 0 ? "?" + param + "=" + params[param] : "&" + param + "=" + params[param];
+            }var uri = window.location.href;
+            var a = document.createElement('a');
             a.href = uri;
-            if (!a.search) {
-                a.search = '?' + key + '=' + value;
-                var _url = a.href.split("/");
-                _url = "/" + _url[_url.length - 1];
-                return _url;
-            }
-            qs = a.search.replace(/^\?/, '').split(/&(?:amp;)?/);
-            qs_len = qs.length;
-            while (qs_len > 0) {
-                qs_len--;
-                if (!qs[qs_len]) {
-                    qs.splice(qs_len, 1);continue;
-                }
-                if (reg_ex.test(qs[qs_len])) {
-                    qs[qs_len] = qs[qs_len].replace(reg_ex, key + '$1') + '=' + value;
-                    key_found = true;
-                }
-            }
-            if (!key_found) {
-                qs.push(key + '=' + value);
-            }
-            a.search = '?' + qs.join('&');
             var url = a.href.split("/");
             url = "/" + url[url.length - 1];
-            return url;
+            if (url.indexOf("?") > 0) url = url.substring(0, url.indexOf("?"));
+            return url + query;
         }
     }
 });
@@ -13467,7 +13456,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Scoped Styles */\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Scoped Styles */\r\n", ""]);
 
 // exports
 
@@ -13505,25 +13494,47 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: ["col"],
     data: function data() {
         return {};
     },
 
     computed: {
         ascClass: function ascClass() {
-            // if (this.isSorted && this.direction == 'desc') {
-            // return 'fill-80'
-            // }
+            if (this.isSorted && this.$parent.$parent.$parent.sortDirection == 'desc') {
+                return 'fill-80';
+            }
             return 'fill-60';
         },
         descClass: function descClass() {
-            // if (this.isSorted && this.direction == 'asc') {
-            //     return 'fill-80'
-            // }
+            if (this.isSorted && this.$parent.$parent.$parent.sortDirection == 'asc') {
+                return 'fill-80';
+            }
             return 'fill-60';
+        },
+        isSorted: function isSorted() {
+            return this.$parent.$parent.$parent.sortColumn == this.col;
+        }
+    },
+    methods: {
+        sort: function sort() {
+            var _this = this;
+
+            this.$parent.$parent.$parent.sortDirection = this.$parent.$parent.$parent.sortDirection == "asc" ? "desc" : "asc";
+            var url = this.$parent.$parent.$parent.addparam([{ "_order": this.col, "_direction": this.$parent.$parent.$parent.sortDirection }]);
+            var p = new Promise(function (resolve, reject) {
+                return resolve("Success!");
+            });
+            p.then(function () {
+                return _this.$router.replace({ path: url });
+            }).then(function () {
+                setTimeout(function () {
+                    return _this.$parent.$parent.$parent.load();
+                }, 100);
+            });
+            this.$parent.$parent.$parent.sortColumn = this.col;
         }
     }
 });
@@ -13538,54 +13549,60 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "span",
-    { staticClass: "cursor-pointer inline-flex items-center" },
+    {
+      ref: "icon",
+      staticClass: "cursor-pointer inline-flex items-center",
+      on: { click: _vm.sort }
+    },
     [
       _vm._t("default"),
       _vm._v(" "),
-      _c(
-        "svg",
-        {
-          staticClass: "ml-2",
-          attrs: {
-            xmlns: "http://www.w3.org/2000/svg",
-            width: "8",
-            height: "14",
-            viewBox: "0 0 8 14"
-          }
-        },
-        [
-          _c(
-            "g",
+      _vm.col
+        ? _c(
+            "svg",
             {
+              staticClass: "ml-2",
               attrs: {
-                id: "sortable-icon",
-                fill: "none",
-                "fill-rule": "evenodd"
+                xmlns: "http://www.w3.org/2000/svg",
+                width: "8",
+                height: "14",
+                viewBox: "0 0 8 14"
               }
             },
             [
-              _c("path", {
-                class: _vm.descClass,
-                attrs: {
-                  id: "Path-2-Copy-3",
-                  d:
-                    "M1.70710678 4.70710678c-.39052429.39052429-1.02368927.39052429-1.41421356 0-.3905243-.39052429-.3905243-1.02368927 0-1.41421356l3-3c.39052429-.3905243 1.02368927-.3905243 1.41421356 0l3 3c.39052429.39052429.39052429 1.02368927 0 1.41421356-.39052429.39052429-1.02368927.39052429-1.41421356 0L4 2.41421356 1.70710678 4.70710678z"
-                }
-              }),
-              _vm._v(" "),
-              _c("path", {
-                class: _vm.ascClass,
-                attrs: {
-                  id: "Combined-Shape-Copy-3",
-                  "fill-rule": "nonzero",
-                  d:
-                    "M6.29289322 9.29289322c.39052429-.39052429 1.02368927-.39052429 1.41421356 0 .39052429.39052429.39052429 1.02368928 0 1.41421358l-3 3c-.39052429.3905243-1.02368927.3905243-1.41421356 0l-3-3c-.3905243-.3905243-.3905243-1.02368929 0-1.41421358.3905243-.39052429 1.02368927-.39052429 1.41421356 0L4 11.5857864l2.29289322-2.29289318z"
-                }
-              })
+              _c(
+                "g",
+                {
+                  attrs: {
+                    id: "sortable-icon",
+                    fill: "none",
+                    "fill-rule": "evenodd"
+                  }
+                },
+                [
+                  _c("path", {
+                    class: _vm.descClass,
+                    attrs: {
+                      id: "Path-2-Copy-3",
+                      d:
+                        "M1.70710678 4.70710678c-.39052429.39052429-1.02368927.39052429-1.41421356 0-.3905243-.39052429-.3905243-1.02368927 0-1.41421356l3-3c.39052429-.3905243 1.02368927-.3905243 1.41421356 0l3 3c.39052429.39052429.39052429 1.02368927 0 1.41421356-.39052429.39052429-1.02368927.39052429-1.41421356 0L4 2.41421356 1.70710678 4.70710678z"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("path", {
+                    class: _vm.ascClass,
+                    attrs: {
+                      id: "Combined-Shape-Copy-3",
+                      "fill-rule": "nonzero",
+                      d:
+                        "M6.29289322 9.29289322c.39052429-.39052429 1.02368927-.39052429 1.41421356 0 .39052429.39052429.39052429 1.02368928 0 1.41421358l-3 3c-.39052429.3905243-1.02368927.3905243-1.41421356 0l-3-3c-.3905243-.3905243-.3905243-1.02368929 0-1.41421358.3905243-.39052429 1.02368927-.39052429 1.41421356 0L4 11.5857864l2.29289322-2.29289318z"
+                    }
+                  })
+                ]
+              )
             ]
           )
-        ]
-      )
+        : _vm._e()
     ],
     2
   )
@@ -13781,12 +13798,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         selectPage: function selectPage(page) {
             var _this2 = this;
 
-            var url = this.$parent.$parent.$parent.addparam("page", page);
+            var url = this.$parent.$parent.$parent.addparam([{ "page": page }]);
             var p = new Promise(function (resolve, reject) {
                 return resolve("Success!");
             });
             p.then(function () {
-                return _this2.$root.$router.replace({ path: url });
+                return _this2.$router.replace({ path: url });
             }).then(function () {
                 setTimeout(function () {
                     return _this2.$parent.$parent.$parent.load();
@@ -14038,28 +14055,44 @@ var render = function() {
                       _c(
                         "th",
                         { staticClass: "text-left" },
-                        [_c("sortable-td", [_vm._v("ID")])],
+                        [
+                          _c("sortable-td", { attrs: { col: "id" } }, [
+                            _vm._v("ID")
+                          ])
+                        ],
                         1
                       ),
                       _vm._v(" "),
                       _c(
                         "th",
                         { staticClass: "text-left" },
-                        [_c("sortable-td", [_vm._v("Name")])],
+                        [
+                          _c("sortable-td", { attrs: { col: "name" } }, [
+                            _vm._v("Name")
+                          ])
+                        ],
                         1
                       ),
                       _vm._v(" "),
                       _c(
                         "th",
                         { staticClass: "text-left" },
-                        [_c("sortable-td", [_vm._v("Email")])],
+                        [
+                          _c("sortable-td", { attrs: { col: "email" } }, [
+                            _vm._v("Email")
+                          ])
+                        ],
                         1
                       ),
                       _vm._v(" "),
                       _c(
                         "th",
                         { staticClass: "text-left" },
-                        [_c("sortable-td", [_vm._v("Última Conversão")])],
+                        [
+                          _c("sortable-td", { attrs: { col: "updated_at" } }, [
+                            _vm._v("Última Conversão")
+                          ])
+                        ],
                         1
                       ),
                       _vm._v(" "),
