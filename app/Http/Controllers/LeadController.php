@@ -9,15 +9,20 @@ class LeadController extends Controller
 {
     public function search(Request $request)
     {
-        $filter = $request->all();
-        $paginated_leads = $this->filter($filter);
+        $data = $request->all();
+        $paginated_leads = $this->filter($data);
         return $paginated_leads;
     }
 
-    private function filter($filter)
+    private function filter($data)
     {
-        $leads = Lead::where("id",">",0);
-        $leads = $leads->with(["conversions","status","status.definition"])->paginate(12);
-        return $leads;
+        $query = Lead::where("id",">",0);
+        if(@$data["filter"])
+        {
+            $filter = $data["filter"];
+            $query = $query->where("name","like","%$filter%");
+        }
+        $query = $query->with(["conversions","status","status.definition"])->paginate(15);
+        return $query;
     }
 }

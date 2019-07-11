@@ -10,7 +10,7 @@
                     placeholder="Pesquisar..."
                     type="search"
                     v-model="search"
-                    @keydown.stop="performSearch"
+                    @input.stop="filter"
                 >
             </div>
         </div>
@@ -32,26 +32,73 @@ export default {
         return {
             search: null,
             loading: true,
-            response : null
+            response : null,
+            timeout : null
         }
     },
     components : {
         "lead-table": require("./-LeadTable.vue"),
     },
     mounted() {
-        this.init()
+        this.load()
     },
     methods : {
-        init() {
+        filter() {
+            if(this.timeout) clearTimeout(this.timeout)
+            this.timeout = setTimeout( () => {
+                let url = this.addparam("filter",this.search)
+                let p = new Promise((resolve, reject) => resolve("Success!"))
+                p.then(() => this.$root.$router.replace({path: url })).then( () => {
+                    setTimeout( () => this.load(),100)
+                })
+            },500)
+        },
+        getparams() {
+            let p = new URLSearchParams(location.search.slice(1))
+            return p
+                ? _.fromPairs(Array.from(p.entries()))
+                : {}
+        },
+        load() {
             Nova.request({
                 url: "lead-operator/search",
                 method: 'post',
-                params : {teste:1234}
+                params : this.getparams()
             }).then((res) => {
                 res = res.data
                 this.response = res
                 this.loading = false
             })
+        },
+        addparam(key,value) {
+            let uri = window.location.href
+            var a = document.createElement( 'a' ), 
+                reg_ex = new RegExp( key + '((?:\\[[^\\]]*\\])?)(=|$)(.*)' ),
+                qs,
+                qs_len,
+                key_found = false
+            a.href = uri
+            if ( ! a.search ) {
+                a.search = '?' + key + '=' + value
+                let url = a.href.split("/")
+                url = "/"+url[url.length-1]
+                return url
+            }
+            qs = a.search.replace( /^\?/, '' ).split( /&(?:amp;)?/ )
+            qs_len = qs.length
+            while ( qs_len > 0 ) {
+                qs_len--;
+                if ( ! qs[qs_len] ) { qs.splice(qs_len, 1); continue }
+                if ( reg_ex.test( qs[qs_len] ) ) {
+                    qs[qs_len] = qs[qs_len].replace( reg_ex, key + '$1' ) + '=' + value
+                    key_found = true
+                }
+            }   
+            if ( ! key_found ) { qs.push( key + '=' + value ) }
+            a.search = '?' + qs.join( '&' )
+            let url = a.href.split("/")
+            url = "/"+url[url.length-1]
+            return url
         }
     }
 }

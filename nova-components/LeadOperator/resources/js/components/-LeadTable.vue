@@ -2,7 +2,7 @@
 <card>
     <div class="py-3 flex items-center border-b border-50"> </div>
     <div class="overflow-hidden overflow-x-auto relative">
-        <table v-if="rows.length > 0" class="table w-full" cellpadding="0" cellspacing="0" data-testid="resource-table">
+        <table v-if="rows.length > 0" class="table w-full" cellpadding="0" cellspacing="0" ref="table">
             <thead>
                 <tr>
                     <th class="text-left" style="margin-left:20px;"></th>
@@ -21,9 +21,10 @@
                     <th class="text-left">
                         <sortable-td>Status</sortable-td>
                     </th>
-                    <th class="text-left" style="margin-right:20px;">
+                    <th class="text-left">
                         <sortable-td>Definição</sortable-td>
                     </th>
+                    <th class="text-left" style="margin-right:20px;">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,12 +37,36 @@
                     <td>{{row.email}}</td>
                     <td>{{row.updated_at_for_human}}</td>
                     <td>{{row.status.name}}</td>
-                    <td style="margin-right:20px;">{{row.status.definition.name}}</td>
+                    <td>{{row.status.definition.name}}</td>
+                    <td style="margin-right:20px;">
+                        <div class="flex">
+                            <a href="#">Detalhes</a>
+                            <a class="ml-2" href="#">Operar</a>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>
+        <template v-else>
+            <div class="relative">
+                <div class="flex justify-center items-center px-6 py-8" style="">
+                    <div class="text-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="65" height="51" viewBox="0 0 65 51" class="mb-3">
+                            <g id="Page-1" fill="none" fill-rule="evenodd">
+                                <g id="05-blank-state" fill="#A8B9C5" fill-rule="nonzero" transform="translate(-779 -695)">
+                                    <path id="Combined-Shape" d="M835 735h2c.552285 0 1 .447715 1 1s-.447715 1-1 1h-2v2c0 .552285-.447715 1-1 1s-1-.447715-1-1v-2h-2c-.552285 0-1-.447715-1-1s.447715-1 1-1h2v-2c0-.552285.447715-1 1-1s1 .447715 1 1v2zm-5.364125-8H817v8h7.049375c.350333-3.528515 2.534789-6.517471 5.5865-8zm-5.5865 10H785c-3.313708 0-6-2.686292-6-6v-30c0-3.313708 2.686292-6 6-6h44c3.313708 0 6 2.686292 6 6v25.049375c5.053323.501725 9 4.765277 9 9.950625 0 5.522847-4.477153 10-10 10-5.185348 0-9.4489-3.946677-9.950625-9zM799 725h16v-8h-16v8zm0 2v8h16v-8h-16zm34-2v-8h-16v8h16zm-52 0h16v-8h-16v8zm0 2v4c0 2.209139 1.790861 4 4 4h12v-8h-16zm18-12h16v-8h-16v8zm34 0v-8h-16v8h16zm-52 0h16v-8h-16v8zm52-10v-4c0-2.209139-1.790861-4-4-4h-44c-2.209139 0-4 1.790861-4 4v4h52zm1 39c4.418278 0 8-3.581722 8-8s-3.581722-8-8-8-8 3.581722-8 8 3.581722 8 8 8z"></path>
+                                </g>
+                            </g>
+                        </svg>
+                        <h3 class="text-base text-80 font-normal mb-6">
+                            Nenhum encontrado.
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </template>
     </div>
-    <pagination-row :response="response"></pagination-row>
+    <pagination-row :page="response.current_page" :pages="response.last_page" v-if="rows.length > 0"></pagination-row>
 </card>
 </template>
 
@@ -49,17 +74,23 @@
 export default {
     props :["response"],
     data() {
-        return {
-            rows : this.response.data
-        }
+        return {}
     },
     components : {
         "sortable-td": require("./-SortableTd.vue"),
         "pagination-row": require("./-PaginationRow.vue"),
+    },
+    computed : {
+        rows() {
+            return this.response.data
+        }
     }
 }
 </script>
 <style lang="scss" scope>
+.ml-2 {
+    margin-left : 10px;
+}
 .status-ball {
     margin-left:20px;
     min-height : 20px;
