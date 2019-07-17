@@ -18,7 +18,10 @@ class Lead extends Model
     public $guarded = ['created_at'];
     protected $table = "leads";
     protected $connection = "client";
-    protected $casts = ["custom_values"=>"array","tags"=>"array"];
+    protected $casts = [
+            "custom_values"=>"array",
+            "tags"=>"array"
+    ];
     protected $appends = ["updated_at_for_human","custom_fields"];
     
     protected static function boot()

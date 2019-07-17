@@ -13282,7 +13282,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.icon_button {\n  cursor: pointer;\n  font-size: 30px;\n  opacity: .5;\n}\n.icon_button:hover {\n    -webkit-transition: .5s;\n    transition: .5s;\n    opacity: 1;\n}\n.less {\n  font-size: 15px;\n  display: none;\n}\n.more {\n  font-size: 15px;\n  display: block;\n}\n.showing_detail .more {\n  font-size: 15px;\n  display: none;\n}\n.showing_detail .less {\n  display: block;\n}\n.lead-detail .content {\n  padding: 20px 30px 20px 30px;\n}\n.ml-2 {\n  margin-left: 10px;\n}\n.status-ball {\n  min-height: 20px;\n  height: 20px;\n  width: 20px;\n  border-radius: 100%;\n}\n", ""]);
+exports.push([module.i, "\n.status-badge {\n  padding: 2px 10px 2px 10px;\n  border: 2px solid black;\n  border-radius: 10px;\n  font-weight: 600;\n  font-size: 13px;\n}\n.text-center {\n  text-align: center;\n}\n.icon_button {\n  cursor: pointer;\n  font-size: 30px;\n  opacity: .5;\n}\n.icon_button:hover {\n    -webkit-transition: .5s;\n    transition: .5s;\n    opacity: 1;\n}\n.less {\n  font-size: 15px;\n  display: none;\n}\n.more {\n  font-size: 15px;\n  display: block;\n}\n.showing_detail .more {\n  font-size: 15px;\n  display: none;\n}\n.showing_detail .less {\n  display: block;\n}\n.lead-detail .content {\n  padding: 20px 30px 20px 30px !important;\n}\n.ml-2 {\n  margin-left: 10px;\n}\n.status-ball {\n  min-height: 20px;\n  height: 20px;\n  width: 20px;\n  border-radius: 100%;\n}\n", ""]);
 
 // exports
 
@@ -13293,10 +13293,6 @@ exports.push([module.i, "\n.icon_button {\n  cursor: pointer;\n  font-size: 30px
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
 //
 //
 //
@@ -13503,7 +13499,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Scoped Styles */\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Scoped Styles */\r\n", ""]);
 
 // exports
 
@@ -13569,6 +13565,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         sort: function sort() {
             var _this = this;
 
+            if (!this.col) return false;
             this.$parent.$parent.$parent.sortDirection = this.$parent.$parent.$parent.sortDirection == "asc" ? "desc" : "asc";
             var url = this.$parent.$parent.$parent.addparam([{ "_order": this.col, "_direction": this.$parent.$parent.$parent.sortDirection }]);
             var p = new Promise(function (resolve, reject) {
@@ -14096,8 +14093,6 @@ var render = function() {
                     _c("tr", [
                       _c("th", { staticStyle: { "margin-left": "20px" } }),
                       _vm._v(" "),
-                      _c("th"),
-                      _vm._v(" "),
                       _c(
                         "th",
                         [
@@ -14139,8 +14134,6 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c("th", [_c("sortable-td", [_vm._v("Status")])], 1),
-                      _vm._v(" "),
-                      _c("th", [_c("sortable-td", [_vm._v("Definição")])], 1),
                       _vm._v(" "),
                       _c("th", { staticStyle: { "margin-right": "20px" } })
                     ])
@@ -14198,30 +14191,48 @@ var render = function() {
                             ]
                           ),
                           _vm._v(" "),
-                          _c("td", [
-                            _c("div", {
-                              staticClass: "status-ball",
-                              style: { backgroundColor: "" + row.status.color }
-                            })
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(row.id))
                           ]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(row.id))]),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(row.name))
+                          ]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(row.name))]),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(row.email))
+                          ]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(row.email))]),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(row.updated_at_for_human))
+                          ]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(row.updated_at_for_human))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(row.status.name))]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _vm._v(_vm._s(row.status.definition.name))
+                          _c("td", { staticClass: "text-center" }, [
+                            _c(
+                              "span",
+                              {
+                                staticClass: "status-badge",
+                                style: {
+                                  borderColor: "" + row.status.color,
+                                  color: "" + row.status.color
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\r\n                            " +
+                                    _vm._s(row.status.name) +
+                                    "\r\n                        "
+                                )
+                              ]
+                            )
                           ]),
                           _vm._v(" "),
                           _c(
                             "td",
-                            { staticStyle: { "margin-right": "20px" } },
+                            {
+                              staticClass: "text-center",
+                              staticStyle: { "margin-right": "20px" }
+                            },
                             [
                               _c(
                                 "span",

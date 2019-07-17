@@ -50,6 +50,8 @@ export default {
     },
     methods : {
         sort() {
+            if(!this.col)
+                return false
             this.$parent.$parent.$parent.sortDirection = this.$parent.$parent.$parent.sortDirection=="asc" ? "desc" : "asc"
             let url = this.$parent.$parent.$parent.addparam([{"_order":this.col,"_direction":this.$parent.$parent.$parent.sortDirection}])
             let p = new Promise((resolve, reject) => resolve("Success!"))

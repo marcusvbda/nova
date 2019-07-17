@@ -6,7 +6,6 @@
             <thead>
                 <tr>
                     <th style="margin-left:20px;"></th>
-                    <th></th>
                     <th>
                         <sortable-td col="id">ID</sortable-td>
                     </th>
@@ -22,9 +21,6 @@
                     <th>
                         <sortable-td>Status</sortable-td>
                     </th>
-                    <th>
-                        <sortable-td>Definição</sortable-td>
-                    </th>
                     <th  style="margin-right:20px;"></th>
                 </tr>
             </thead>
@@ -36,16 +32,16 @@
                             <span class="less icon_button" title="clique para ver menos detalhes">➖</span>
                         </span>
                     </td>
-                    <td>
-                        <div class="status-ball" v-bind:style="{backgroundColor: `${row.status.color}`}"></div>
+                    <td class="text-center">{{row.id}}</td>
+                    <td class="text-center">{{row.name}}</td>
+                    <td class="text-center">{{row.email}}</td>
+                    <td class="text-center">{{row.updated_at_for_human}}</td>
+                    <td class="text-center">
+                        <span class="status-badge"  v-bind:style="{borderColor: `${row.status.color}`,color: `${row.status.color}`}">
+                            {{row.status.name}}
+                        </span>
                     </td>
-                    <td>{{row.id}}</td>
-                    <td>{{row.name}}</td>
-                    <td>{{row.email}}</td>
-                    <td>{{row.updated_at_for_human}}</td>
-                    <td>{{row.status.name}}</td>
-                    <td>{{row.status.definition.name}}</td>
-                    <td style="margin-right:20px;">
+                    <td style="margin-right:20px;" class="text-center">
                         <span class="ml-2 icon_button" href="#" title="clique para operar">⚡</span>
                     </td>
                 </tr>
@@ -120,6 +116,16 @@ export default {
 }
 </script>
 <style lang="scss" scope>
+.status-badge {
+    padding: 2px 10px 2px 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size:13px;
+}
+.text-center {
+    text-align: center;
+}
 .icon_button {
     cursor:pointer;
     font-size:30px;
@@ -148,7 +154,7 @@ export default {
 }
 .lead-detail {
     .content {
-        padding: 20px 30px 20px 30px;
+        padding: 20px 30px 20px 30px!important;
     }
 }
 .ml-2 {
