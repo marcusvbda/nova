@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Lead;
+use App\CustomField;
 
 class LeadController extends Controller
 {
@@ -26,5 +27,11 @@ class LeadController extends Controller
             ->orderBy(@$data["_order"] ? $data["_order"] : "id", @$data["_direction"] ? $data["_direction"] : "desc")
             ->paginate(15);
         return $query;
+    }
+
+    public function detail(Lead $lead)
+    {
+        $customFields = CustomField::get();
+        return view("custom.leads.detail",compact('lead','customFields'));
     }
 }

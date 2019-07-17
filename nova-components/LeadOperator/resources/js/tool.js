@@ -7,5 +7,10 @@ Nova.booting((Vue, router, store) => {
             path: '/lead-operator',
             component: require('./components/Tool'),
         },
+        // {
+        //     name: 'lead-operator-detail',
+        //     path: '/lead-operator/detail/:id',
+        //     component: require('./components/-Detail'),
+        // },
     ])
 })

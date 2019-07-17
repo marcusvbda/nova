@@ -19,7 +19,7 @@
                 <loader class="text-60"/>
             </div>
             <template v-else>
-                <lead-table :response="response"></lead-table>
+                <lead-table :response="response" ref="table"></lead-table>
             </template>
         </div>
         
@@ -71,6 +71,13 @@ export default {
                 params : this.getparams()
             }).then((res) => {
                 res = res.data
+                let details = $(".showing_detail")
+                if(details) {
+                    $(details).each(function() {
+                        $(this).removeClass('showing_detail')
+                        $(this).next().remove()
+                    })
+                }
                 this.response = res
                 this.loading = false
             })

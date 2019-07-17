@@ -532,7 +532,13 @@ Nova.booting(function (Vue, router, store) {
         name: 'lead-operator',
         path: '/lead-operator',
         component: __webpack_require__(11)
-    }]);
+    }]
+    // {
+    //     name: 'lead-operator-detail',
+    //     path: '/lead-operator/detail/:id',
+    //     component: require('./components/-Detail'),
+    // },
+    );
 });
 
 /***/ }),
@@ -13031,7 +13037,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
 
 // exports
 
@@ -13158,6 +13164,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 params: this.getparams()
             }).then(function (res) {
                 res = res.data;
+                var details = $(".showing_detail");
+                if (details) {
+                    $(details).each(function () {
+                        $(this).removeClass('showing_detail');
+                        $(this).next().remove();
+                    });
+                }
                 _this2.response = res;
                 _this2.loading = false;
             });
@@ -13269,7 +13282,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.ml-2 {\n  margin-left: 10px;\n}\n.status-ball {\n  margin-left: 20px;\n  min-height: 20px;\n  height: 20px;\n  width: 20px;\n  border-radius: 100%;\n}\n", ""]);
+exports.push([module.i, "\n.more {\n  width: 20px;\n  height: 20px;\n  display: block;\n}\n.less {\n  width: 20px;\n  height: 20px;\n  display: none;\n}\n.showing_detail .more {\n  display: none;\n}\n.showing_detail .less {\n  display: block;\n}\n.lead-detail {\n  padding: 20px 30px 20px 30px;\n}\n.ml-2 {\n  margin-left: 10px;\n}\n.status-ball {\n  min-height: 20px;\n  height: 20px;\n  width: 20px;\n  border-radius: 100%;\n}\n", ""]);
 
 // exports
 
@@ -13280,6 +13293,10 @@ exports.push([module.i, "\n.ml-2 {\n  margin-left: 10px;\n}\n.status-ball {\n  m
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
 //
 //
 //
@@ -13366,6 +13383,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     computed: {
         rows: function rows() {
             return this.response.data;
+        }
+    },
+    mounted: function mounted() {
+        this.startListeningDetail();
+    },
+
+    methods: {
+        startListeningDetail: function startListeningDetail() {
+            var self = this;
+            $(this.$refs.table).find('tbody').on('click', '.details-control', function () {
+                var tr = $(this).closest('tr');
+                if ($(tr).hasClass("showing_detail")) {
+                    tr.removeClass('showing_detail');
+                    tr.next().remove();
+                } else self.getDetail(tr);
+            });
+        },
+        getDetail: function getDetail(tr) {
+            var _this = this;
+
+            var data = $(tr).attr("data");
+            Nova.request({
+                url: "lead-operator/detail/" + data,
+                method: 'post'
+            }).then(function (res) {
+                res = res.data;
+                var colspan = $(_this.$refs.table).find("tr:first th").length;
+                tr.after("<tr><td colspan=\"" + colspan + "\">" + res + "</td></tr>");
+                tr.addClass('showing_detail');
+            });
         }
     }
 });
@@ -14052,6 +14099,8 @@ var render = function() {
                         staticStyle: { "margin-left": "20px" }
                       }),
                       _vm._v(" "),
+                      _c("th", { staticClass: "text-left" }),
+                      _vm._v(" "),
                       _c(
                         "th",
                         { staticClass: "text-left" },
@@ -14110,14 +14159,10 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
-                      _c(
-                        "th",
-                        {
-                          staticClass: "text-left",
-                          staticStyle: { "margin-right": "20px" }
-                        },
-                        [_vm._v("Ações")]
-                      )
+                      _c("th", {
+                        staticClass: "text-left",
+                        staticStyle: { "margin-right": "20px" }
+                      })
                     ])
                   ]),
                   _vm._v(" "),
@@ -14126,8 +14171,57 @@ var render = function() {
                     _vm._l(_vm.rows, function(row, index) {
                       return _c(
                         "tr",
-                        { staticClass: "hover:bg-blue-lightest" },
+                        {
+                          staticClass: "hover:bg-blue-lightest",
+                          attrs: { data: row.id }
+                        },
                         [
+                          _c("td", [
+                            _c(
+                              "a",
+                              {
+                                staticClass: "details-control",
+                                attrs: { href: "#" },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                  }
+                                }
+                              },
+                              [
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass: "more",
+                                    attrs: {
+                                      title: "clique para ver mais detalhes"
+                                    }
+                                  },
+                                  [
+                                    _c("img", {
+                                      attrs: { src: "/imgs/plus.png" }
+                                    })
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass: "less",
+                                    attrs: {
+                                      title: "clique para ver menos detalhes"
+                                    }
+                                  },
+                                  [
+                                    _c("img", {
+                                      attrs: { src: "/imgs/minus.png" }
+                                    })
+                                  ]
+                                )
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
                           _c("td", [
                             _c("div", {
                               staticClass: "status-ball",
@@ -14153,17 +14247,21 @@ var render = function() {
                             "td",
                             { staticStyle: { "margin-right": "20px" } },
                             [
-                              _c("div", { staticClass: "flex" }, [
-                                _c("a", { attrs: { href: "#" } }, [
-                                  _vm._v("Detalhes")
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  { staticClass: "ml-2", attrs: { href: "#" } },
-                                  [_vm._v("Operar")]
-                                )
-                              ])
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "ml-2",
+                                  attrs: {
+                                    href: "#",
+                                    title: "clique para operar"
+                                  }
+                                },
+                                [
+                                  _c("img", {
+                                    attrs: { src: "/imgs/bolt.png" }
+                                  })
+                                ]
+                              )
                             ]
                           )
                         ]
@@ -14339,7 +14437,12 @@ var render = function() {
                 [_c("loader", { staticClass: "text-60" })],
                 1
               )
-            : [_c("lead-table", { attrs: { response: _vm.response } })]
+            : [
+                _c("lead-table", {
+                  ref: "table",
+                  attrs: { response: _vm.response }
+                })
+              ]
         ],
         2
       )

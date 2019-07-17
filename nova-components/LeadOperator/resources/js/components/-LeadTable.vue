@@ -6,6 +6,7 @@
             <thead>
                 <tr>
                     <th class="text-left" style="margin-left:20px;"></th>
+                    <th class="text-left"></th>
                     <th class="text-left">
                         <sortable-td col="id">ID</sortable-td>
                     </th>
@@ -24,11 +25,17 @@
                     <th class="text-left">
                         <sortable-td>Definição</sortable-td>
                     </th>
-                    <th class="text-left" style="margin-right:20px;">Ações</th>
+                    <th class="text-left" style="margin-right:20px;"></th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="hover:bg-blue-lightest" v-for="(row,index) in rows">
+                <tr class="hover:bg-blue-lightest" v-for="(row,index) in rows" :data="row.id">
+                    <td>
+                        <a class="details-control" @click.prevent href="#" >
+                            <span class="more" title="clique para ver mais detalhes"><img src="/imgs/plus.png"/></span>
+                            <span class="less" title="clique para ver menos detalhes"><img src="/imgs/minus.png"/></span>
+                        </a>
+                    </td>
                     <td>
                         <div class="status-ball" v-bind:style="{backgroundColor: `${row.status.color}`}"></div>
                     </td>
@@ -39,10 +46,7 @@
                     <td>{{row.status.name}}</td>
                     <td>{{row.status.definition.name}}</td>
                     <td style="margin-right:20px;">
-                        <div class="flex">
-                            <a href="#">Detalhes</a>
-                            <a class="ml-2" href="#">Operar</a>
-                        </div>
+                        <a class="ml-2" href="#" title="clique para operar"><img src="/imgs/bolt.png"/></a>
                     </td>
                 </tr>
             </tbody>
@@ -84,15 +88,63 @@ export default {
         rows() {
             return this.response.data
         }
+    },
+    mounted() {
+        this.startListeningDetail()
+    },
+    methods : {
+        startListeningDetail() {
+            let self = this
+            $(this.$refs.table).find('tbody').on('click', '.details-control', function() {
+                var tr = $(this).closest('tr')
+                if($(tr).hasClass("showing_detail" )) {
+                    tr.removeClass('showing_detail')
+                    tr.next().remove()
+                } else 
+                    self.getDetail(tr)
+            });
+        },
+        getDetail(tr) {
+            let data = $(tr).attr("data")
+            Nova.request({
+                url: `lead-operator/detail/${data}`,
+                method: 'post'
+            }).then((res) => {
+                res = res.data
+                let colspan = $(this.$refs.table).find("tr:first th").length
+                tr.after(`<tr><td colspan="${colspan}">${res}</td></tr>`)
+                tr.addClass('showing_detail')
+            })
+        }
     }
 }
 </script>
 <style lang="scss" scope>
+.more {
+    width : 20px;
+    height : 20px;
+    display:block;
+}
+.less {
+    width : 20px;
+    height : 20px;
+    display :none;
+}
+.showing_detail {
+    .more {
+        display:none;
+    }
+    .less {
+        display :block;
+    }
+}
+.lead-detail {
+    padding: 20px 30px 20px 30px;
+}
 .ml-2 {
     margin-left : 10px;
 }
 .status-ball {
-    margin-left:20px;
     min-height : 20px;
     height : 20px;
     width : 20px;
