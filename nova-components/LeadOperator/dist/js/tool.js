@@ -13282,7 +13282,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.more {\n  width: 20px;\n  height: 20px;\n  display: block;\n}\n.less {\n  width: 20px;\n  height: 20px;\n  display: none;\n}\n.showing_detail .more {\n  display: none;\n}\n.showing_detail .less {\n  display: block;\n}\n.lead-detail {\n  padding: 20px 30px 20px 30px;\n}\n.ml-2 {\n  margin-left: 10px;\n}\n.status-ball {\n  min-height: 20px;\n  height: 20px;\n  width: 20px;\n  border-radius: 100%;\n}\n", ""]);
+exports.push([module.i, "\n.icon_button {\n  cursor: pointer;\n  font-size: 30px;\n  opacity: .5;\n}\n.icon_button:hover {\n    -webkit-transition: .5s;\n    transition: .5s;\n    opacity: 1;\n}\n.less {\n  font-size: 15px;\n  display: none;\n}\n.more {\n  font-size: 15px;\n  display: block;\n}\n.showing_detail .more {\n  font-size: 15px;\n  display: none;\n}\n.showing_detail .less {\n  display: block;\n}\n.lead-detail .content {\n  padding: 20px 30px 20px 30px;\n}\n.ml-2 {\n  margin-left: 10px;\n}\n.status-ball {\n  min-height: 20px;\n  height: 20px;\n  width: 20px;\n  border-radius: 100%;\n}\n", ""]);
 
 // exports
 
@@ -13410,7 +13410,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (res) {
                 res = res.data;
                 var colspan = $(_this.$refs.table).find("tr:first th").length;
-                tr.after("<tr><td colspan=\"" + colspan + "\">" + res + "</td></tr>");
+                tr.after("<tr class=\"lead-detail\"><td colspan=\"" + colspan + "\">" + res + "</td></tr>");
                 tr.addClass('showing_detail');
             });
         }
@@ -14094,16 +14094,12 @@ var render = function() {
                 [
                   _c("thead", [
                     _c("tr", [
-                      _c("th", {
-                        staticClass: "text-left",
-                        staticStyle: { "margin-left": "20px" }
-                      }),
+                      _c("th", { staticStyle: { "margin-left": "20px" } }),
                       _vm._v(" "),
-                      _c("th", { staticClass: "text-left" }),
+                      _c("th"),
                       _vm._v(" "),
                       _c(
                         "th",
-                        { staticClass: "text-left" },
                         [
                           _c("sortable-td", { attrs: { col: "id" } }, [
                             _vm._v("ID")
@@ -14114,7 +14110,6 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "th",
-                        { staticClass: "text-left" },
                         [
                           _c("sortable-td", { attrs: { col: "name" } }, [
                             _vm._v("Name")
@@ -14125,7 +14120,6 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "th",
-                        { staticClass: "text-left" },
                         [
                           _c("sortable-td", { attrs: { col: "email" } }, [
                             _vm._v("Email")
@@ -14136,7 +14130,6 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "th",
-                        { staticClass: "text-left" },
                         [
                           _c("sortable-td", { attrs: { col: "updated_at" } }, [
                             _vm._v("Última Conversão")
@@ -14145,24 +14138,11 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
-                      _c(
-                        "th",
-                        { staticClass: "text-left" },
-                        [_c("sortable-td", [_vm._v("Status")])],
-                        1
-                      ),
+                      _c("th", [_c("sortable-td", [_vm._v("Status")])], 1),
                       _vm._v(" "),
-                      _c(
-                        "th",
-                        { staticClass: "text-left" },
-                        [_c("sortable-td", [_vm._v("Definição")])],
-                        1
-                      ),
+                      _c("th", [_c("sortable-td", [_vm._v("Definição")])], 1),
                       _vm._v(" "),
-                      _c("th", {
-                        staticClass: "text-left",
-                        staticStyle: { "margin-right": "20px" }
-                      })
+                      _c("th", { staticStyle: { "margin-right": "20px" } })
                     ])
                   ]),
                   _vm._v(" "),
@@ -14176,51 +14156,47 @@ var render = function() {
                           attrs: { data: row.id }
                         },
                         [
-                          _c("td", [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "details-control",
-                                attrs: { href: "#" },
-                                on: {
-                                  click: function($event) {
-                                    $event.preventDefault()
+                          _c(
+                            "td",
+                            { staticStyle: { "text-align": "center" } },
+                            [
+                              _c(
+                                "span",
+                                {
+                                  staticClass: "details-control",
+                                  attrs: { href: "#" },
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                    }
                                   }
-                                }
-                              },
-                              [
-                                _c(
-                                  "span",
-                                  {
-                                    staticClass: "more",
-                                    attrs: {
-                                      title: "clique para ver mais detalhes"
-                                    }
-                                  },
-                                  [
-                                    _c("img", {
-                                      attrs: { src: "/imgs/plus.png" }
-                                    })
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "span",
-                                  {
-                                    staticClass: "less",
-                                    attrs: {
-                                      title: "clique para ver menos detalhes"
-                                    }
-                                  },
-                                  [
-                                    _c("img", {
-                                      attrs: { src: "/imgs/minus.png" }
-                                    })
-                                  ]
-                                )
-                              ]
-                            )
-                          ]),
+                                },
+                                [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass: "more icon_button",
+                                      attrs: {
+                                        title: "clique para ver mais detalhes"
+                                      }
+                                    },
+                                    [_vm._v("➕")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass: "less icon_button",
+                                      attrs: {
+                                        title: "clique para ver menos detalhes"
+                                      }
+                                    },
+                                    [_vm._v("➖")]
+                                  )
+                                ]
+                              )
+                            ]
+                          ),
                           _vm._v(" "),
                           _c("td", [
                             _c("div", {
@@ -14248,19 +14224,15 @@ var render = function() {
                             { staticStyle: { "margin-right": "20px" } },
                             [
                               _c(
-                                "a",
+                                "span",
                                 {
-                                  staticClass: "ml-2",
+                                  staticClass: "ml-2 icon_button",
                                   attrs: {
                                     href: "#",
                                     title: "clique para operar"
                                   }
                                 },
-                                [
-                                  _c("img", {
-                                    attrs: { src: "/imgs/bolt.png" }
-                                  })
-                                ]
+                                [_vm._v("⚡")]
                               )
                             ]
                           )

@@ -1,4 +1,4 @@
-<div class="lead-detail">
+<div class="content">
     <ul>
         <li><b>Telefone :</b> {{$lead->phone}}</li>
         <li><b>Celular :</b> {{$lead->cell}}</li>

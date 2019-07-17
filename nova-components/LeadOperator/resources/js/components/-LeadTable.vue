@@ -5,36 +5,36 @@
         <table v-if="rows.length > 0" class="table w-full" cellpadding="0" cellspacing="0" ref="table">
             <thead>
                 <tr>
-                    <th class="text-left" style="margin-left:20px;"></th>
-                    <th class="text-left"></th>
-                    <th class="text-left">
+                    <th style="margin-left:20px;"></th>
+                    <th></th>
+                    <th>
                         <sortable-td col="id">ID</sortable-td>
                     </th>
-                    <th class="text-left">
+                    <th>
                         <sortable-td col="name">Name</sortable-td>
                     </th>
-                    <th class="text-left">
+                    <th>
                         <sortable-td col="email">Email</sortable-td>
                     </th>
-                    <th class="text-left">
+                    <th>
                         <sortable-td col="updated_at">Última Conversão</sortable-td>
                     </th>
-                    <th class="text-left">
+                    <th>
                         <sortable-td>Status</sortable-td>
                     </th>
-                    <th class="text-left">
+                    <th>
                         <sortable-td>Definição</sortable-td>
                     </th>
-                    <th class="text-left" style="margin-right:20px;"></th>
+                    <th  style="margin-right:20px;"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="hover:bg-blue-lightest" v-for="(row,index) in rows" :data="row.id">
-                    <td>
-                        <a class="details-control" @click.prevent href="#" >
-                            <span class="more" title="clique para ver mais detalhes"><img src="/imgs/plus.png"/></span>
-                            <span class="less" title="clique para ver menos detalhes"><img src="/imgs/minus.png"/></span>
-                        </a>
+                    <td style="text-align:center;">
+                        <span class="details-control" @click.prevent href="#" >
+                            <span class="more icon_button" title="clique para ver mais detalhes">➕</span>
+                            <span class="less icon_button" title="clique para ver menos detalhes">➖</span>
+                        </span>
                     </td>
                     <td>
                         <div class="status-ball" v-bind:style="{backgroundColor: `${row.status.color}`}"></div>
@@ -46,7 +46,7 @@
                     <td>{{row.status.name}}</td>
                     <td>{{row.status.definition.name}}</td>
                     <td style="margin-right:20px;">
-                        <a class="ml-2" href="#" title="clique para operar"><img src="/imgs/bolt.png"/></a>
+                        <span class="ml-2 icon_button" href="#" title="clique para operar">⚡</span>
                     </td>
                 </tr>
             </tbody>
@@ -112,7 +112,7 @@ export default {
             }).then((res) => {
                 res = res.data
                 let colspan = $(this.$refs.table).find("tr:first th").length
-                tr.after(`<tr><td colspan="${colspan}">${res}</td></tr>`)
+                tr.after(`<tr class="lead-detail"><td colspan="${colspan}">${res}</td></tr>`)
                 tr.addClass('showing_detail')
             })
         }
@@ -120,18 +120,26 @@ export default {
 }
 </script>
 <style lang="scss" scope>
-.more {
-    width : 20px;
-    height : 20px;
-    display:block;
+.icon_button {
+    cursor:pointer;
+    font-size:30px;
+    opacity:.5;
+    &:hover {
+        transition:.5s;
+        opacity:1;
+    }
 }
 .less {
-    width : 20px;
-    height : 20px;
+    font-size:15px;
     display :none;
+}
+.more {
+    font-size:15px;
+    display :block;
 }
 .showing_detail {
     .more {
+        font-size:15px;
         display:none;
     }
     .less {
@@ -139,7 +147,9 @@ export default {
     }
 }
 .lead-detail {
-    padding: 20px 30px 20px 30px;
+    .content {
+        padding: 20px 30px 20px 30px;
+    }
 }
 .ml-2 {
     margin-left : 10px;
