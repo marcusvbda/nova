@@ -52,12 +52,6 @@ class Lead extends Model
         return $this->hasMany(Conversion::class);
     }
 
-    public function schedules() 
-    {
-        return $this->hasMany(Scheduling::class);
-    }
-
-
 
     
 }

@@ -72,7 +72,6 @@ class Lead extends Resource
                 ->displayUsingLabels()
                 ->rules('required'),
             hasMany::make(ucfirst(__("conversions")),"conversions",Conversion::class),
-            hasMany::make(ucfirst(__("schedules")),"schedules",Scheduling::class),
             Tags::make('Tags')->hideFromIndex(),
             Text::make(__("Last Update"), function () {
                 return Carbon::parse($this->updated_at)->diffForHumans();

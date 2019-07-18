@@ -20,6 +20,7 @@
                     <span>{{$tag->name}}</span>
                 @endforeach
             </li>
+            <li><b>Agendamento :</b> {{ $lead->data ? date('d/m/Y - H:i:s', strtotime($lead->data)) : "Sem Agendamento" }}</li>
         </ul>
     </div>
 </div>

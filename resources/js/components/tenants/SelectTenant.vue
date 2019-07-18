@@ -34,7 +34,6 @@
             }
         },
         mounted() {
-            console.log()
             this.load()
         },
         methods : {

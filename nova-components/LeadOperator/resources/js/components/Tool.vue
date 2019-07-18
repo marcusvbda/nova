@@ -1,10 +1,16 @@
 <template>
     <div>
         <heading class="mb-6">Operador de Leads</heading>
-        <div class="flex justify-between">
+        <div class="flex">
+            <status-field
+                dataroute="lead-operator/getStatus"
+                :value="status_id"
+                v-model="status_id"
+            >
+            </status-field>
+
             <div class="relative h-9 flex items-center mb-6">
                 <icon type="search" class="absolute ml-3 text-70"/>
-
                 <input
                     class="appearance-none form-control form-input w-search pl-search"
                     placeholder="Pesquisar..."
@@ -13,6 +19,7 @@
                     @input.stop="filter"
                 >
             </div>
+            
         </div>
         <div class="relative" :class="{'overflow-hidden' : loading}">
             <div v-if="loading" class="flex items-center justify-center z-50 p-6" style="min-height: 150px">
@@ -30,28 +37,35 @@
 export default {
     data() {
         return {
-            search: null,
+            status_id : this.$route.query["status_id"] ? this.$route.query["status_id"] : "all",
+            search: this.$route.query["filter"] ? this.$route.query["filter"] : "",
+            sortColumn : this.$route.query["_order"] ? this.$route.query["_order"] : null,
+            sortDirection : this.$route.query["_direction"] ? this.$route.query["_direction"] : "desc",
             loading: true,
             response : null,
-            timeout : null,
-            sortColumn : null,
-            sortDirection : null
+            timeout : null
+        }
+    },
+    watch : {
+        status_id(val) {
+            this.filter()
         }
     },
     components : {
+        "status-field": require("./-StatusField.vue"),
         "lead-table": require("./-LeadTable.vue"),
     },
     mounted() {
         this.load()
-        this.search = this.$route.query["filter"]
-        this.sortColumn = this.$route.query["_order"]
-        this.sortDirection = this.$route.query["_direction"] ? this.$route.query["_direction"] : "desc"
     },
     methods : {
         filter() {
             if(this.timeout) clearTimeout(this.timeout)
             this.timeout = setTimeout( () => {
-                let url = this.addparam([{"filter":this.search}])
+                let filters = []
+                filters.push({"filter": this.search ? this.search : "" })
+                filters.push({"status_id": this.status_id ? this.status_id : "all" })
+                let url = this.addparam(filters)
                 let p = new Promise((resolve, reject) => resolve("Success!"))
                 p.then(() => this.$router.replace({path: url })).then( () => {
                     setTimeout( () => this.load(),100)
